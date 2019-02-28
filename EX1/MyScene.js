@@ -24,12 +24,15 @@ class MyScene extends CGFscene {
         this.diamond = new MyDiamond(this);
         this.rectriangle = new MyTriangle(this);
         this.parallelogram = new MyParallelogram(this);
+        //this.smalltriangle = new MyTriangleSmall(this);
+
+        
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayDiamond = false;
         this.displayTriangle = false;
-        this.displayParallelogram = true;
+        this.displayParallelogram = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -69,17 +72,80 @@ class MyScene extends CGFscene {
                     0.0, 0.0, this.scaleFactor, 0.0,
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
-
-
+        
+        
         // ---- BEGIN Primitive drawing section
+        
         
         
         if (this.displayDiamond)
             this.diamond.display();
         if (this.displayTriangle)
             this.rectriangle.display();
-        if (this.displayParallelogram)
+            
+       if (this.displayParallelogram)
             this.parallelogram.display();
+        this.pushMatrix();
+
+        //RED TRIANGLE
+        this.rotate(-Math.PI/4, 0, 0 , 1);
+        this.translate(0, 2, 0);
+        this.rectriangle.display();
+
+        this.popMatrix();
+        this.pushMatrix();
+
+        //YELLOW PL
+
+        this.scale(-Math.sqrt(2),Math.sqrt(2), 0);
+        this.translate(0,1,0);
+
+        this.rotate(Math.PI/2, 0,0,1);
+
+        this.parallelogram.display();
+
+        //ORANGE TRIANGLE
+
+        this.popMatrix();
+        this.pushMatrix();
+
+        this.scale(2,2,0);
+        this.rotate(3*Math.PI/4, 0, 0 , 1);
+        this.translate(1/2, -1.5, 0);
+
+        this.rectriangle.display();
+        
+        this.popMatrix();
+        this.pushMatrix();
+        
+
+        //GREEN DIAMOND
+
+        this.translate(2,6.005,0);
+
+        this.diamond.display();
+
+        this.popMatrix();
+        this.pushMatrix();
+
+        //BLUE TRIANGLE
+
+        this.rotate(Math.PI/2, 0, 0 , 1);
+        this.scale(2,2,0);
+        this.translate(1, -1.7, 0);
+
+        this.rectriangle.display();
+
+        //PINK TRIANGLE
+
+        this.popMatrix();
+        this.pushMatrix();
+
+        this.scale(Math.sqrt(2),Math.sqrt(2),0);
+        this.rectriangle.display();
+
+
+
         // ---- END Primitive drawing section
     }
 }
