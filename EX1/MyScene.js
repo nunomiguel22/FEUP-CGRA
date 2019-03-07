@@ -88,18 +88,19 @@ class MyScene extends CGFscene {
         this.pushMatrix();
 
         //RED TRIANGLE
+
         this.rotate(-Math.PI/4, 0, 0 , 1);
         this.translate(0, 2, 0);
+
         this.rectriangle.display();
+
+        //YELLOW PL
 
         this.popMatrix();
         this.pushMatrix();
 
-        //YELLOW PL
-
         this.scale(-Math.sqrt(2),Math.sqrt(2), 0);
         this.translate(0,1,0);
-
         this.rotate(Math.PI/2, 0,0,1);
 
         this.parallelogram.display();
@@ -114,21 +115,20 @@ class MyScene extends CGFscene {
         this.translate(1/2, -1.5, 0);
 
         this.rectriangle.display();
-        
+    
+        //GREEN DIAMOND
+
         this.popMatrix();
         this.pushMatrix();
-        
-
-        //GREEN DIAMOND
 
         this.translate(2,6.005,0);
 
         this.diamond.display();
 
+        //BLUE TRIANGLE
+
         this.popMatrix();
         this.pushMatrix();
-
-        //BLUE TRIANGLE
 
         this.rotate(Math.PI/2, 0, 0 , 1);
         this.scale(2,2,0);
@@ -153,6 +153,15 @@ class MyScene extends CGFscene {
         this.rotate(Math.PI/4,0,0,1);
         this.rectriangle.display();
 
+        //PURPLE TRIANGLE
+
+        this.popMatrix();
+        this.pushMatrix();
+
+        this.rotate(Math.PI/4, 0, 0 , 1);
+        this.translate(7,-5.35,0);
+
+        this.rectriangle.display();
 
 
         // ---- END Primitive drawing section
