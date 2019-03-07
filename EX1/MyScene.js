@@ -24,11 +24,13 @@ class MyScene extends CGFscene {
         this.diamond = new MyDiamond(this);
         this.rectriangle = new MyTriangle(this);
         this.parallelogram = new MyParallelogram(this);       
+        this.tangram = new MyTangram(this);  
+        this.UnitCube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayTangram = false;
-        this.displayUnitCube = false;
+        this.displayUnitCube = true;
         //this.displayDiamond = false;
         this.scaleFactor = 1;
     }
@@ -160,7 +162,8 @@ class MyScene extends CGFscene {
         }
 
         if (this.displayUnitCube){
-            this.diamond.display();
+
+            this.UnitCube.display();
 
 
 
