@@ -87,86 +87,11 @@ class MyScene extends CGFscene {
         /* TANGRAM */
 
         if (this.displayTangram){
-
-           //RED TRIANGLE
-
-            this.pushMatrix();
-            this.rotate(-Math.PI/4, 0, 0 , 1);
-            
-            this.translate(0, 2, 0);
-
-            this.rectriangle.display();
-
-            //YELLOW PL
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.scale(-Math.sqrt(2),Math.sqrt(2), 0);
-            this.translate(0,1,0);
-            this.rotate(Math.PI/2, 0,0,1);
-
-            this.parallelogram.display();
-
-            //ORANGE TRIANGLE
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.scale(2,2,0);
-            this.rotate(3*Math.PI/4, 0, 0 , 1);
-            this.translate(1/2, -1.5, 0);
-
-            this.rectriangle.display();
-    
-            //GREEN DIAMOND
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.translate(2,6.005,0);
-
-            this.diamond.display();
-
-            //BLUE TRIANGLE
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.rotate(Math.PI/2, 0, 0 , 1);
-            this.scale(2,2,0);
-            this.translate(1, -1.7, 0);
-
-            this.rectriangle.display();
-
-            //PINK TRIANGLE
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.scale(Math.sqrt(2),Math.sqrt(2),0);
-            this.translate(4.8,1.82,0);
-            this.rectriangle.display();
-
-            //PURPLE TRIANGLE
-
-            this.popMatrix();
-            this.pushMatrix();
-
-            this.rotate(Math.PI/4, 0, 0 , 1);
-            this.translate(7,-5.35,0);
-
-            this.rectriangle.display();
-
-            this.popMatrix();
+           this.tangram.display();
         }
 
         if (this.displayUnitCube){
-
             this.UnitCube.display();
-
-
-
         }
 
         // ---- END Primitive drawing section
