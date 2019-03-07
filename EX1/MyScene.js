@@ -141,7 +141,16 @@ class MyScene extends CGFscene {
         this.popMatrix();
         this.pushMatrix();
 
-        this.scale(Math.sqrt(2),Math.sqrt(2),0);
+        this.translate(6+2/3+0.05,8/3,0);
+        this.scale(4/3,4/3,0);
+        this.rectriangle.display();
+
+        //PURPLE TRIANGLE
+        this.popMatrix();
+        this.pushMatrix();
+
+        this.translate(9,1+1/3,0);
+        this.rotate(Math.PI/4,0,0,1);
         this.rectriangle.display();
 
 
