@@ -23,16 +23,13 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.diamond = new MyDiamond(this);
         this.rectriangle = new MyTriangle(this);
-        this.parallelogram = new MyParallelogram(this);
-        //this.smalltriangle = new MyTriangleSmall(this);
-
-        
+        this.parallelogram = new MyParallelogram(this);       
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayDiamond = false;
-        this.displayTriangle = false;
-        this.displayParallelogram = false;
+        this.displayTangram = false;
+        this.displayUnitCube = false;
+        //this.displayDiamond = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -77,92 +74,97 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
         
         
-        
-        if (this.displayDiamond)
+        //EX1 not needed?
+       /* if (this.displayDiamond)
             this.diamond.display();
         if (this.displayTriangle)
             this.rectriangle.display();
-            
        if (this.displayParallelogram)
+            this.parallelogram.display();*/
+        
+        /* TANGRAM */
+
+        if (this.displayTangram){
+
+           //RED TRIANGLE
+
+            this.pushMatrix();
+            this.rotate(-Math.PI/4, 0, 0 , 1);
+            
+            this.translate(0, 2, 0);
+
+            this.rectriangle.display();
+
+            //YELLOW PL
+
+            this.popMatrix();
+            this.pushMatrix();
+
+            this.scale(-Math.sqrt(2),Math.sqrt(2), 0);
+            this.translate(0,1,0);
+            this.rotate(Math.PI/2, 0,0,1);
+
             this.parallelogram.display();
-        this.pushMatrix();
 
-        //RED TRIANGLE
+            //ORANGE TRIANGLE
 
-        this.rotate(-Math.PI/4, 0, 0 , 1);
-        this.translate(0, 2, 0);
+            this.popMatrix();
+            this.pushMatrix();
 
-        this.rectriangle.display();
+            this.scale(2,2,0);
+            this.rotate(3*Math.PI/4, 0, 0 , 1);
+            this.translate(1/2, -1.5, 0);
 
-        //YELLOW PL
-
-        this.popMatrix();
-        this.pushMatrix();
-
-        this.scale(-Math.sqrt(2),Math.sqrt(2), 0);
-        this.translate(0,1,0);
-        this.rotate(Math.PI/2, 0,0,1);
-
-        this.parallelogram.display();
-
-        //ORANGE TRIANGLE
-
-        this.popMatrix();
-        this.pushMatrix();
-
-        this.scale(2,2,0);
-        this.rotate(3*Math.PI/4, 0, 0 , 1);
-        this.translate(1/2, -1.5, 0);
-
-        this.rectriangle.display();
+            this.rectriangle.display();
     
-        //GREEN DIAMOND
+            //GREEN DIAMOND
 
-        this.popMatrix();
-        this.pushMatrix();
+            this.popMatrix();
+            this.pushMatrix();
 
-        this.translate(2,6.005,0);
+            this.translate(2,6.005,0);
 
-        this.diamond.display();
+            this.diamond.display();
 
-        //BLUE TRIANGLE
+            //BLUE TRIANGLE
 
-        this.popMatrix();
-        this.pushMatrix();
+            this.popMatrix();
+            this.pushMatrix();
 
-        this.rotate(Math.PI/2, 0, 0 , 1);
-        this.scale(2,2,0);
-        this.translate(1, -1.7, 0);
+            this.rotate(Math.PI/2, 0, 0 , 1);
+            this.scale(2,2,0);
+            this.translate(1, -1.7, 0);
 
-        this.rectriangle.display();
+            this.rectriangle.display();
 
-        //PINK TRIANGLE
+            //PINK TRIANGLE
 
-        this.popMatrix();
-        this.pushMatrix();
+            this.popMatrix();
+            this.pushMatrix();
 
-        this.translate(6+2/3+0.05,8/3,0);
-        this.scale(4/3,4/3,0);
-        this.rectriangle.display();
+            this.scale(Math.sqrt(2),Math.sqrt(2),0);
+            this.translate(4.8,1.82,0);
+            this.rectriangle.display();
 
-        //PURPLE TRIANGLE
-        this.popMatrix();
-        this.pushMatrix();
+            //PURPLE TRIANGLE
 
-        this.translate(9,1+1/3,0);
-        this.rotate(Math.PI/4,0,0,1);
-        this.rectriangle.display();
+            this.popMatrix();
+            this.pushMatrix();
 
-        //PURPLE TRIANGLE
+            this.rotate(Math.PI/4, 0, 0 , 1);
+            this.translate(7,-5.35,0);
 
-        this.popMatrix();
-        this.pushMatrix();
+            this.rectriangle.display();
 
-        this.rotate(Math.PI/4, 0, 0 , 1);
-        this.translate(7,-5.35,0);
+            this.popMatrix();
+        }
 
-        this.rectriangle.display();
+        if (this.displayUnitCube){
+            this.diamond.display();
 
+
+
+        }
 
         // ---- END Primitive drawing section
     }
