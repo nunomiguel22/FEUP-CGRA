@@ -29,9 +29,8 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayTangram = false;
-        this.displayUnitCube = true;
-        //this.displayDiamond = false;
+        this.displayTangram = true;
+        this.displayUnitCube = false;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -71,27 +70,17 @@ class MyScene extends CGFscene {
                     0.0, 0.0, this.scaleFactor, 0.0,
                     0.0, 0.0, 0.0, 1.0];
         this.multMatrix(sca);
-        
-        
-        // ---- BEGIN Primitive drawing section
-        
-        
-        //EX1 not needed?
-       /* if (this.displayDiamond)
-            this.diamond.display();
-        if (this.displayTriangle)
-            this.rectriangle.display();
-       if (this.displayParallelogram)
-            this.parallelogram.display();*/
-        
-        /* TANGRAM */
 
-        if (this.displayTangram){
-           this.tangram.display();
-        }
+        
+        
+        // ---- BEGIN Primitive drawing section       
 
         if (this.displayUnitCube){
             this.UnitCube.display();
+        }
+
+        if (this.displayTangram){
+           this.tangram.display();
         }
 
         // ---- END Primitive drawing section

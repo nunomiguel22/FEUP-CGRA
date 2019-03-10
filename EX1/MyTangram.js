@@ -22,6 +22,17 @@ class MyTangram extends CGFobject {
     }
 
     display() {
+
+        //Forgot tangram needs to be centered
+        this.myScene.pushMatrix();
+
+        this.myScene.translate(-5, -3.5, 0);
+        this.myScene.pushMatrix();
+
+        this.greenDiamondTransform();
+        this.greenDiamond.display();
+
+        this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
         this.redTriangleTransform();
@@ -42,12 +53,6 @@ class MyTangram extends CGFobject {
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
-        this.greenDiamondTransform();
-        this.greenDiamond.display();
-
-        this.myScene.popMatrix();
-        this.myScene.pushMatrix();
-
         this.blueTriangleTransform();
         this.blueTriangle.display();
 
@@ -63,6 +68,7 @@ class MyTangram extends CGFobject {
         this.purpleTriangleTransform();
         this.purpleTriangle.display();
 
+        this.myScene.popMatrix();
         this.myScene.popMatrix();
     }
 
