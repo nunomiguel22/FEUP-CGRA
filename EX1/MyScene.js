@@ -19,18 +19,15 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
-        //Initialize scene objects
+        //Initialize scene objects     
         this.axis = new CGFaxis(this);
-        this.diamond = new MyDiamond(this);
-        this.rectriangle = new MyTriangle(this);
-        this.parallelogram = new MyParallelogram(this);       
         this.tangram = new MyTangram(this);  
-        this.UnitCube = new MyUnitCube(this);
+        this.cube = new MyUnitCube(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayTangram = true;
-        this.displayUnitCube = false;
+        this.displayCube = true;
         this.scaleFactor = 1;
     }
     initLights() {
@@ -47,6 +44,9 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    uniformScale(scaleFactor) {
+        this.scale(scaleFactor,scaleFactor,scaleFactor);
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -65,22 +65,28 @@ class MyScene extends CGFscene {
 
         this.setDefaultAppearance();
 
-        var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
-                    0.0, this.scaleFactor, 0.0, 0.0,
-                    0.0, 0.0, this.scaleFactor, 0.0,
-                    0.0, 0.0, 0.0, 1.0];
-        this.multMatrix(sca);
-
-        
-        
+        // Scales entire scene acording to slider
+        this.uniformScale(this.scaleFactor);
+      
         // ---- BEGIN Primitive drawing section       
 
-        if (this.displayUnitCube){
-            this.UnitCube.display();
+        if (this.displayCube){
+            this.pushMatrix();
+            this.translate(4,-0.5,4);
+            this.scale(8,1,8);
+            this.cube.display();
+            this.popMatrix();
         }
 
         if (this.displayTangram){
-           this.tangram.display();
+            this.pushMatrix();
+            this.translate(4,0,4);
+            this.scale(-1,1,1);
+            this.uniformScale(2/3);
+            this.rotate(Math.PI,0,1,0);
+            this.rotate(Math.PI/2,1,0,0);
+            this.tangram.display();
+            this.popMatrix();
         }
 
         // ---- END Primitive drawing section
