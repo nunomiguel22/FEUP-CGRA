@@ -13,17 +13,29 @@ class MyParallelogram extends CGFobject {
 			0, 0, 0,	//0
 			2, 0, 0,	//1
 			3, 1, 0,	//2
-			1, 1, 0		//3
+			1, 1, 0,	//3
+			0, 0, 0,
+			2, 0, 0,
+			3, 1, 0,
+			1, 1, 0
 		];
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-			2, 0, 3,
-			1, 0, 2,
 			0, 1, 2,
-			0, 2, 3
-
+			3, 2, 0,
+			6, 5, 4,
+			4, 6, 7
 		];
+
+		this.normals = [];
+
+		for (var i = 0; i < 4; i++)
+			this.normals.push(0,0,1);
+
+		for (var i = 0; i < 4; i++)
+			this.normals.push(0,0,-1);
+		
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
 	}

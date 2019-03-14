@@ -21,6 +21,26 @@ class MyTangram extends CGFobject {
         this.purpleTriangle = new MyTriangle(this.myScene);
     }
 
+    enableNormalViz() {
+        this.redTriangle.enableNormalViz();
+        this.yellowParalelogram.enableNormalViz();
+        this.orangeTriangle.enableNormalViz();
+        this.greenDiamond.enableNormalViz();
+        this.blueTriangle.enableNormalViz();
+        this.pinkTriangle.enableNormalViz();
+        this.purpleTriangle.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        this.redTriangle.disableNormalViz();
+        this.yellowParalelogram.disableNormalViz();
+        this.orangeTriangle.disableNormalViz();
+        this.greenDiamond.disableNormalViz();
+        this.blueTriangle.disableNormalViz();
+        this.pinkTriangle.disableNormalViz();
+        this.purpleTriangle.disableNormalViz();
+    }
+
     display() {
         this.myScene.pushMatrix();
 
