@@ -7,7 +7,7 @@ class MyUnitCube extends CGFobject {
 	constructor(scene) {
             super(scene);
             this.preparePolygons();
-		this.initBuffers();
+            this.initBuffers();
       }
 
       preparePolygons() {

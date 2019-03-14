@@ -133,14 +133,22 @@ class MyScene extends CGFscene {
             'Specular': '#000000',
             'Shininess': 10
         }
+
         this.customMaterial = new CGFappearance(this);
 
         this.updateCustomMaterial();
 
-        this.materials = [this.material1, this.material2, this.material3, this.customMaterial];
+        this.madeira = new CGFappearance(this);
+        this.madeira.setAmbient(0.6, 0.32, 0, 0.1);
+        this.madeira.setDiffuse(0.6, 0.32, 0, 1.0);
+        this.madeira.setSpecular(0.6, 0.32, 0, 1);
+        this.madeira.setShininess(10.0);
+        
+        
+        this.materials = [this.material1, this.material2, this.material3, this.customMaterial, this.madeira];
 
         // Labels and ID's for object selection on MyInterface
-        this.materialIDs = {'Red Ambient': 0, 'Red Diffuse': 1, 'Red Specular': 2, 'Custom': 3 };
+        this.materialIDs = {'Red Ambient': 0, 'Red Diffuse': 1, 'Red Specular': 2, 'Custom': 3, 'Madeira' : 4};
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
