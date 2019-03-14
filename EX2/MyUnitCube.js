@@ -5,12 +5,23 @@
  */
 class MyUnitCube extends CGFobject {
 	constructor(scene) {
-		super(scene);
+            super(scene);
+            this.preparePolygons();
 		this.initBuffers();
-	}
-	initBuffers() {
-            
+      }
 
+      preparePolygons() {
+            this.initVertices();
+            this.initIndices();
+            this.initNormals();
+      }
+      
+	initBuffers() {
+		this.primitiveType = this.scene.gl.TRIANGLES;
+		this.initGLBuffers();
+      }
+      
+      initVertices() {
             this.vertices = [
                   //TOP
                   -0.5, 0.5, 0.5,   //0
@@ -48,7 +59,9 @@ class MyUnitCube extends CGFobject {
                   0.5, 0.5, 0.5,   //22
                   0.5, 0.5, -0.5,  //23
             ];
-      
+      }
+
+      initIndices() {
             //Counter-clockwise reference of vertices
             this.indices = [
                   //TOP
@@ -75,7 +88,9 @@ class MyUnitCube extends CGFobject {
                   22, 21, 20,
                   21, 22, 23
             ];
+      }
 
+      initNormals() {
             this.normals = [];
 
             //TOP
@@ -101,8 +116,5 @@ class MyUnitCube extends CGFobject {
             //FRONT
             for (var i = 0; i < 4; ++i)
                   this.normals.push(0,1,0);
-
-		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.initGLBuffers();
-	}
+      }
 }
