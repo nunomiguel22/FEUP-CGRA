@@ -44,44 +44,128 @@ class MyTangram extends CGFobject {
     display() {
         this.myScene.pushMatrix();
 
+        //RED TRIANGLE
+
         this.redTriangleTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#ff0000',
+            'Diffuse': '#ff0000',
+            'Specular': '#ff0000',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.redTriangle.display();
 
         this.myScene.popMatrix();
-        this.myScene.pushMatrix();
+        this.myScene.pushMatrix(); 
+
+        //YELLOW PARALELOGRAM
 
         this.yellowParalelogramTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#ffff00',
+            'Diffuse': '#ffff00',
+            'Specular': '#ffff00',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.yellowParalelogram.display();
 
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
+        //ORANGE TRIANGLE
+
         this.orangeTriangleTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#ff8000',
+            'Diffuse': '#ff8000',
+            'Specular': '#ff8000',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.orangeTriangle.display();
 
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
+        //GREEN DIAMONG
+
         this.greenDiamondTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#00ff00',
+            'Diffuse': '#00ff00',
+            'Specular': '#00ff00',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.greenDiamond.display();
 
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
+        //BLUE TRIANGLE
+
         this.blueTriangleTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#0000ff',
+            'Diffuse': '#0000ff',
+            'Specular': '#0000ff',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.blueTriangle.display();
 
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
+        //PINK TRIANGLE
+
         this.pinkTriangleTransform();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#ff80ff',
+            'Diffuse': '#ff80ff',
+            'Specular': '#ff80ff',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
         this.pinkTriangle.display();
 
         this.myScene.popMatrix();
         this.myScene.pushMatrix();
 
+        //PURPLE TRIANGLE
+
         this.purpleTriangleTransform();
-        this.purpleTriangle.display();
+
+        this.myScene.customMaterialValues = {
+            'Ambient': '#cc33ff',
+            'Diffuse': '#cc33ff',
+            'Specular': '#cc33ff',
+            'Shininess': 10
+        }
+        this.myScene.updateCustomMaterial();
+        this.myScene.customMaterial.apply();
+
+        this.purpleTriangle.display(); 
 
         this.myScene.popMatrix();
     }

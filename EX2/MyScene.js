@@ -28,10 +28,12 @@ class MyScene extends CGFscene {
         this.unitCube = new MyUnitCube(this);
         this.tangramfig = new MyTangram(this);
         
-        this.objects = [this.plane, this.pyramid, this.cone, this.unitCube, this.tangramfig];
+        this.paral = new MyParallelogram(this);
+        
+        this.objects = [this.plane, this.pyramid, this.cone, this.unitCube, this.tangramfig, this.paral];
 
         // Labels and ID's for object selection on MyInterface
-        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Unit Cube': 3, 'Tangram': 4};
+        this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Unit Cube': 3, 'Tangram': 4, 'paral': 5};
 
         //Other variables connected to MyInterface
         this.selectedObject = 0;
