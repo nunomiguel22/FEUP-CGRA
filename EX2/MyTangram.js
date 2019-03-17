@@ -176,13 +176,13 @@ class MyTangram extends CGFobject {
     }
 
     yellowParalelogramTransform() {
-        this.myScene.scale(-Math.sqrt(2),Math.sqrt(2), 0);
+        this.myScene.scale(-Math.sqrt(2),Math.sqrt(2), 1);
         this.myScene.translate(0,1,0);
         this.myScene.rotate(Math.PI/2, 0,0,1);
     }
 
     orangeTriangleTransform() {
-        this.myScene.scale(2,2,0);
+        this.myScene.scale(2,2,1);
         this.myScene.rotate(3*Math.PI/4, 0, 0 , 1);
         this.myScene.translate(1/2, -1.5, 0);
     }
@@ -193,12 +193,12 @@ class MyTangram extends CGFobject {
 
     blueTriangleTransform() {
         this.myScene.rotate(Math.PI/2, 0, 0 , 1);
-        this.myScene.scale(2,2,0);
+        this.myScene.scale(2,2,1);
         this.myScene.translate(1, -1.7, 0);
     }
 
     pinkTriangleTransform() {
-        this.myScene.scale(Math.sqrt(2),Math.sqrt(2),0);
+        this.myScene.scale(Math.sqrt(2),Math.sqrt(2),1);
         this.myScene.translate(4.8,1.82,0);
     }
 
