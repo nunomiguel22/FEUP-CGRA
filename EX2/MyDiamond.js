@@ -10,31 +10,38 @@ class MyDiamond extends CGFobject {
 	}
 	initBuffers() {
 		this.vertices = [
+			//Front
 			-1, 0, 0,	//0
 			0, -1, 0,	//1
 			0, 1, 0,	//2
-			1, 0, 0,	//3
-			-1, 0, 0,   //4
-			0, -1, 0,   //5
-			0, 1, 0,    //6
-			1, 0, 0     //7
+			0, 1, 0,	//3
+			0, -1, 0,	//4
+			1, 0, 0,	//5
+
+			//Back
+			-1, 0, 0,	//6
+			0, -1, 0,	//7
+			0, 1, 0,	//8
+			0, 1, 0,	//9
+			0, -1, 0,	//10
+			1, 0, 0,	//11
 		];
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
 			0, 1, 2,
-			1, 2, 3,
-			6, 5, 4,
-			7, 6, 5
+			3, 4, 5,
+			8, 7, 6,
+			11, 10, 9
 		];
 
 		this.normals = [];
 
-		for (var i = 0; i < 4; i++)
+		for (var i = 0; i < 6; i++)
 			this.normals.push(0,0,1);
 
-		for (var i = 0; i < 4; i++)
-			this.normals.push(0,0,-1);
+		 for (var i = 0; i < 6; i++)
+			this.normals.push(0,0,-1); 
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
