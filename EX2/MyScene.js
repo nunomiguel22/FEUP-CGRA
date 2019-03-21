@@ -141,7 +141,7 @@ class MyScene extends CGFscene {
         this.madeira = new CGFappearance(this);
         this.madeira.setAmbient(0.6, 0.32, 0, 0.1);
         this.madeira.setDiffuse(0.6, 0.32, 0, 1.0);
-        this.madeira.setSpecular(0.6, 0.32, 0, 1);
+        this.madeira.setSpecular(0.6, 0.32, 0, 0.1);
         this.madeira.setShininess(10.0);
         
         

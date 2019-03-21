@@ -32,37 +32,37 @@ class MyTangram extends CGFobject {
         this.myScene.purpleMaterial = new CGFappearance(this.myScene);
 
         this.myScene.redMaterial.setAmbient(1, 0, 0, 0.1);
-        this.myScene.redMaterial.setDiffuse(1, 0, 0, 1.0);
+        this.myScene.redMaterial.setDiffuse(1, 0, 0, 0.1);
         this.myScene.redMaterial.setSpecular(1, 0, 0, 1);
         this.myScene.redMaterial.setShininess(10.0);
 
         this.myScene.yellowMaterial.setAmbient(1, 1, 0, 0.1);
-        this.myScene.yellowMaterial.setDiffuse(1, 1, 0, 1.0);
+        this.myScene.yellowMaterial.setDiffuse(1, 1, 0, 0.1);
         this.myScene.yellowMaterial.setSpecular(1, 1, 0, 1);
         this.myScene.yellowMaterial.setShininess(10.0);
 
         this.myScene.orangeMaterial.setAmbient(1, 0.6, 0, 0.1);
-        this.myScene.orangeMaterial.setDiffuse(1, 0.6, 0, 1.0);
+        this.myScene.orangeMaterial.setDiffuse(1, 0.6, 0, 0.1);
         this.myScene.orangeMaterial.setSpecular(1, 0.6, 0, 1);
         this.myScene.orangeMaterial.setShininess(10.0);
 
         this.myScene.blueMaterial.setAmbient(0, 0, 1, 0.1);
-        this.myScene.blueMaterial.setDiffuse(0, 0, 1, 1.0);
+        this.myScene.blueMaterial.setDiffuse(0, 0, 1, 0.1);
         this.myScene.blueMaterial.setSpecular(0, 0, 1, 1);
         this.myScene.blueMaterial.setShininess(10.0);
 
         this.myScene.pinkMaterial.setAmbient(1, 0.5, 1, 0.1);
-        this.myScene.pinkMaterial.setDiffuse(1, 0.5, 1, 1.0);
+        this.myScene.pinkMaterial.setDiffuse(1, 0.5, 1, 0.1);
         this.myScene.pinkMaterial.setSpecular(1, 0.5, 1, 1);
         this.myScene.pinkMaterial.setShininess(10.0);
 
         this.myScene.purpleMaterial.setAmbient(0.7, 0.3, 1, 0.1);
-        this.myScene.purpleMaterial.setDiffuse(0.7, 0.3, 1, 1.0);
+        this.myScene.purpleMaterial.setDiffuse(0.7, 0.3, 1, 0.1);
         this.myScene.purpleMaterial.setSpecular(0.7, 0.3, 1, 1);
         this.myScene.purpleMaterial.setShininess(10.0);
 
         this.myScene.greenMaterial.setAmbient(0, 1, 0, 0.1);
-        this.myScene.greenMaterial.setDiffuse(0, 1, 0, 1.0);
+        this.myScene.greenMaterial.setDiffuse(0, 1, 0, 0.1);
         this.myScene.greenMaterial.setSpecular(0, 1, 0, 1);
         this.myScene.greenMaterial.setShininess(10.0);
     }
