@@ -18,11 +18,17 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
+        this.enableTextures(true);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.cubemap = new MyCubeMap(this);
 
         //Objects connected to MyInterface
+        this.displayAxis = true;
+        this.displayCB = true;
+        this.scaleFactor = 0.1;
+
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -51,13 +57,19 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Draw axis
-        this.axis.display();
+        if (this.displayAxis)
+            this.axis.display();
+
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
         //Apply default appearance
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
 
+        if (this.displayCB)
+            this.cubemap.display();
+        
 
         // ---- END Primitive drawing section
     }

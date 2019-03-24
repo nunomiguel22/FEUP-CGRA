@@ -15,6 +15,13 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
         
         var obj = this;
+        
+        //Checkbox element in GUI
+        this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        this.gui.add(this.scene, 'displayCB').name('Display Cubemap');
+
+        //Scale
+        this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
 
         return true;
     }
