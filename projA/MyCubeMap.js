@@ -26,8 +26,6 @@ class MyCubeMap extends CGFobject {
         this.myScene.cubemapMaterial.setDiffuse(0.1, 0.1, 0.1, 1);
         this.myScene.cubemapMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.myScene.cubemapMaterial.setShininess(10.0);
-        
-
     }
 
     initTextures(){

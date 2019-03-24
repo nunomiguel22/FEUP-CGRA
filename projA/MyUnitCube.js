@@ -106,12 +106,12 @@ class MyUnitCube extends CGFobject {
             for (var i = 0; i < 4; ++i)
                   this.normals.push(-1,0,0);
 
-             //RIGHT
-             for (var i = 0; i < 4; ++i)
+            //RIGHT
+            for (var i = 0; i < 4; ++i)
                   this.normals.push(1,0,0);
 
-             //BOTTOM
-             for (var i = 0; i < 4; ++i)
+            //BOTTOM
+            for (var i = 0; i < 4; ++i)
                   this.normals.push(0,-1,0);
 
             //TOP
@@ -147,16 +147,18 @@ class MyUnitCube extends CGFobject {
 
                   
                   //BOTTOM
-                  0.25, 0.66,
-                  0.5, 0.66,
-                  0.25, 1,
+                  0.5, 0.68,
+                  0.25, 0.68,
                   0.5, 1,
+                  0.25, 1,
 
-                   //TOP
-                  0.25, 0,
+                  //TOP
+                  0.5, 0.34,
+                  0.25, 0.34,
                   0.5, 0,
-                  0.25, 0.33,
-                  0.5, 0.33,
+                  0.25, 0,
+                 
+
 		];
       }
 }
