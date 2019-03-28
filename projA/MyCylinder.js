@@ -2,7 +2,7 @@
 * MyCilinder
 * @constructor
 */
-class MyCilinder extends CGFobject {
+class MyCylinder extends CGFobject {
     constructor(scene, slices) {
         super(scene);
         this.slices = slices;
@@ -15,6 +15,7 @@ class MyCilinder extends CGFobject {
         this.normals = [];
 
         var alphaAng = 2*Math.PI/this.slices;
+        var m = 2*this.slices; // ensure indices wrap around
 
         for(var i = 0; i < this.slices; i++){
             // All vertices have to be declared for a given face
@@ -30,28 +31,15 @@ class MyCilinder extends CGFobject {
                 x, 1, z
             );
 
-            // circle normal colinear with the radius vector
-            var normal= [
+            this.normals.push(
+                x, 0, z,
                 x, 0, z
-            ];
-
-            // normalization
-            var nsize=Math.sqrt(
-                normal[0]*normal[0]+
-                normal[1]*normal[1]+
-                normal[2]*normal[2]
-                );
-            normal[0]/=nsize;
-            normal[1]/=nsize;
-            normal[2]/=nsize;
-
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            );
 
             this.indices.push(
-                2*i, 2*i + 1, (2*i + 2)%(2*this.slices),
-                (2*i + 2)%(2*this.slices), 2*i + 1, (2*i+ 3)%(2*this.slices)
-            )
+                2*i, 2*i + 1, (2*(i + 1)) % m,
+                (2*(i+1)) % m, 2*i + 1, (2*(i + 1)) % m + 1
+            );
 
         }
 

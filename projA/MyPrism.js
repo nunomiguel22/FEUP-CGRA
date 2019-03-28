@@ -17,10 +17,6 @@ class MyPrism extends CGFobject {
         var alphaAng = 2*Math.PI/this.slices;
 
         for(var i = 0; i < this.slices; i++){
-            // All vertices have to be declared for a given face
-            // even if they are shared with others, as the normals 
-            // in each face will be different
-
             var angle1 = i*alphaAng;
             var x1 = Math.cos(angle1);
             var z1 = Math.sin(angle1);
@@ -34,28 +30,19 @@ class MyPrism extends CGFobject {
             this.vertices.push(x1, 1, z1);
             this.vertices.push(x2, 1, z2);
 
-            // rectangle normal computed by switching x and z and inverting the new z
             var normal= [
-                z2 - z1,
+                Math.cos(angle1 + alphaAng/2),
                 0,
-                x1 - x2
+                Math.sin(angle1 + alphaAng/2)
             ];
 
-            // normalization
-            var nsize=Math.sqrt(
-                normal[0]*normal[0]+
-                normal[1]*normal[1]+
-                normal[2]*normal[2]
-                );
-            normal[0]/=nsize;
-            normal[1]/=nsize;
-            normal[2]/=nsize;
-
             // push normal once for each vertex of this rectangle
-            this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
+            this.normals.push(
+                ...normal,
+                ...normal,
+                ...normal,
+                ...normal
+            );
 
 
             this.indices.push(
