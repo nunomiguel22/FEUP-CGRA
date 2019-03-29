@@ -24,12 +24,13 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.cubemap = new MyCubeMap(this);
         this.voxelhill = new MyVoxelHill(this, 3);
+        this.house = new MyHouse(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayCB = false;
+        this.displayCB = true;
         this.displayVX = true;
-        this.scaleFactor = 1;
+        this.scaleFactor = 0.6;
 
     }
     initLights() {
@@ -72,9 +73,16 @@ class MyScene extends CGFscene {
         if (this.displayCB)
             this.cubemap.display();
         
-        if (this.displayVX)
+        if (this.displayVX){
+            this.pushMatrix();
+            this.translate(10, -2.5, -10);
             this.voxelhill.display();
-
+            this.popMatrix();
+        }
+        this.pushMatrix();
+        this.translate(-10, -4, -10);
+        this.house.display();
+        this.popMatrix();
         // ---- END Primitive drawing section
     }
 }

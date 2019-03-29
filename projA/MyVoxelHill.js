@@ -26,25 +26,31 @@ class MyVoxelHill extends CGFobject {
         var size = level * 2 + 1;
 
         for (var i = 0; i < size; ++i){
+            //Front Row
             this.myScene.pushMatrix();
             this.myScene.translate(- i + level,0, level);
             this.UnitCubeQuad.display();
             this.myScene.popMatrix();
 
+            //Back Row
             this.myScene.pushMatrix();
             this.myScene.translate(-i + level,0, -level);
             this.UnitCubeQuad.display();
             this.myScene.popMatrix();
+            
+            if (i < size - 1){ //Corner cubes already done
+                //Left Column
+                this.myScene.pushMatrix();
+                this.myScene.translate(-level,0, -i + level - 1);
+                this.UnitCubeQuad.display();
+                this.myScene.popMatrix();
 
-            this.myScene.pushMatrix();
-            this.myScene.translate(-level,0, -i + level);
-            this.UnitCubeQuad.display();
-            this.myScene.popMatrix();
-
-            this.myScene.pushMatrix();
-            this.myScene.translate(level,0, -i + level);
-            this.UnitCubeQuad.display();
-            this.myScene.popMatrix();
+                //Right Column
+                this.myScene.pushMatrix();
+                this.myScene.translate(level,0, -i + level - 1);
+                this.UnitCubeQuad.display();
+                this.myScene.popMatrix();
+            }
         }
     }
 
