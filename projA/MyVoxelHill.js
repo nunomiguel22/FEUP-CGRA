@@ -1,5 +1,5 @@
 /**
- * MyUnitCubeQuad
+ * MyVoxelHill
  * @constructor
  * @param scene - Reference to MyScene object
  */
@@ -10,15 +10,16 @@ class MyVoxelHill extends CGFobject {
         this.myScene = scene;
         this.levels = nLevels;
         this.initComponents();
-        //this.initTextures();
+        this.initMaterials();
     }
     
     initComponents() {
         this.UnitCubeQuad = new MyUnitCubeQuad(this.myScene);
     }
 
-    initTextures(){
+    initMaterials(){
       
+
     }
 
     drawLevel(level){

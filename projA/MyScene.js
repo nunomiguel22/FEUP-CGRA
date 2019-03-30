@@ -30,6 +30,7 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayCB = true;
         this.displayVX = true;
+        this.displayHouse = true;
         this.scaleFactor = 0.6;
 
     }
@@ -70,19 +71,26 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
+        //Cubemap
         if (this.displayCB)
             this.cubemap.display();
         
+        //Voxell Hill
         if (this.displayVX){
             this.pushMatrix();
             this.translate(10, -2.5, -10);
             this.voxelhill.display();
             this.popMatrix();
         }
-        this.pushMatrix();
-        this.translate(-10, -4, -10);
-        this.house.display();
-        this.popMatrix();
+
+        //House
+        if (this.displayHouse){
+            this.pushMatrix();
+            this.translate(-10, -3, -10);
+            this.scale(2, 2, 2);
+            this.house.display();
+            this.popMatrix();
+        }
         // ---- END Primitive drawing section
     }
 }
