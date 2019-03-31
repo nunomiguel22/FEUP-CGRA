@@ -16,6 +16,15 @@ class MyInterface extends CGFinterface {
         
         var obj = this;
         
+        //Lights
+        this.gui.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
+        
+        var f1 = this.gui.addFolder('Test Light ');
+        f1.add(this.scene.lights[0], 'enabled').name("Enabled");
+        f1.add(this.scene.lights[0].position, '0', -5.0, 5.0).name("X Position");
+        f1.add(this.scene.lights[0].position, '1', -5.0, 5.0).name("Y Position");
+        f1.add(this.scene.lights[0].position, '2', -5.0, 5.0).name("Z Position");
+
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'displayCB').name('Display Cubemap');

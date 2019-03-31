@@ -32,12 +32,16 @@ class MyScene extends CGFscene {
         this.displayVX = true;
         this.displayHouse = true;
         this.scaleFactor = 0.6;
+        this.ambLight = 0.7;
 
     }
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
+        this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
+
+        this.lights[0].setPosition(2, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
+        this.lights[0].setVisible(true);
         this.lights[0].update();
     }
     initCameras() {
@@ -59,6 +63,10 @@ class MyScene extends CGFscene {
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
+
+        // Lights
+        this.lights[0].update();
+        this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
         // Draw axis
         if (this.displayAxis)
