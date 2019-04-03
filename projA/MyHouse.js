@@ -9,6 +9,7 @@ class MyHouse extends CGFobject {
         super(scene);
         this.myScene = scene;
         this.initComponents();
+        this.initMaterials();
         this.initTextures();
     }
     
@@ -16,6 +17,16 @@ class MyHouse extends CGFobject {
         this.pyramid = new MyPyramid(this.myScene, 4, 1);
         this.quadCube = new MyUnitCubeQuad(this.myScene);
         this.pillar = new MyPrism(this.myScene, 5);
+    }
+
+    initMaterials() {
+        this.myScene.roofMaterial = new CGFappearance(this.myScene);
+        this.myScene.roofMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.myScene.roofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.myScene.roofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.myScene.roofMaterial.setShininess(10.0);
+        this.myScene.roofMaterial.loadTexture('images/house/walls.png');
+        this.myScene.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     initTextures(){
@@ -29,6 +40,7 @@ class MyHouse extends CGFobject {
         this.myScene.pushMatrix();
         this.myScene.scale(1.5, 1, 1.5);
         this.myScene.rotate(Math.PI/4, 0, 1, 0);
+        this.myScene.roofMaterial.apply();
         this.pyramid.display();
         this.myScene.popMatrix();
 

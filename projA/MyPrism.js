@@ -13,6 +13,7 @@ class MyPrism extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
+        this.texCoords = [];
 
         var alphaAng = 2*Math.PI/this.slices;
 
@@ -49,6 +50,11 @@ class MyPrism extends CGFobject {
                 4*i + 1, 4*i, 4*i + 2,
                 4*i + 3, 4*i + 1, 4*i + 2
                 );
+
+            this.texCoords.push(0, 1);
+            this.texCoords.push(1, 1);
+            this.texCoords.push(0, 0);
+            this.texCoords.push(1, 0);
         }
 
         this.primitiveType = this.scene.gl.TRIANGLES;

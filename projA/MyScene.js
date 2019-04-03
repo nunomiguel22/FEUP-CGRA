@@ -12,16 +12,18 @@ class MyScene extends CGFscene {
         this.initLights();
 
         //Background color
+        this.displayTex = true;
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
-        this.enableTextures(true);
+        this.enableTextures(this.displayTex);
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
+        this.ground = new MyGround(this, 35);
         this.cubemap = new MyCubeMap(this);
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
@@ -31,15 +33,15 @@ class MyScene extends CGFscene {
         this.displayCB = true;
         this.displayVX = true;
         this.displayHouse = true;
-        this.scaleFactor = 0.6;
-        this.ambLight = 0.7;
-
+        this.scaleFactor = 0.35;
+        this.ambLight = 0.6;
     }
     initLights() {
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
-        this.lights[0].setPosition(2, 2, 5, 1);
+        this.lights[0].setPosition(2, 5, 3, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+        this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
         this.lights[0].setVisible(true);
         this.lights[0].update();
@@ -68,11 +70,12 @@ class MyScene extends CGFscene {
         this.lights[0].update();
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.enableTextures(this.displayTex);
+
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -82,11 +85,18 @@ class MyScene extends CGFscene {
         //Cubemap
         if (this.displayCB)
             this.cubemap.display();
+
+        this.ground.display();
         
         //Voxell Hill
         if (this.displayVX){
             this.pushMatrix();
-            this.translate(10, -2.5, -10);
+            this.translate(10, 2.5, 10);
+            this.voxelhill.display();
+            this.popMatrix();
+
+            this.pushMatrix();
+            this.translate(-10, 2.5, -10);
             this.voxelhill.display();
             this.popMatrix();
         }
@@ -94,7 +104,7 @@ class MyScene extends CGFscene {
         //House
         if (this.displayHouse){
             this.pushMatrix();
-            this.translate(-10, -3, -10);
+            this.translate(0, 2, 0);
             this.scale(2, 2, 2);
             this.house.display();
             this.popMatrix();
