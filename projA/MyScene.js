@@ -28,6 +28,14 @@ class MyScene extends CGFscene {
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
 
+        this.tempMaterial = new CGFappearance(this);
+        this.tempMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.tempMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.tempMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.tempMaterial.setShininess(10.0);
+        this.tempMaterial.loadTexture('images/house/roof.png');
+        this.testTree = new MyTree(this, 4, 0.5, 2, 2, this.tempMaterial, this.tempMaterial); 
+
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayCB = true;
@@ -75,9 +83,6 @@ class MyScene extends CGFscene {
         //this.lights[3].enable();
         this.lights[3].setVisible(false);
         this.lights[3].update();
-
-
-
     }
 
     initCameras() {
@@ -126,7 +131,12 @@ class MyScene extends CGFscene {
             this.cubemap.display();
 
         this.ground.display();
-        
+
+        this.pushMatrix();
+        this.translate(5, 0, -5);
+        this.testTree.display();
+        this.popMatrix();
+
         //Voxell Hill
         if (this.displayVX){
             this.pushMatrix();
