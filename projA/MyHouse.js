@@ -25,13 +25,15 @@ class MyHouse extends CGFobject {
         this.myScene.roofMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
         this.myScene.roofMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.myScene.roofMaterial.setShininess(10.0);
-        this.myScene.roofMaterial.loadTexture('images/house/walls.png');
-        this.myScene.roofMaterial.setTextureWrap('REPEAT', 'REPEAT');
+        this.myScene.roofMaterial.loadTexture('images/house/roof.png');
     }
 
     initTextures(){
         this.wallsTex = new CGFtexture(this.myScene, 'images/house/walls.png');
-        this.quadCube.setTextures(this.wallsTex, this.wallsTex, this.wallsTex);
+        this.sideWallsTex = new CGFtexture(this.myScene, 'images/house/sidewalls.png');
+        this.frontWallTex = new CGFtexture(this.myScene, 'images/house/frontwall.png');
+        this.quadCube.setTextures(this.wallsTex, this.wallsTex, this.frontWallTex, 
+            this.sideWallsTex, this.sideWallsTex, this.sideWallsTex);
     }
 
     display() {

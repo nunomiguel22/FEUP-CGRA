@@ -26,8 +26,7 @@ class MyGround extends CGFobject {
       this.myScene.groundMaterial.setSpecular(0.04, 0.7, 0.04, 1);
       this.myScene.groundMaterial.setShininess(10);
     }
-
-
+    
     display() {
         this.myScene.pushMatrix();
         this.myScene.scale(this.size, 1, this.size);

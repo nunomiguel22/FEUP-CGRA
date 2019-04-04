@@ -10,16 +10,10 @@ class MyVoxelHill extends CGFobject {
         this.myScene = scene;
         this.levels = nLevels;
         this.initComponents();
-        this.initMaterials();
     }
     
     initComponents() {
         this.UnitCubeQuad = new MyUnitCubeQuad(this.myScene);
-    }
-
-    initMaterials(){
-      
-
     }
 
     drawLevel(level){
@@ -55,7 +49,6 @@ class MyVoxelHill extends CGFobject {
         }
     }
 
-
     display() {
 
         this.UnitCubeQuad.display();
@@ -66,5 +59,9 @@ class MyVoxelHill extends CGFobject {
             this.drawLevel(i);
             this.myScene.popMatrix();
         }
+    }
+
+    setLevels(nLevels){
+        this.levels = nLevels;
     }
 }

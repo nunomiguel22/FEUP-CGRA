@@ -24,22 +24,23 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.myScene.quadMaterial.setShininess(10.0);
         this.myScene.quadMaterial.loadTexture('images/hill/mineSide.png');
-        this.myScene.quadMaterial.setTextureWrap('REPEAT', 'REPEAT');
     }
 
     initTextures(){
         this.topTex = new CGFtexture(this.myScene, 'images/hill/mineTop.png');
         this.bottomTex = new CGFtexture(this.myScene, 'images/hill/mineBottom.png');
-        this.sideTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+        this.frontTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+        this.backTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+        this.leftTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+        this.rightTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
     }
-
 
     display() {
         
         //Front
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0, 0.5);
-        this.myScene.quadMaterial.setTexture(this.sideTex);
+        this.myScene.quadMaterial.setTexture(this.frontTex);
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
@@ -48,6 +49,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0, -0.5);
         this.myScene.rotate(Math.PI, 0, 1, 0);
+        this.myScene.quadMaterial.setTexture(this.backTex);
+        this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
 
@@ -55,6 +58,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.pushMatrix();
         this.myScene.translate(-0.5, 0, 0);
         this.myScene.rotate(-Math.PI/2, 0, 1, 0);
+        this.myScene.quadMaterial.setTexture(this.leftTex);
+        this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
 
@@ -62,6 +67,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.pushMatrix();
         this.myScene.translate(0.5, 0, 0);
         this.myScene.rotate(Math.PI/2, 0, 1, 0);
+        this.myScene.quadMaterial.setTexture(this.rightTex);
+        this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
 
@@ -84,10 +91,13 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.popMatrix();
     }
 
-    setTextures(side, top, bottom){
+    setTextures(top, bottom, front, back, left, right){
         this.topTex = top;
         this.bottomTex = bottom;
-        this.sideTex = side;
+        this.frontTex = front;
+        this.backTex = back;
+        this.leftTex = left;
+        this.rightTex = right;
     }
 
     setMaterial(mat){

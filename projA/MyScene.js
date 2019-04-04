@@ -23,7 +23,7 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.ground = new MyGround(this, 35);
+        this.ground = new MyGround(this, 40);
         this.cubemap = new MyCubeMap(this);
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
@@ -91,12 +91,14 @@ class MyScene extends CGFscene {
         //Voxell Hill
         if (this.displayVX){
             this.pushMatrix();
+            this.voxelhill.setLevels(3);
             this.translate(10, 2.5, 10);
             this.voxelhill.display();
             this.popMatrix();
 
             this.pushMatrix();
-            this.translate(-10, 2.5, -10);
+            this.voxelhill.setLevels(6);
+            this.translate(-10, 5.5, -10);
             this.voxelhill.display();
             this.popMatrix();
         }
