@@ -35,17 +35,51 @@ class MyScene extends CGFscene {
         this.displayHouse = true;
         this.scaleFactor = 0.35;
         this.ambLight = 0.6;
+        this.l0intensity = 1;
     }
     initLights() {
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
+        //Test
         this.lights[0].setPosition(2, 5, 3, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].enable();
-        this.lights[0].setVisible(true);
+        this.lights[0].setDiffuse(this.l0intensity + 0.2, this.l0intensity, this.l0intensity, 1.0);
+        this.lights[0].setSpecular(this.l0intensity, this.l0intensity, this.l0intensity, 1.0);
+        this.lights[0].setConstantAttenuation(0.1);
+        //this.lights[0].enable();
+        //this.lights[0].setVisible(true);
         this.lights[0].update();
+
+        //House Lantern
+        this.lights[1].setPosition(0, 1.2, 0.8, 1);
+        this.lights[1].setDiffuse(0.7, 0.7, 0.7, 1.0);
+        this.lights[1].setSpecular(0.7, 0.7, 0.7, 1.0);
+        this.lights[1].setConstantAttenuation(0.7);
+        this.lights[1].enable();
+        this.lights[1].setVisible(false);
+        this.lights[1].update();
+
+        //Night Light
+        this.lights[2].setPosition(0, 10, 0, 1);
+        this.lights[2].setDiffuse(0.1, 0.1, 0.3, 1.0);
+        this.lights[2].setSpecular(0.1, 0.1, 0.3, 1.0);
+        this.lights[2].setConstantAttenuation(0.7);
+        this.lights[2].enable();
+        this.lights[2].setVisible(false);
+        this.lights[2].update();
+
+        //Day Light
+        this.lights[3].setPosition(0, 10, 0, 1);
+        this.lights[3].setDiffuse(0.7, 0.4, 0.4, 1.0);
+        this.lights[3].setSpecular(0.7, 0.4, 0.4, 1.0);
+        this.lights[3].setConstantAttenuation(0.1);
+        //this.lights[3].enable();
+        this.lights[3].setVisible(false);
+        this.lights[3].update();
+
+
+
     }
+
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
@@ -67,7 +101,12 @@ class MyScene extends CGFscene {
         this.applyViewMatrix();
 
         // Lights
+        this.lights[0].setDiffuse(this.l0intensity + 0.2, this.l0intensity, this.l0intensity, 1.0);
+        this.lights[0].setSpecular(this.l0intensity, this.l0intensity, this.l0intensity, 1.0);
         this.lights[0].update();
+        this.lights[1].update();
+        this.lights[2].update();
+        this.lights[3].update();
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
@@ -106,8 +145,8 @@ class MyScene extends CGFscene {
         //House
         if (this.displayHouse){
             this.pushMatrix();
-            this.translate(0, 2, 0);
-            this.scale(2, 2, 2);
+            this.translate(0, 3, 0);
+            this.scale(3, 3, 3);
             this.house.display();
             this.popMatrix();
         }

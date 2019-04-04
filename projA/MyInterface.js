@@ -21,13 +21,15 @@ class MyInterface extends CGFinterface {
         GenFolder.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
         GenFolder.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
         GenFolder.add(this.scene, 'displayTex').name('Display Textures');
-        
+        GenFolder.add(this.scene.lights[2], 'enabled').name("Night Light");
+        GenFolder.add(this.scene.lights[3], 'enabled').name("Day Light");
          //Lights
         var f1 = this.gui.addFolder('Test Light ');
         f1.add(this.scene.lights[0], 'enabled').name("Enabled");
         f1.add(this.scene.lights[0].position, '0', -5.0, 5.0).name("X Position");
         f1.add(this.scene.lights[0].position, '1', -5.0, 5.0).name("Y Position");
         f1.add(this.scene.lights[0].position, '2', -5.0, 5.0).name("Z Position");
+        f1.add(this.scene, 'l0intensity', 0.1, 1.0).name('Intensity');
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');

@@ -14,9 +14,7 @@ class MyTree extends CGFobject {
         this.treeTopTexture = treeTopTexture;
 
         this.slices = 8;
-
         this.initBuffers(scene);
-        
     }
 
     initBuffers(scene) {
