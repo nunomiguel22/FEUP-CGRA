@@ -16,7 +16,7 @@ class MyHouse extends CGFobject {
     initComponents() {
         this.pyramid = new MyPyramid(this.myScene, 4, 1);
         this.quadCube = new MyUnitCubeQuad(this.myScene);
-        this.pillar = new MyPrism(this.myScene, 5);
+        this.pillar = new MyPrism(this.myScene, 5, 5, 5);
     }
 
     initMaterials() {

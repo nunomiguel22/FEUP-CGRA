@@ -3,10 +3,12 @@
 * @constructor
 */
 class MyCylinder extends CGFobject {
-    constructor(scene, slices) {
+    constructor(scene, slices, minComplexity, maxComplexity) {
         super(scene);
         this.slices = slices;
         this.initBuffers();
+        this.minComplexity = minComplexity;
+        this.complexityDelta = (maxComplexity - minComplexity);
     }
 
     initBuffers() {
@@ -48,7 +50,7 @@ class MyCylinder extends CGFobject {
     }
     
     updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
+        this.slices = this.minComplexity + Math.round(this.complexityDelta * complexity); //complexity varies 0-1, so slices varies 3-12
 
         // reinitialize buffers
         this.initBuffers();
