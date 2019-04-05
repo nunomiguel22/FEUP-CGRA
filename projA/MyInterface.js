@@ -21,8 +21,8 @@ class MyInterface extends CGFinterface {
         GenFolder.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
         GenFolder.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
         GenFolder.add(this.scene, 'displayTex').name('Display Textures');
-        GenFolder.add(this.scene.lights[2], 'enabled').name("Night Light");
-        GenFolder.add(this.scene.lights[3], 'enabled').name("Day Light");
+        GenFolder.add(this.scene, 'selectedTod', this.scene.mainLightIds).name('Time of day');
+
          //Lights
         var f1 = this.gui.addFolder('Test Light ');
         f1.add(this.scene.lights[0], 'enabled').name("Enabled");

@@ -10,7 +10,6 @@ class MyCubeMap extends CGFobject {
         this.myScene = scene;
         this.initComponents();
         this.initMaterials();
-        //this.initTextures();
     }
     
     initComponents() {
@@ -26,11 +25,6 @@ class MyCubeMap extends CGFobject {
         this.myScene.cubemapMaterial.setSpecular(1, 1, 1, 1);
         this.myScene.cubemapMaterial.setShininess(10.0);
     }
-
-    initTextures(){
-
-    }
-
     display() {
         this.myScene.pushMatrix();
         this.myScene.translate(0, 20, 0);

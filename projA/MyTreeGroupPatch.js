@@ -4,8 +4,8 @@ class MyTreeGroupPatch extends CGFobject {
         return parameter - amplitude + delta * Math.random();
     }
     constructor( scene, avgDistance,
-        trunkHeight, trunkRadius, trunkTexture,
-        treeTopHeight, treeTopRadius, treeTopTexture,
+        trunkHeight, trunkRadius, 
+        treeTopHeight, treeTopRadius,
         distanceAmplitude, heightAmplitude, radiusAmplitude
     ) {
         super(scene);
@@ -14,35 +14,34 @@ class MyTreeGroupPatch extends CGFobject {
         this.distanceAmplitude = distanceAmplitude;
 
         this.trees = [];
+        this.treepos = [];
         var rdm = this.randomizeParameter;
 
-        for (var i = 0; i < 9; i++) {
-            var tree = new MyTree(
-                scene,
-                rdm(trunkHeight, heightAmplitude),
-                rdm(trunkRadius, radiusAmplitude),
-                rdm(treeTopHeight, heightAmplitude),
-                rdm(treeTopRadius, radiusAmplitude),
-                trunkTexture,
-                treeTopTexture
-            )
-            this.trees.push(tree);
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0; j < 3; j++) { {
+                var tree = new MyTree(
+                   scene,
+                   rdm(trunkHeight, heightAmplitude),
+                   rdm(trunkRadius, radiusAmplitude),
+                   rdm(treeTopHeight, heightAmplitude),
+                   rdm(treeTopRadius, radiusAmplitude),
+               )
+                this.trees.push(tree);
+                this.treepos.push(rdm(i * this.avgDistance, this.distanceAmplitude), 
+                rdm(j * this.avgDistance, this.distanceAmplitude));
+           }
         }
     }
+}
 
     display() {
-        var rdm = this.randomizeParameter;
-        for (var i = 0; i < 3; i++) {
-            for (var j = 0; j < 3; j++) {
-                this.scene.push();
-                this.scene.translate(
-                    rdm(i * this.avgDistance, this.distanceAmplitude),
-                    0,
-                    rdm(j * this.avgDistance, this.distanceAmplitude)
-                );
-                this.trees[i + 3*j].display();
-                this.scene.pop();
-            }
+
+        for (var i = 0; i < this.trees.length; i++) {
+            this.scene.pushMatrix();
+            this.scene.translate(this.treepos[i * 2], 0, this.treepos[i * 2 + 1]);
+            this.trees[i].display();
+            this.scene.popMatrix();
+            
         }
     }
 

@@ -44,8 +44,7 @@ class MyPrism extends CGFobject {
                 ...normal,
                 ...normal
             );
-
-
+            
             this.indices.push(
                 4*i + 1, 4*i, 4*i + 2,
                 4*i + 3, 4*i + 1, 4*i + 2

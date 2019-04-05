@@ -23,7 +23,7 @@ class MyGround extends CGFobject {
       this.myScene.groundMaterial.setTextureWrap('REPEAT', 'REPEAT');
       this.myScene.groundMaterial.setAmbient(0.1, 0.2, 0.1, 1);
       this.myScene.groundMaterial.setDiffuse(0.6, 0.7, 0.6, 1);
-      this.myScene.groundMaterial.setSpecular(0.04, 0.7, 0.04, 1);
+      this.myScene.groundMaterial.setSpecular(0.04, 0.07, 0.04, 1);
       this.myScene.groundMaterial.setShininess(10);
     }
     

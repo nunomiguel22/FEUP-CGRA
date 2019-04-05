@@ -34,9 +34,8 @@ class MyUnitCubeQuad extends CGFobject {
         this.leftTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
         this.rightTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
     }
-
+    
     display() {
-        
         //Front
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0, 0.5);
@@ -44,7 +43,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
-
         //Back
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0, -0.5);
@@ -53,7 +51,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
-
         //Left
         this.myScene.pushMatrix();
         this.myScene.translate(-0.5, 0, 0);
@@ -62,7 +59,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
-
         //Right
         this.myScene.pushMatrix();
         this.myScene.translate(0.5, 0, 0);
@@ -71,7 +67,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
-
         //Top
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0.5, 0);
@@ -80,7 +75,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.myScene.quadMaterial.apply();
         this.quad.display();
         this.myScene.popMatrix();
-
         //Bottom
         this.myScene.pushMatrix();
         this.myScene.translate(0, -0.5, 0);
@@ -99,7 +93,6 @@ class MyUnitCubeQuad extends CGFobject {
         this.leftTex = left;
         this.rightTex = right;
     }
-
     setMaterial(mat){
         this.quadMaterial = mat;
     }

@@ -1,11 +1,11 @@
-class MyTreeGroupPatch extends CGFobject {
+class MyTreeRowPatch extends CGFobject {
     randomizeParameter(parameter, amplitude) {
         var delta = 2.0 * amplitude;
         return parameter - amplitude + delta * Math.random();
     }
     constructor( scene, avgDistance,
-        trunkHeight, trunkRadius, trunkTexture,
-        treeTopHeight, treeTopRadius, treeTopTexture,
+        trunkHeight, trunkRadius, 
+        treeTopHeight, treeTopRadius,
         distanceAmplitude, heightAmplitude, radiusAmplitude
     ) {
         super(scene);
@@ -14,6 +14,7 @@ class MyTreeGroupPatch extends CGFobject {
         this.distanceAmplitude = distanceAmplitude;
 
         this.trees = [];
+        this.treepos = [];
         var rdm = this.randomizeParameter;
 
         for (var i = 0; i < 6; i++) {
@@ -23,24 +24,19 @@ class MyTreeGroupPatch extends CGFobject {
                 rdm(trunkRadius, radiusAmplitude),
                 rdm(treeTopHeight, heightAmplitude),
                 rdm(treeTopRadius, radiusAmplitude),
-                trunkTexture,
-                treeTopTexture
             )
             this.trees.push(tree);
+            this.treepos.push(rdm(i * this.avgDistance, this.distanceAmplitude), 
+            rdm(0, this.distanceAmplitude));
         }
     }
 
     display() {
-        var rdm = this.randomizeParameter;
         for (var i = 0; i < 6; i++) {
-            this.scene.push();
-            this.scene.translate(
-                rdm(i * this.avgDistance, this.distanceAmplitude),
-                0,
-                rdm(0, this.distanceAmplitude)
-            );
+            this.scene.pushMatrix();
+            this.scene.translate(this.treepos[i * 2], 0, this.treepos[i * 2 + 1]); 
             this.trees[i].display();
-            this.scene.pop();
+            this.scene.popMatrix();
         }
     }
 
