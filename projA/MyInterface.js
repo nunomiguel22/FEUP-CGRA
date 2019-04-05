@@ -17,11 +17,10 @@ class MyInterface extends CGFinterface {
         var obj = this;
         
        //General
-        var GenFolder = this.gui.addFolder('General');
-        GenFolder.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
-        GenFolder.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
-        GenFolder.add(this.scene, 'displayTex').name('Display Textures');
-        GenFolder.add(this.scene, 'selectedTod', this.scene.mainLightIds).name('Time of day');
+        this.gui.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
+        this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
+        this.gui.add(this.scene, 'displayTex').name('Display Textures');
+        this.gui.add(this.scene, 'selectedTod', this.scene.mainLightIds).name('Time of day');
 
          //Lights
         var f1 = this.gui.addFolder('Test Light ');
@@ -33,7 +32,6 @@ class MyInterface extends CGFinterface {
 
         //Checkbox element in GUI
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'displayCB').name('Display Cubemap');
         this.gui.add(this.scene, 'displayVX').name('Display Hills');
         this.gui.add(this.scene, 'displayHouse').name('Display House');
 

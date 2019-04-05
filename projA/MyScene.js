@@ -23,19 +23,18 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.ground = new MyGround(this, 40);
+        this.ground = new MyGround(this, 50);
         this.cubemap = new MyCubeMap(this);
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
-        this.treeRow = new MyTreeRowPatch(this, 3, 5, 0.5, 2, 2, 2, 1.5, 0.2);
-        this.treeGroup = new MyTreeGroupPatch(this, 3, 5, 0.5, 2, 2, 2, 1.5, 0.2);
+        this.treeRow = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.5, 0.2);
+        this.treeGroup = new MyTreeGroupPatch(this, 3, 4, 0.5, 3, 2, 2, 1.5, 0.2);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
-        this.displayCB = true;
         this.displayVX = true;
         this.displayHouse = true;
-        this.scaleFactor = 0.35;
+        this.scaleFactor = 1;
         this.ambLight = 0.6;
         this.l0intensity = 1;
 
@@ -53,10 +52,10 @@ class MyScene extends CGFscene {
         this.lights[0].setConstantAttenuation(0.1);
         this.lights[0].update();
         //House Lantern
-        this.lights[1].setPosition(0, 1.2, 0.8, 1);
-        this.lights[1].setDiffuse(0.7, 0.7, 0.7, 1.0);
+        this.lights[1].setPosition(0, 3, 2, 1);
+        this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[1].setSpecular(0.7, 0.7, 0.7, 1.0);
-        this.lights[1].setConstantAttenuation(0.7);
+        this.lights[1].setConstantAttenuation(1);
         this.lights[1].enable();
         this.lights[1].setVisible(false);
         this.lights[1].update();
@@ -79,7 +78,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(35, 35, 35), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -94,25 +93,24 @@ class MyScene extends CGFscene {
 
     display() {
         // ---- BEGIN Background, camera and axis setup
+
         // Clear image and depth buffer everytime we update the scene
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+
+        // Lights: 1 - Lantern, 2 - Night, 3 - Day 
+        this.lights[2].disable();
+        this.lights[3].disable();
+        this.lights[this.selectedTod].enable();
+        this.updateLights();
+        this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
+
         // Initialize Model-View matrix as identity (no transformation
         this.updateProjectionMatrix();
         this.loadIdentity();
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
-        // Lights: 1 - Lantern, 2 - Night, 3 - Day 
-        this.lights[2].disable();
-        this.lights[3].disable();
-        this.lights[this.selectedTod].enable();
-        this.lights[0].setDiffuse(this.l0intensity + 0.2, this.l0intensity, this.l0intensity, 1.0);
-        this.lights[0].setSpecular(this.l0intensity, this.l0intensity, this.l0intensity, 1.0);
-        this.updateLights();
-        this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
-
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.enableTextures(this.displayTex);
 
         // Draw axis
@@ -121,11 +119,23 @@ class MyScene extends CGFscene {
 
         //Apply default appearance
         this.setDefaultAppearance();
-
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         // ---- BEGIN Primitive drawing section
 
+        //Trees
         this.pushMatrix();
-        this.translate(-15, 0, 15);
+        this.translate(-15, 0, 20);
+        this.treeRow.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-20, 0, 15);
+        this.rotate(Math.PI/2, 0, 1, 0);
+        this.treeRow.display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-10, 0, -20);
         this.treeRow.display();
         this.popMatrix();
 
@@ -135,8 +145,8 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         //Cubemap
-        if (this.displayCB)
-            this.cubemap.display();
+        this.cubemap.swapTimeOfDay(this.selectedTod);
+        this.cubemap.display();
 
         this.ground.display();
 

@@ -16,8 +16,8 @@ class MyTree extends CGFobject {
     }
 
     initBuffers(scene) {
-        this.treeTop = new MyCone(scene, this.slices, 1, 5, 10);
-        this.trunk = new MyCylinder(scene, this.slices, 1, 5, 10);
+        this.treeTop = new MyCone(scene, this.slices, 5, 5, 10);
+        this.trunk = new MyCylinder(scene, this.slices, 5, 5, 10);
     }
 
     initMaterials(){
@@ -29,8 +29,8 @@ class MyTree extends CGFobject {
     }
 
     initTextures(){
-        this.trunkTex =  new CGFtexture(this.scene, 'images/house/roof.png');
-        this.topTex =  new CGFtexture(this.scene, 'images/ground/grass.png');
+        this.trunkTex =  new CGFtexture(this.scene, 'images/tree/treetrunk.png');
+        this.topTex =  new CGFtexture(this.scene, 'images/tree/treetop.png');
     }
 
     updateBuffers(complexity) {
