@@ -1,3 +1,17 @@
+/**
+ * MyTreeRowPatch
+ * @constructor
+ * @param scene - Reference to MyScene object
+ * @param avgDistance - Reference to MyScene object
+ * @param trunkHeight - Height of tree trunk
+ * @param trunkRadius - Radius of tree trunk
+ * @param treeTopHeight - Height of tree top
+ * @param treeTopRadius - Radius of tree top
+ * @param distanceAmplitude - 
+ * @param heightAmplitude - 
+ * @param radiusAmplitude - 
+ */
+
 class MyTreeRowPatch extends CGFobject {
     randomizeParameter(parameter, amplitude) {
         var delta = 2.0 * amplitude;

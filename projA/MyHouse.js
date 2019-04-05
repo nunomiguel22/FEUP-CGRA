@@ -1,5 +1,5 @@
 /**
- * MyVoxelHill
+ * MyHouse
  * @constructor
  * @param scene - Reference to MyScene object
  */
@@ -34,6 +34,18 @@ class MyHouse extends CGFobject {
         this.frontWallTex = new CGFtexture(this.myScene, 'images/house/frontwall.png');
         this.quadCube.setTextures(this.wallsTex, this.wallsTex, this.frontWallTex, 
             this.sideWallsTex, this.sideWallsTex, this.sideWallsTex);
+    }
+
+    enableNormalViz() {
+        this.quadCube.enableNormalViz();
+        this.pyramid.enableNormalViz();
+        this.pillar.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        this.quadCube.disableNormalViz();
+        this.pyramid.disableNormalViz();
+        this.pillar.disableNormalViz();
     }
 
     display() {

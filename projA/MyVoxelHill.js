@@ -2,6 +2,7 @@
  * MyVoxelHill
  * @constructor
  * @param scene - Reference to MyScene object
+ * @param nLevels - Number of hill levels
  */
 class MyVoxelHill extends CGFobject {
 
@@ -13,7 +14,14 @@ class MyVoxelHill extends CGFobject {
     }
     
     initComponents() {
-        this.UnitCubeQuad = new MyUnitCubeQuad(this.myScene);
+        this.unitCubeQuad = new MyUnitCubeQuad(this.myScene);
+    }
+    enableNormalViz(){
+        this.unitCubeQuad.enableNormalViz();
+    }
+
+    disableNormalViz(){
+        this.unitCubeQuad.disableNormalViz();
     }
 
     drawLevel(level){
@@ -24,35 +32,34 @@ class MyVoxelHill extends CGFobject {
             //Front Row
             this.myScene.pushMatrix();
             this.myScene.translate(- i + level,0, level);
-            this.UnitCubeQuad.display();
+            this.unitCubeQuad.display();
             this.myScene.popMatrix();
 
             //Back Row
             this.myScene.pushMatrix();
             this.myScene.translate(-i + level,0, -level);
-            this.UnitCubeQuad.display();
+            this.unitCubeQuad.display();
             this.myScene.popMatrix();
             
             if (i < size - 1){ //Corner cubes already done
                 //Left Column
                 this.myScene.pushMatrix();
                 this.myScene.translate(-level,0, -i + level - 1);
-                this.UnitCubeQuad.display();
+                this.unitCubeQuad.display();
                 this.myScene.popMatrix();
 
                 //Right Column
                 this.myScene.pushMatrix();
                 this.myScene.translate(level,0, -i + level - 1);
-                this.UnitCubeQuad.display();
+                this.unitCubeQuad.display();
                 this.myScene.popMatrix();
             }
         }
     }
 
     display() {
-
-        this.UnitCubeQuad.display();
-
+        this.unitCubeQuad.display();
+        
         for (var i = 1; i < this.levels; ++i){
             this.myScene.pushMatrix();
             this.myScene.translate(0, -i, 0);

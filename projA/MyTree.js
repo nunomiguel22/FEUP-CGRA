@@ -1,6 +1,13 @@
 /**
  * MyTree
+ * @constructor
+ * @param scene - Reference to MyScene object
+ * @param trunkHeight - Height of tree trunk
+ * @param trunkRadius - Radius of tree trunk
+ * @param treeTopHeight - Height of tree top
+ * @param treeTopRadius - Radius of tree top
  */
+
 class MyTree extends CGFobject {
     constructor(scene, trunkHeight, trunkRadius, treeTopHeight, treeTopRadius) {
         super(scene);
@@ -71,6 +78,7 @@ class MyTree extends CGFobject {
         this.trunk.disableNormalViz();
         this.treeTop.disableNormalViz();
     }
+
     setTextures(treeTrunk, treeTop){
         this.topTex = treeTop;
         this.trunkTex = treeTrunk;

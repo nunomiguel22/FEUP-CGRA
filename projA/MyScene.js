@@ -31,13 +31,11 @@ class MyScene extends CGFscene {
         this.treeGroup = new MyTreeGroupPatch(this, 3, 4, 0.5, 3, 2, 2, 1.5, 0.2);
 
         //Objects connected to MyInterface
-        this.displayAxis = true;
-        this.displayVX = true;
-        this.displayHouse = true;
+        this.displayAxis = false;
+        this.displayNormals = false;
         this.scaleFactor = 1;
-        this.ambLight = 0.6;
+        this.ambLight = 0.25;
         this.l0intensity = 1;
-
         this.mainLight = [this.lights[2], this.lights[3]];
         this.mainLightIds = { 'Night': 2, 'Day': 3};
     }
@@ -122,6 +120,10 @@ class MyScene extends CGFscene {
         this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         // ---- BEGIN Primitive drawing section
 
+        //Cubemap
+        this.cubemap.swapTimeOfDay(this.selectedTod);
+        this.cubemap.display();
+        
         //Trees
         this.pushMatrix();
         this.translate(-15, 0, 20);
@@ -143,35 +145,44 @@ class MyScene extends CGFscene {
         this.translate(10, 0, -10);
         this.treeGroup.display();
         this.popMatrix();
-
-        //Cubemap
-        this.cubemap.swapTimeOfDay(this.selectedTod);
-        this.cubemap.display();
-
+        
+        //Ground
         this.ground.display();
 
-        //Voxell Hill
-        if (this.displayVX){
-            this.pushMatrix();
-            this.voxelhill.setLevels(3);
-            this.translate(10, 2.5, 10);
-            this.voxelhill.display();
-            this.popMatrix();
+        //Voxell Hills
+        this.pushMatrix();
+        this.voxelhill.setLevels(3);
+        this.translate(10, 2.5, 10);
+        this.voxelhill.display();
+        this.popMatrix();
 
-            this.pushMatrix();
-            this.voxelhill.setLevels(6);
-            this.translate(-10, 5.5, -10);
-            this.voxelhill.display();
-            this.popMatrix();
-        }
-
+        this.pushMatrix();
+        this.voxelhill.setLevels(6);
+        this.translate(-10, 5.5, -10);
+        this.voxelhill.display();
+        this.popMatrix();
+        
         //House
-        if (this.displayHouse){
-            this.pushMatrix();
-            this.translate(0, 3, 0);
-            this.scale(3, 3, 3);
-            this.house.display();
-            this.popMatrix();
+        this.pushMatrix();
+        this.translate(0, 3, 0);
+        this.scale(3, 3, 3);
+        this.house.display();
+        this.popMatrix();
+
+        //All Normals
+        if (this.displayNormals){
+            this.ground.enableNormalViz();
+            this.house.enableNormalViz();
+            this.treeGroup.enableNormalViz();
+            this.treeRow.enableNormalViz();
+            this.voxelhill.enableNormalViz();
+        }
+        else {
+            this.ground.disableNormalViz();
+            this.house.disableNormalViz();
+            this.treeGroup.disableNormalViz();
+            this.treeRow.disableNormalViz();
+            this.voxelhill.disableNormalViz();
         }
         // ---- END Primitive drawing section
     }

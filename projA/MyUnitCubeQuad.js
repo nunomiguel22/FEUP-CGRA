@@ -34,6 +34,14 @@ class MyUnitCubeQuad extends CGFobject {
         this.leftTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
         this.rightTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
     }
+
+    enableNormalViz() {
+        this.quad.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        this.quad.disableNormalViz();
+    }
     
     display() {
         //Front
