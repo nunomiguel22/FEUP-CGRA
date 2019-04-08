@@ -27,11 +27,15 @@ class MyCircle extends CGFobject {
         }
         this.vertices.push(0,0,0);
         this.normals.push(0,1,0);
-        this.texCoords.push(0.5, 0);
+        this.texCoords.push(0.5, 0.5);
         
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
-    
+    updateTexCoords(coords) {
+		this.texCoords = [...coords];
+		this.updateTexCoordsGLBuffers();
+	}
+
 }

@@ -29,7 +29,6 @@ class MyQuad extends CGFobject {
 		this.indices = [
 			0, 1, 2,
 			1, 3, 2,
-
 			6, 5, 4,
 			6, 7, 5
 		];

@@ -33,7 +33,8 @@ class MyScene extends CGFscene {
             this.treeRows.push(this.treeRow);
         }
         this.treeGroup = new MyTreeGroupPatch(this, 6, 4, 0.5, 3, 2, 1.1, 1.5, 0.2);
-        this.campFire = new MyCampFire(this, 1, 30, 20)
+        this.campFire = new MyCampFire(this, 1, 20, 30);
+        this.lake = new MyLake(this, 50);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -65,15 +66,15 @@ class MyScene extends CGFscene {
         this.lights[1].update();
         //Night Light
         this.lights[2].setPosition(0, 10, 0, 1);
-        this.lights[2].setDiffuse(0.1, 0.1, 0.5, 1.0);
-        this.lights[2].setSpecular(0.1, 0.1, 0.5, 1.0);
+        this.lights[2].setDiffuse(0.4, 0.4, 0.8, 1.0);
+        this.lights[2].setSpecular(0.4, 0.4, 0.8, 1.0);
         this.lights[2].setConstantAttenuation(0.7);
         this.lights[2].setVisible(false);
         this.lights[2].update();
         //Day Light
         this.lights[3].setPosition(0, 10, 0, 1);
-        this.lights[3].setDiffuse(0.7, 0.4, 0.4, 1.0);
-        this.lights[3].setSpecular(0.7, 0.4, 0.4, 1.0);
+        this.lights[3].setDiffuse(1, 0.5, 0.5, 1);
+        this.lights[3].setSpecular(1, 0.5, 0.5, 1);
         this.lights[3].setConstantAttenuation(0.1);
         this.lights[3].setVisible(false);
         this.lights[3].update();
@@ -168,10 +169,16 @@ class MyScene extends CGFscene {
         //Ground
         this.ground.display();
         
+        //Lake
+        this.pushMatrix();
+        this.translate(-5, 0.1, 8);
+        this.lake.display();
+        this.popMatrix();
+
         //Campfire
         if (this.selectedTod == 2){
             this.pushMatrix();
-            this.translate(-10, 0.1, 8);
+            this.translate(6, 0.1, 8);
             this.campFire.display();
             this.popMatrix();
         }
@@ -206,6 +213,7 @@ class MyScene extends CGFscene {
             }
             this.voxelhill.enableNormalViz();
             this.campFire.enableNormalViz();
+            this.lake.enableNormalViz();
         }
         else {
             this.ground.disableNormalViz();
@@ -216,6 +224,7 @@ class MyScene extends CGFscene {
             }
             this.voxelhill.disableNormalViz();
             this.campFire.disableNormalViz();
+            this.lake.disableNormalViz();
         }
         // ---- END Primitive drawing section
     }
