@@ -33,13 +33,13 @@ class MyScene extends CGFscene {
             this.treeRows.push(this.treeRow);
         }
         this.treeGroup = new MyTreeGroupPatch(this, 6, 4, 0.5, 3, 2, 1.1, 1.5, 0.2);
+        this.campFire = new MyCampFire(this, 1, 30, 20)
 
         //Objects connected to MyInterface
         this.displayAxis = false;
         this.displayNormals = false;
         this.scaleFactor = 1;
-        this.ambLight = 0.25;
-        this.l0intensity = 1;
+        this.ambLight = 0.15;
         this.mainLight = [this.lights[2], this.lights[3]];
         this.mainLightIds = { 'Night': 2, 'Day': 3};
     }
@@ -47,24 +47,26 @@ class MyScene extends CGFscene {
         this.selectedTod = 2;
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
-        //Test
-        this.lights[0].setPosition(2, 5, 3, 1);
-        this.lights[0].setDiffuse(this.l0intensity + 0.2, this.l0intensity, this.l0intensity, 1.0);
-        this.lights[0].setSpecular(this.l0intensity, this.l0intensity, this.l0intensity, 1.0);
-        this.lights[0].setConstantAttenuation(0.1);
+        //Campfire Light
+        this.lights[0].setPosition(-10, 0.5, 8, 1);
+        this.lights[0].setDiffuse(0.7, 0.4, 0.4, 1.0);
+        this.lights[0].setSpecular(0.7, 0.4, 0.4, 1.0);
+        this.lights[0].setConstantAttenuation(1);
+        this.lights[0].enable();
+        this.lights[0].setVisible(false);
         this.lights[0].update();
         //House Lantern
         this.lights[1].setPosition(0, 3, 2, 1);
-        this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[1].setSpecular(0.7, 0.7, 0.7, 1.0);
+        this.lights[1].setDiffuse(1.0, 0.7, 0.7, 1.0);
+        this.lights[1].setSpecular(1.0, 0.7, 0.7, 1.0);
         this.lights[1].setConstantAttenuation(1);
         this.lights[1].enable();
         this.lights[1].setVisible(false);
         this.lights[1].update();
         //Night Light
         this.lights[2].setPosition(0, 10, 0, 1);
-        this.lights[2].setDiffuse(0.1, 0.1, 0.4, 1.0);
-        this.lights[2].setSpecular(0.1, 0.1, 0.4, 1.0);
+        this.lights[2].setDiffuse(0.1, 0.1, 0.5, 1.0);
+        this.lights[2].setSpecular(0.1, 0.1, 0.5, 1.0);
         this.lights[2].setConstantAttenuation(0.7);
         this.lights[2].setVisible(false);
         this.lights[2].update();
@@ -89,6 +91,23 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
     updateLights(){
+        // Lights: 1 - Lantern, 2 - Night, 3 - Day
+        this.lights[0].disable();
+        this.lights[1].disable();
+        this.lights[2].disable();
+        this.lights[3].disable();
+        if (this.selectedTod == 2){          
+            this.lights[0].enable();
+            this.lights[1].enable();
+            this.lights[2].enable();
+            this.lights[3].disable();
+        }
+        else{ 
+            this.lights[0].disable();
+            this.lights[1].disable();
+            this.lights[2].disable();
+            this.lights[3].enable();
+        }
         for (var i = 0; i < this.lights.length; ++i)
             this.lights[i].update();
     }
@@ -100,10 +119,6 @@ class MyScene extends CGFscene {
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 
-        // Lights: 1 - Lantern, 2 - Night, 3 - Day 
-        this.lights[2].disable();
-        this.lights[3].disable();
-        this.lights[this.selectedTod].enable();
         this.updateLights();
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
@@ -152,6 +167,14 @@ class MyScene extends CGFscene {
         
         //Ground
         this.ground.display();
+        
+        //Campfire
+        if (this.selectedTod == 2){
+            this.pushMatrix();
+            this.translate(-10, 0.1, 8);
+            this.campFire.display();
+            this.popMatrix();
+        }
 
         //Voxell Hills
         this.pushMatrix();
@@ -182,6 +205,7 @@ class MyScene extends CGFscene {
                 this.treeRows[i].enableNormalViz();
             }
             this.voxelhill.enableNormalViz();
+            this.campFire.enableNormalViz();
         }
         else {
             this.ground.disableNormalViz();
@@ -191,6 +215,7 @@ class MyScene extends CGFscene {
                 this.treeRows[i].disableNormalViz();
             }
             this.voxelhill.disableNormalViz();
+            this.campFire.disableNormalViz();
         }
         // ---- END Primitive drawing section
     }

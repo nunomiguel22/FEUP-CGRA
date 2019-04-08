@@ -24,18 +24,6 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
         
-         //Lights
-        var f1 = this.gui.addFolder('Test Light ');
-        f1.add(this.scene.lights[0], 'enabled').name("Enabled");
-        f1.add(this.scene.lights[0].position, '0', -5.0, 5.0).name("X Position");
-        f1.add(this.scene.lights[0].position, '1', -5.0, 5.0).name("Y Position");
-        f1.add(this.scene.lights[0].position, '2', -5.0, 5.0).name("Z Position");
-        f1.add(this.scene, 'l0intensity', 0.1, 1.0).name('Intensity');
-
-        //Checkbox element in GUI
-        
-
-
         return true;
     }
 }

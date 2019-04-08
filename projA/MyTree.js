@@ -29,7 +29,7 @@ class MyTree extends CGFobject {
 
     initMaterials(){
         this.scene.treeDefaultMat = new CGFappearance(this.scene);
-        this.scene.treeDefaultMat.setAmbient(0.1, 0.1, 0.1, 1);
+        this.scene.treeDefaultMat.setAmbient(0, 0, 0, 1);
         this.scene.treeDefaultMat.setDiffuse(0.9, 0.9, 0.9, 1);
         this.scene.treeDefaultMat.setSpecular(0.1, 0.1, 0.1, 1);
         this.scene.treeDefaultMat.setShininess(10.0);
