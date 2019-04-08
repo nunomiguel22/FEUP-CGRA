@@ -37,7 +37,7 @@ class MyTreeGroupPatch extends CGFobject {
                    scene,
                    rdm(trunkHeight, heightAmplitude),
                    rdm(trunkRadius, radiusAmplitude),
-                   rdm(treeTopHeight, heightAmplitude),
+                   rdm(treeTopHeight, heightAmplitude / 2),
                    rdm(treeTopRadius, radiusAmplitude),
                )
                 this.trees.push(tree);
