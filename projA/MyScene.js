@@ -27,8 +27,10 @@ class MyScene extends CGFscene {
         this.cubemap = new MyCubeMap(this);
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
-        this.treeRow = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.5, 0.2);
-        this.treeGroup = new MyTreeGroupPatch(this, 3, 4, 0.5, 3, 2, 2, 1.5, 0.2);
+        this.treeRow1 = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.5, 0.2);
+        this.treeRow2 = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.5, 0.2);
+        this.treeRow3 = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.5, 0.2);
+        this.treeGroup = new MyTreeGroupPatch(this, 6, 4, 0.5, 3, 2, 2.5, 1.5, 0.2);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
@@ -127,18 +129,18 @@ class MyScene extends CGFscene {
         //Trees
         this.pushMatrix();
         this.translate(-15, 0, 20);
-        this.treeRow.display();
+        this.treeRow1.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(-20, 0, 15);
         this.rotate(Math.PI/2, 0, 1, 0);
-        this.treeRow.display();
+        this.treeRow2.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(-10, 0, -20);
-        this.treeRow.display();
+        this.treeRow3.display();
         this.popMatrix();
 
         this.pushMatrix();
@@ -174,14 +176,18 @@ class MyScene extends CGFscene {
             this.ground.enableNormalViz();
             this.house.enableNormalViz();
             this.treeGroup.enableNormalViz();
-            this.treeRow.enableNormalViz();
+            this.treeRow1.enableNormalViz();
+            this.treeRow2.enableNormalViz();
+            this.treeRow3.enableNormalViz();
             this.voxelhill.enableNormalViz();
         }
         else {
             this.ground.disableNormalViz();
             this.house.disableNormalViz();
             this.treeGroup.disableNormalViz();
-            this.treeRow.disableNormalViz();
+            this.treeRow1.disableNormalViz();
+            this.treeRow2.disableNormalViz();
+            this.treeRow3.disableNormalViz();
             this.voxelhill.disableNormalViz();
         }
         // ---- END Primitive drawing section
