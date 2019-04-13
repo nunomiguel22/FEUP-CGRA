@@ -21,8 +21,8 @@ class MyVoxelHill extends CGFobject {
 
     initMaterials(){
         this.hillMaterial = new CGFappearance(this.myScene);
-        this.hillMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.hillMaterial.setDiffuse(0.8, 0.8, 0.8, 1);
+        this.hillMaterial.setAmbient(0, 0, 0, 1);
+        this.hillMaterial.setDiffuse(0.3, 0.6, 0.4, 1);
         this.hillMaterial.setSpecular(0.1, 0.1, 0.1, 1);
         this.hillMaterial.setShininess(10.0);
         this.unitCubeQuad.setMaterial(this.hillMaterial);

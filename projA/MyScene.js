@@ -28,53 +28,59 @@ class MyScene extends CGFscene {
         this.voxelhill = new MyVoxelHill(this, 3);
         this.house = new MyHouse(this);
         this.treeRows = [];
-        for (var i = 0; i < 3; ++i){
-            this.treeRow = new MyTreeRowPatch(this, 4, 4, 0.5, 3, 2, 2, 1.3, 0.2);
+        this.treePatches = [];
+        for (var i = 0; i < 2; ++i){
+            this.treeRow = new MyTreeRowPatch(this, 6, 4, 0.5, 3, 2, 1, 0.8, 0.2);
             this.treeRows.push(this.treeRow);
         }
-        this.treeGroup = new MyTreeGroupPatch(this, 6, 4, 0.5, 3, 2, 1.1, 1.5, 0.2);
+        for (var i = 0; i < 2; ++i){
+            this.treeGroup = new MyTreeGroupPatch(this, 6, 4, 0.5, 3, 2, 1, 0.8, 0.2);
+            this.treePatches.push(this.treeGroup);
+        }
         this.campFire = new MyCampFire(this, 1, 20, 30);
-        this.lake = new MyLake(this, 50);
+        this.lake = new MyLake(this, 65, 5);
 
         //Objects connected to MyInterface
         this.displayAxis = false;
         this.displayNormals = false;
         this.scaleFactor = 1;
-        this.ambLight = 0.15;
+        this.ambLight = 0.4;
         this.mainLight = [this.lights[2], this.lights[3]];
         this.mainLightIds = { 'Night': 2, 'Day': 3};
+        this.smallHillLevel = 3;
+        this.largeHillLevel = 6;
     }
     initLights() {
-        this.selectedTod = 2;
+        this.selectedTod = 3;
         this.setGlobalAmbientLight(this.ambLight, this.ambLight, this.ambLight, 1);
 
         //Campfire Light
-        this.lights[0].setPosition(-10, 0.5, 8, 1);
-        this.lights[0].setDiffuse(0.7, 0.4, 0.4, 1.0);
-        this.lights[0].setSpecular(0.7, 0.4, 0.4, 1.0);
-        this.lights[0].setConstantAttenuation(1);
+        this.lights[0].setPosition(6, 1, 3, 1);
+        this.lights[0].setDiffuse(1.0, 0.7, 0.7, 1.0);
+        this.lights[0].setSpecular(1.0, 0.7, 0.7, 1.0);
+        this.lights[0].setConstantAttenuation(0.7);
         this.lights[0].enable();
         this.lights[0].setVisible(false);
         this.lights[0].update();
         //House Lantern
-        this.lights[1].setPosition(0, 3, 2, 1);
-        this.lights[1].setDiffuse(1.0, 0.7, 0.7, 1.0);
-        this.lights[1].setSpecular(1.0, 0.7, 0.7, 1.0);
-        this.lights[1].setConstantAttenuation(1);
+        this.lights[1].setPosition(-1.8, 2.7, -1.2, 1);
+        this.lights[1].setDiffuse(1, 0.6, 0.6, 1.0);
+        this.lights[1].setSpecular(1, 0.6, 0.6, 1.0);
+        this.lights[1].setConstantAttenuation(0.7);
         this.lights[1].enable();
         this.lights[1].setVisible(false);
         this.lights[1].update();
-        //Night Light
-        this.lights[2].setPosition(0, 10, 0, 1);
-        this.lights[2].setDiffuse(0.4, 0.4, 0.8, 1.0);
-        this.lights[2].setSpecular(0.4, 0.4, 0.8, 1.0);
-        this.lights[2].setConstantAttenuation(0.7);
+        //Night Light, same location as the moon on the cubemap
+        this.lights[2].setPosition(24, 22, 24, 1);
+        this.lights[2].setDiffuse(0.2, 0.2, 0.5, 1.0);
+        this.lights[2].setSpecular(0.2, 0.2, 0.5, 1.0);
+        this.lights[2].setConstantAttenuation(0.3);
         this.lights[2].setVisible(false);
         this.lights[2].update();
-        //Day Light
-        this.lights[3].setPosition(0, 10, 0, 1);
-        this.lights[3].setDiffuse(1, 0.5, 0.5, 1);
-        this.lights[3].setSpecular(1, 0.5, 0.5, 1);
+        //Day Light, same location as the sun on the cubemap
+        this.lights[3].setPosition(22, 15, 16, 1);
+        this.lights[3].setDiffuse(0.8, 0.4, 0.4, 1);
+        this.lights[3].setSpecular(0.8, 0.4, 0.4, 1);
         this.lights[3].setConstantAttenuation(0.1);
         this.lights[3].setVisible(false);
         this.lights[3].update();
@@ -83,7 +89,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(35, 35, 35), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(0, 30, 80), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -129,11 +135,11 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
-        this.enableTextures(this.displayTex);
-
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
+
+        this.enableTextures(this.displayTex);
 
         //Apply default appearance
         this.setDefaultAppearance();
@@ -146,24 +152,24 @@ class MyScene extends CGFscene {
         
         //Trees
         this.pushMatrix();
-        this.translate(-15, 0, 20);
+        this.translate(-20, 0, 15);
+        this.rotate(Math.PI/2, 0, 1, 0);
         this.treeRows[0].display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-20, 0, 15);
-        this.rotate(Math.PI/2, 0, 1, 0);
+        this.translate(-10, 0, -20);
         this.treeRows[1].display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(-10, 0, -20);
-        this.treeRows[2].display();
+        this.translate(10, 0, -14);
+        this.treePatches[0].display();
         this.popMatrix();
 
         this.pushMatrix();
-        this.translate(10, 0, -10);
-        this.treeGroup.display();
+        this.translate(10, 0, 8);
+        this.treePatches[1].display();
         this.popMatrix();
         
         //Ground
@@ -171,28 +177,29 @@ class MyScene extends CGFscene {
         
         //Lake
         this.pushMatrix();
-        this.translate(-5, 0.1, 8);
+        this.translate(-10, 0.1, 3);
         this.lake.display();
         this.popMatrix();
 
         //Campfire
         if (this.selectedTod == 2){
             this.pushMatrix();
-            this.translate(6, 0.1, 8);
+            this.translate(6, 0.1, 3);
             this.campFire.display();
             this.popMatrix();
         }
 
         //Voxell Hills
+        //Small Hill
         this.pushMatrix();
-        this.voxelhill.setLevels(3);
-        this.translate(12, 2.5, 12);
+        this.voxelhill.setLevels( this.smallHillLevel - 0.1);
+        this.translate(-11, this.smallHillLevel - 0.5, 17);
         this.voxelhill.display();
         this.popMatrix();
-
+        //Large Hill
         this.pushMatrix();
-        this.voxelhill.setLevels(6);
-        this.translate(-10, 5.5, -10);
+        this.voxelhill.setLevels(this.largeHillLevel - 0.1);
+        this.translate(-10,  this.largeHillLevel - 0.5, -10);
         this.voxelhill.display();
         this.popMatrix();
         

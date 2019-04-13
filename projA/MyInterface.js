@@ -23,7 +23,10 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'selectedTod', this.scene.mainLightIds).name('Time of day');
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
-        
+        var hillFolder = this.gui.addFolder('Voxel Hill');
+        hillFolder.add(this.scene, 'smallHillLevel', 1, 8).name('Small Hill Size');
+        hillFolder.add(this.scene, 'largeHillLevel', 1, 8).name('Large Hill Size');
+
         return true;
     }
 }

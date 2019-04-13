@@ -61,7 +61,7 @@ class MyCampFire extends CGFobject {
         for (var i = 0; i < this.numberOfFirePart; ++i){
             this.scene.pushMatrix();
             this.scene.translate(Math.cos(alpha * i * 1.5), i * 0.6, Math.sin(alpha * i * 1.5));
-            this.scene.scale(0.1, 0.1, 1);
+            this.scene.scale(0.05, 0.05, 0.05);
             this.firePart.display();
             this.scene.popMatrix();
         }

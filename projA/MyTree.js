@@ -9,36 +9,44 @@
  */
 
 class MyTree extends CGFobject {
-    constructor(scene, trunkHeight, trunkRadius, treeTopHeight, treeTopRadius) {
+    constructor(scene, trunkHeight, trunkRadius, treeTopHeight, treeTopRadius, trunkTexture,
+        treeTopTexture) {
         super(scene);
-
+        this.myScene = scene;
         this.trunkHeight = trunkHeight;
         this.trunkRadius = trunkRadius;
         this.treeTopHeight = treeTopHeight;
         this.treeTopRadius = treeTopRadius;
-        this.slices = 8;
+        this.trunkTexture = trunkTexture;
+        this.treeTopTexture = treeTopTexture;
+        this.slices = 10;
         this.initComponents();
         this.initMaterials();
-        this.initTextures();
     }
 
     initComponents() {
-        this.treeTop = new MyCone(this.scene, this.slices, 5, 5, 10);
-        this.trunk = new MyCylinder(this.scene, this.slices, 5, 5, 10);
+        this.treeTop = new MyCone(this.scene, this.slices, 5, 10);
+        this.trunk = new MyCylinder(this.scene, this.slices, 5, 10);
     }
 
     initMaterials(){
-        this.treeMaterial = new CGFappearance(this.scene);
-        this.treeMaterial.setAmbient(0, 0, 0, 1);
-        this.treeMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.treeMaterial.setSpecular(0.1, 0.1, 0.1, 1);
-        this.treeMaterial.setShininess(10.0);
+        this.trunkMaterial = new CGFappearance(this.scene);
+        this.trunkMaterial.setAmbient(0.01, 0.01, 0.0, 1);
+        this.trunkMaterial.setDiffuse(0.15, 0.15, 0.0, 1);
+        this.trunkMaterial.setSpecular(0.005, 0.05, 0.0, 1);
+        this.trunkMaterial.setShininess(10.0);
+
+        this.treeTopMaterial = new CGFappearance(this.scene);
+        this.treeTopMaterial.setAmbient(0.05, 0.1, 0.05, 1);
+        this.treeTopMaterial.setDiffuse(0.3, 0.6, 0.3, 1);
+        this.treeTopMaterial.setSpecular(0.1, 0.2, 0.1, 1);
+        this.treeTopMaterial.setShininess(10.0);
     }
 
-    initTextures(){
+/*     initTextures(){
         this.trunkTex =  new CGFtexture(this.scene, 'images/tree/treetrunk.png');
         this.topTex =  new CGFtexture(this.scene, 'images/tree/treetop.png');
-    }
+    } */
 
     updateBuffers(complexity) {
         this.treeTop.updateBuffers(complexity);
@@ -51,22 +59,22 @@ class MyTree extends CGFobject {
     }
 
     displayTrunk() {
-        this.scene.pushMatrix();
-        this.scene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
-        this.treeMaterial.setTexture(this.trunkTex);
-        this.treeMaterial.apply();
+        this.myScene.pushMatrix();
+        this.myScene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
+        this.trunkMaterial.setTexture(this.trunkTexture);
+        this.trunkMaterial.apply();
         this.trunk.display();
-        this.scene.popMatrix();
+        this.myScene.popMatrix();
     }
 
     displayTreeTop() {
-        this.scene.pushMatrix();
-        this.scene.translate(0, this.trunkHeight, 0);
-        this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
-        this.treeMaterial.setTexture(this.topTex);
-        this.treeMaterial.apply();
+        this.myScene.pushMatrix();
+        this.myScene.translate(0, this.trunkHeight, 0);
+        this.myScene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
+        this.treeTopMaterial.setTexture(this.treeTopTexture);
+        this.treeTopMaterial.apply();
         this.treeTop.display();
-        this.scene.popMatrix();
+        this.myScene.popMatrix();
     }
 
     enableNormalViz() {

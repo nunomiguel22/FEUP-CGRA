@@ -18,37 +18,25 @@ class MyCubeMap extends CGFobject {
     }
 
     initMaterials() {    
-        this.myScene.cubemapMaterial = new CGFappearance(this.myScene);
-        this.myScene.cubemapMaterial.loadTexture('images/cubemap/tempcb.png');
-        this.myScene.cubemapMaterial.setAmbient(1, 1, 1, 1);
-        this.myScene.cubemapMaterial.setDiffuse(1, 1, 1, 1);
-        this.myScene.cubemapMaterial.setSpecular(1, 1, 1, 1);
-        this.myScene.cubemapMaterial.setShininess(10.0);
+        this.cubemapMaterial = new CGFappearance(this.myScene);
+        this.cubemapMaterial.loadTexture('images/cubemap/tempcb.png');
+        this.cubemapMaterial.setAmbient(0.7, 0.7, 0.7, 1);
+        this.cubemapMaterial.setShininess(10.0);
     }
     initTextures(){
-        this.dayTex = new CGFtexture(this.myScene, 'images/cubemap/tempcb.png');
+        this.dayTex = new CGFtexture(this.myScene, 'images/cubemap/daycubemap.png');
         this.nightTex = new CGFtexture(this.myScene, 'images/cubemap/nightcubemap.png');
         this.cbTex = this.nightTex;
     }
     display() {
         this.myScene.pushMatrix();
         this.myScene.translate(0, 0, 0);
-        this.myScene.scale(50, 50, 50);
-        
-        this.myScene.scale(-1, -1, -1);
+        this.myScene.scale(-70, -70, -70);
         this.myScene.rotate(Math.PI,1, 0, 0);
-        this.myScene.cubemapMaterial.setTexture(this.cbTex);
-        this.myScene.cubemapMaterial.apply();
+        this.cubemapMaterial.setTexture(this.cbTex);
+        this.cubemapMaterial.apply();
         this.unitCube.display();
         this.myScene.popMatrix();
-    }
-
-    setTexture(cubemapTex){
-        this.cbTex = cubemapTex;
-    }
-
-    setMaterial(cbmat){
-        this.myScene.cubemapMaterial = cbmat;
     }
 
     swapTimeOfDay(selectedTod){
