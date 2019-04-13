@@ -17,22 +17,22 @@ class MyTree extends CGFobject {
         this.treeTopHeight = treeTopHeight;
         this.treeTopRadius = treeTopRadius;
         this.slices = 8;
-        this.initBuffers(scene);
+        this.initComponents();
         this.initMaterials();
         this.initTextures();
     }
 
-    initBuffers(scene) {
-        this.treeTop = new MyCone(scene, this.slices, 5, 5, 10);
-        this.trunk = new MyCylinder(scene, this.slices, 5, 5, 10);
+    initComponents() {
+        this.treeTop = new MyCone(this.scene, this.slices, 5, 5, 10);
+        this.trunk = new MyCylinder(this.scene, this.slices, 5, 5, 10);
     }
 
     initMaterials(){
-        this.scene.treeDefaultMat = new CGFappearance(this.scene);
-        this.scene.treeDefaultMat.setAmbient(0, 0, 0, 1);
-        this.scene.treeDefaultMat.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.scene.treeDefaultMat.setSpecular(0.1, 0.1, 0.1, 1);
-        this.scene.treeDefaultMat.setShininess(10.0);
+        this.treeMaterial = new CGFappearance(this.scene);
+        this.treeMaterial.setAmbient(0, 0, 0, 1);
+        this.treeMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.treeMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.treeMaterial.setShininess(10.0);
     }
 
     initTextures(){
@@ -53,8 +53,8 @@ class MyTree extends CGFobject {
     displayTrunk() {
         this.scene.pushMatrix();
         this.scene.scale(this.trunkRadius, this.trunkHeight, this.trunkRadius);
-        this.scene.treeDefaultMat.setTexture(this.trunkTex);
-        this.scene.treeDefaultMat.apply();
+        this.treeMaterial.setTexture(this.trunkTex);
+        this.treeMaterial.apply();
         this.trunk.display();
         this.scene.popMatrix();
     }
@@ -63,8 +63,8 @@ class MyTree extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, this.trunkHeight, 0);
         this.scene.scale(this.treeTopRadius, this.treeTopHeight, this.treeTopRadius);
-        this.scene.treeDefaultMat.setTexture(this.topTex);
-        this.scene.treeDefaultMat.apply();
+        this.treeMaterial.setTexture(this.topTex);
+        this.treeMaterial.apply();
         this.treeTop.display();
         this.scene.popMatrix();
     }

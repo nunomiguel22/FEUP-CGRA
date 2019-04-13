@@ -6,16 +6,35 @@
  */
 class MyVoxelHill extends CGFobject {
 
-	constructor(scene, nLevels) {
+	constructor(scene, levels) {
         super(scene);
         this.myScene = scene;
-        this.levels = nLevels;
+        this.levels = levels;
         this.initComponents();
+        this.initMaterials();
+        this.initTextures();
     }
     
     initComponents() {
         this.unitCubeQuad = new MyUnitCubeQuad(this.myScene);
     }
+
+    initMaterials(){
+        this.hillMaterial = new CGFappearance(this.myScene);
+        this.hillMaterial.setAmbient(0.1, 0.1, 0.1, 1);
+        this.hillMaterial.setDiffuse(0.8, 0.8, 0.8, 1);
+        this.hillMaterial.setSpecular(0.1, 0.1, 0.1, 1);
+        this.hillMaterial.setShininess(10.0);
+        this.unitCubeQuad.setMaterial(this.hillMaterial);
+    }
+
+    initTextures() {
+        this.sideTex = new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+        this.topTex = new CGFtexture(this.myScene, 'images/hill/mineTop.png');
+        this.bottomTex = new CGFtexture(this.myScene, 'images/hill/mineBottom.png');
+        this.unitCubeQuad.setTextures(this.topTex, this.bottomTex, this.sideTex);
+    }
+
     enableNormalViz(){
         this.unitCubeQuad.enableNormalViz();
     }
@@ -68,7 +87,8 @@ class MyVoxelHill extends CGFobject {
         }
     }
 
-    setLevels(nLevels){
-        this.levels = nLevels;
+    setLevels(levels){
+        this.levels = levels;
     }
+
 }

@@ -137,4 +137,9 @@ class MyUnitCube extends CGFobject {
                   0.25, 0,
 		];
       }
+
+      updateTexCoords(coords) {
+		this.texCoords = [...coords];
+		this.updateTexCoordsGLBuffers();
+	}
 }

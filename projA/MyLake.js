@@ -15,17 +15,17 @@ class MyLake extends CGFobject {
     }
     
     initComponents() {
-        this.rock = new MyUnitCubeQuad(this.scene);
+        this.rocks = new MyUnitCubeQuad(this.scene);
         this.water = new MyCircle(this.myScene, 3, 40);
     }
 
     initMaterials() {
-        this.myScene.waterMaterial = new CGFappearance(this.myScene);
-        this.myScene.waterMaterial.setAmbient(0, 0, 0, 1);
-        this.myScene.waterMaterial.setDiffuse(0.1, 0.1, 0.3, 1);
-        this.myScene.waterMaterial.setSpecular(0.6, 0.6, 1, 1);
-        this.myScene.waterMaterial.setShininess(10.0);
-        this.myScene.waterMaterial.loadTexture('images/lake/water.png');
+        this.waterMaterial = new CGFappearance(this.myScene);
+        this.waterMaterial.setAmbient(0, 0, 0, 1);
+        this.waterMaterial.setDiffuse(0.1, 0.1, 0.3, 1);
+        this.waterMaterial.setSpecular(0.6, 0.6, 1, 1);
+        this.waterMaterial.setShininess(10.0);
+        this.waterMaterial.loadTexture('images/lake/water.png');
     }
 
     initTextures(){
@@ -38,33 +38,33 @@ class MyLake extends CGFobject {
         this.water.updateTexCoords(this.coords);
 
         this.rockTex = new CGFtexture(this.scene, 'images/campfire/rocks.png');
-        this.rock.setTextures(this.rockTex, this.rockTex, this.rockTex, 
-            this.rockTex, this.rockTex, this.rockTex);
-    }
-
-    enableNormalViz() {
-        this.rock.enableNormalViz();
-        this.water.enableNormalViz();
-    }
-
-    disableNormalViz() {
-        this.rock.disableNormalViz();
-        this.water.disableNormalViz();
+        this.rocks.setTextures(this.rockTex, this.rockTex, this.rockTex);
     }
 
     display() {
         this.myScene.pushMatrix();
-        this.myScene.waterMaterial.apply();
+        this.waterMaterial.apply();
         this.water.display();
         this.myScene.popMatrix();
 
+        //Rocks around water
         var alpha = 2*Math.PI/this.numberOfRocks;
         for (var i = 0; i < this.numberOfRocks; ++i){
             this.myScene.pushMatrix();
             this.myScene.translate((3 * Math.cos(alpha * i)), 0.1, (3 * Math.sin(alpha * i)));
             this.myScene.scale(0.4, 0.4, 0.4);
-            this.rock.display();
+            this.rocks.display();
             this.myScene.popMatrix();
         }
+    }
+
+    enableNormalViz() {
+        this.rocks.enableNormalViz();
+        this.water.enableNormalViz();
+    }
+
+    disableNormalViz() {
+        this.rocks.disableNormalViz();
+        this.water.disableNormalViz();
     }
 }

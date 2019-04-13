@@ -18,21 +18,82 @@ class MyUnitCubeQuad extends CGFobject {
     }
 
     initMaterials(){
-        this.myScene.quadMaterial = new CGFappearance(this.myScene);
-        this.myScene.quadMaterial.setAmbient(0.1, 0.1, 0.1, 1);
-        this.myScene.quadMaterial.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.myScene.quadMaterial.setSpecular(0.1, 0.1, 0.1, 1);
-        this.myScene.quadMaterial.setShininess(10.0);
-        this.myScene.quadMaterial.loadTexture('images/hill/mineSide.png');
+        //Default Material
+        this.quadMaterial = new CGFappearance(this.myScene);
+        this.quadMaterial.loadTexture('images/default.png');
+    }
+    initTextures(){
+        this.topTex = new CGFtexture(this.myScene, 'images/default.png');
+        this.bottomTex = new CGFtexture(this.myScene, 'images/default.png');
+        this.frontTex = new CGFtexture(this.myScene, 'images/default.png');
+        this.backTex = new CGFtexture(this.myScene, 'images/default.png');
+        this.leftTex = new CGFtexture(this.myScene, 'images/default.png');
+        this.rightTex = new CGFtexture(this.myScene, 'images/default.png'); 
     }
 
-    initTextures(){
-        this.topTex = new CGFtexture(this.myScene, 'images/hill/mineTop.png');
-        this.bottomTex = new CGFtexture(this.myScene, 'images/hill/mineBottom.png');
-        this.frontTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
-        this.backTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
-        this.leftTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
-        this.rightTex =  new CGFtexture(this.myScene, 'images/hill/mineSide.png');
+    display() {
+        //Top
+        this.myScene.pushMatrix();
+        this.myScene.translate(0, 0.5, 0);
+        this.myScene.rotate(3*Math.PI/2, 1, 0, 0);
+        this.quadMaterial.setTexture(this.topTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+        //Bottom
+        this.myScene.pushMatrix();
+        this.myScene.translate(0, -0.5, 0);
+        this.myScene.rotate(Math.PI/2, 1, 0, 0);
+        this.quadMaterial.setTexture(this.bottomTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+        //Front
+        this.myScene.pushMatrix();
+        this.myScene.translate(0, 0, 0.5);
+        this.quadMaterial.setTexture(this.frontTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+        //Back
+        this.myScene.pushMatrix();
+        this.myScene.translate(0, 0, -0.5);
+        this.myScene.rotate(Math.PI, 0, 1, 0);
+        this.quadMaterial.setTexture(this.backTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+        //Left
+        this.myScene.pushMatrix();
+        this.myScene.translate(-0.5, 0, 0);
+        this.myScene.rotate(-Math.PI/2, 0, 1, 0);
+        this.quadMaterial.setTexture(this.leftTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+        //Right
+        this.myScene.pushMatrix();
+        this.myScene.translate(0.5, 0, 0);
+        this.myScene.rotate(Math.PI/2, 0, 1, 0);
+        this.quadMaterial.setTexture(this.rightTex);
+        this.quadMaterial.apply();
+        this.quad.display();
+        this.myScene.popMatrix();
+
+    }
+
+    setTextures(top, bottom, front, back, left, right){
+        this.topTex = top;
+        this.bottomTex = bottom;
+        this.frontTex = front;
+        //Repeat sides if texture not given
+        this.backTex = (back == null) ? front : back;
+        this.leftTex = (left == null) ? this.backTex : left;
+        this.rightTex = (right == null) ? this.leftTex : right;
+    }
+    
+    setMaterial(newMaterial){
+        this.quadMaterial = newMaterial;
     }
 
     enableNormalViz() {
@@ -41,68 +102,6 @@ class MyUnitCubeQuad extends CGFobject {
 
     disableNormalViz() {
         this.quad.disableNormalViz();
-    }
-    
-    display() {
-        //Front
-        this.myScene.pushMatrix();
-        this.myScene.translate(0, 0, 0.5);
-        this.myScene.quadMaterial.setTexture(this.frontTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-        //Back
-        this.myScene.pushMatrix();
-        this.myScene.translate(0, 0, -0.5);
-        this.myScene.rotate(Math.PI, 0, 1, 0);
-        this.myScene.quadMaterial.setTexture(this.backTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-        //Left
-        this.myScene.pushMatrix();
-        this.myScene.translate(-0.5, 0, 0);
-        this.myScene.rotate(-Math.PI/2, 0, 1, 0);
-        this.myScene.quadMaterial.setTexture(this.leftTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-        //Right
-        this.myScene.pushMatrix();
-        this.myScene.translate(0.5, 0, 0);
-        this.myScene.rotate(Math.PI/2, 0, 1, 0);
-        this.myScene.quadMaterial.setTexture(this.rightTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-        //Top
-        this.myScene.pushMatrix();
-        this.myScene.translate(0, 0.5, 0);
-        this.myScene.rotate(3*Math.PI/2, 1, 0, 0);
-        this.myScene.quadMaterial.setTexture(this.topTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-        //Bottom
-        this.myScene.pushMatrix();
-        this.myScene.translate(0, -0.5, 0);
-        this.myScene.rotate(Math.PI/2, 1, 0, 0);
-        this.myScene.quadMaterial.setTexture(this.bottomTex);
-        this.myScene.quadMaterial.apply();
-        this.quad.display();
-        this.myScene.popMatrix();
-    }
-
-    setTextures(top, bottom, front, back, left, right){
-        this.topTex = top;
-        this.bottomTex = bottom;
-        this.frontTex = front;
-        this.backTex = back;
-        this.leftTex = left;
-        this.rightTex = right;
-    }
-    setMaterial(mat){
-        this.quadMaterial = mat;
     }
 
 }

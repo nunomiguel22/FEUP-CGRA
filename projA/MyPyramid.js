@@ -75,6 +75,11 @@ class MyPyramid extends CGFobject {
         this.initBuffers();
         this.initNormalVizBuffers();
     }
+
+    updateTexCoords(coords) {
+		this.texCoords = [...coords];
+		this.updateTexCoordsGLBuffers();
+	}
 }
 
 
