@@ -29,14 +29,6 @@ class MyLake extends CGFobject {
     }
 
     initTextures(){
-        this.coords = [];
-        var alpha = 2*Math.PI/40;
-        for(var i = 0; i < 40; i++){
-            this.coords.push(Math.cos(alpha*i), -Math.sin(alpha*i));
-        }
-        this.coords.push(0.5, 0.5);
-        this.water.updateTexCoords(this.coords);
-
         this.rockTex = new CGFtexture(this.scene, 'images/campfire/rocks.png');
         this.rocks.setTextures(this.rockTex, this.rockTex, this.rockTex);
     }

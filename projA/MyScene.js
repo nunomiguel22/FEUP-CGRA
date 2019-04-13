@@ -186,7 +186,7 @@ class MyScene extends CGFscene {
         //Voxell Hills
         this.pushMatrix();
         this.voxelhill.setLevels(3);
-        this.translate(10, 2.5, 10);
+        this.translate(12, 2.5, 12);
         this.voxelhill.display();
         this.popMatrix();
 
