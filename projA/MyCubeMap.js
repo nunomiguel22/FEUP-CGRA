@@ -19,7 +19,6 @@ class MyCubeMap extends CGFobject {
 
     initMaterials() {    
         this.cubemapMaterial = new CGFappearance(this.myScene);
-        this.cubemapMaterial.loadTexture('images/cubemap/tempcb.png');
         this.cubemapMaterial.setAmbient(0.7, 0.7, 0.7, 1);
         this.cubemapMaterial.setShininess(10.0);
     }
