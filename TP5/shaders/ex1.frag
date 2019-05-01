@@ -23,7 +23,7 @@ varying float vertexYPosition;
 uniform lightProperties uLight[NUMBER_OF_LIGHTS];
 
 void main() {
-    if (vertexYPosition > 0.5)
+    if (vertexYPosition < 0.5)
 		gl_FragColor =  vec4(0.6,0.6,0.9, 1.0) * uLight[0].diffuse;
     else
         gl_FragColor = vec4(1.0, 1.0, 0.1, 1.0) * uLight[0].diffuse;
