@@ -14,7 +14,7 @@ uniform float normScale;
 
 void main() {
 
-	vTextureCoord = aTextureCoord +vec2(timeFactor*.01,0.0);
+	vTextureCoord = aTextureCoord + vec2(timeFactor*.01,0.0);
 
 	vec3 offset=aVertexNormal*0.07*texture2D(uSampler2, vTextureCoord).b;
 
