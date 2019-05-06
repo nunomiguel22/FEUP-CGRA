@@ -14,11 +14,11 @@ uniform float normScale;
 
 void main() {
 
-	vTextureCoord = aTextureCoord + vec2(timeFactor*.01,0.0);
+	vTextureCoord = aTextureCoord;
 
 	vec3 offset=aVertexNormal*0.07*texture2D(uSampler2, vTextureCoord).b;
 
-    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
+    gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0); 
 }
 
 
