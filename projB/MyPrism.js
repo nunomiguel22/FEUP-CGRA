@@ -15,23 +15,23 @@ class MyPrism extends CGFobject {
         this.normals = [];
         this.texCoords = [];
 
-        var alphaAng = 2*Math.PI/this.slices;
+        let alphaAng = 2*Math.PI/this.slices;
 
-        for(var i = 0; i < this.slices; i++){
-            var angle1 = i*alphaAng;
-            var x1 = Math.cos(angle1);
-            var z1 = Math.sin(angle1);
+        for(let i = 0; i < this.slices; i++){
+            let angle1 = i*alphaAng;
+            let x1 = Math.cos(angle1);
+            let z1 = Math.sin(angle1);
 
-            var angle2 = (i+1)*alphaAng;
-            var x2 = Math.cos(angle2);
-            var z2 = Math.sin(angle2);
+            let angle2 = (i+1)*alphaAng;
+            let x2 = Math.cos(angle2);
+            let z2 = Math.sin(angle2);
 
             this.vertices.push(x1, 0, z1);
             this.vertices.push(x2, 0, z2);
             this.vertices.push(x1, 1, z1);
             this.vertices.push(x2, 1, z2);
 
-            var normal= [
+            let normal= [
                 Math.cos(angle1 + alphaAng/2),
                 0,
                 Math.sin(angle1 + alphaAng/2)
@@ -61,7 +61,7 @@ class MyPrism extends CGFobject {
     }
     
     updateBuffers(complexity){
-        this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
+        this.slices = 3 + Math.round(9 * complexity); //complexity leties 0-1, so slices leties 3-12
 
         // reinitialize buffers
         this.initBuffers();

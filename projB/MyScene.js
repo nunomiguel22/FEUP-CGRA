@@ -27,6 +27,7 @@ class MyScene extends CGFscene {
         this.plane = new Plane(this, 32);
         this.house = new MyHouse(this);
         this.cubeMap = new MyCubeMap(this);
+        this.bird = new MyBird(this);
 
         //Objects connected to MyInterface
         this.displayAxis = true;
@@ -82,22 +83,31 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         this.pushMatrix();
+        this.translate(4, 4, 0);
+        this.bird.display();
+        this.popMatrix();
+
+        this.pushMatrix();
         this.translate(0, 1, 0);
         this.house.display();
-        this.popMatrix();
+        this.popMatrix(); 
 
         this.pushMatrix();
         this.cubeMap.display();
         this.popMatrix();
 
+
+
         //All Normals
         if (this.displayNormals){
             this.plane.enableNormalViz();
             this.house.enableNormalViz();
+            this.bird.enableNormalViz();
             }
         else {
             this.plane.disableNormalViz();
             this.house.disableNormalViz();
+            this.bird.disableNormalViz();
             }
 
 

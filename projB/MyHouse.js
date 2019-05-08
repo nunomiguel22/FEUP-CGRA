@@ -55,7 +55,7 @@ class MyHouse extends CGFobject {
         this.fWallTex = new CGFtexture(this.myScene, 'images/house/frontwall.png');
         this.walls.setTextures(this.sWallsTex, this.sWallsTex, this.fWallTex, this.sWallsTex);
     
-        this.lanternTex = new CGFtexture(this.myScene, 'images/campfire/fireparticle.png');
+        this.lanternTex = new CGFtexture(this.myScene, 'images/house/fireparticle.png');
         this.lantern.setTextures(this.lanternTex, this.lanternTex, this.lanternTex);
     }
 
