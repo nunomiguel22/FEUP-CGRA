@@ -80,10 +80,10 @@ class MyScene extends CGFscene {
         this.rotate(-0.5*Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
         this.plane.display();
-        this.popMatrix();
+        this.popMatrix(); 
 
         this.pushMatrix();
-        this.translate(4, 4, 0);
+        this.translate(2 ,2 ,2);
         this.bird.display();
         this.popMatrix();
 
@@ -94,9 +94,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.cubeMap.display();
-        this.popMatrix();
-
-
+        this.popMatrix(); 
 
         //All Normals
         if (this.displayNormals){
