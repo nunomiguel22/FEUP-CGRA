@@ -5,23 +5,24 @@
  */
 class MyBird extends CGFobject {
 
-	constructor(scene) {
+    constructor(scene) {
         super(scene);
         this.initComponents();
     }
-    
+
     initComponents() {
         this.cube = new MyUnitCubeQuad(this.scene);
         this.sphere = new MySphere(this.scene, 0.5, 36, 18);
         this.cone = new MyCone(this.scene, 4, 3, 5);
+        this.quad = new MyQuad(this.scene);
     }
 
     display() {
-/* 
-        this.scene.pushMatrix();
-        this.cube.display();
-        this.scene.popMatrix();
- */
+        /* 
+                this.scene.pushMatrix();
+                this.cube.display();
+                this.scene.popMatrix();
+         */
         /** Head **/
         this.scene.pushMatrix();
         this.sphere.display();
@@ -45,6 +46,18 @@ class MyBird extends CGFobject {
         this.scene.scale(0.1, 0.1, 0.1);
         this.cube.display();
         this.scene.popMatrix();
+        /**  Body  **/
+        this.scene.pushMatrix();
+        this.scene.translate(0, -0.5, -0.7);
+        this.scene.scale(1, 0.7, 1);
+        this.cube.display();
+        this.scene.popMatrix();
+        /**  Left Wing Square **/
+        /* this.scene.pushMatrix();
+         this.scene.translate(2, 2, 2);
+         this.quad.display();
+         this.scene.popMatrix();*/
+
     }
 
     enableNormalViz() {
