@@ -50,8 +50,21 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-    update(t){
-
+    update(t) {
+        this.checkKeys();
+    }
+    checkKeys() {
+        var text = "Keys pressed: ";
+        var keysPressed = false;
+        // Check for key codes e.g. in ​https://keycode.info/
+        if (this.gui.isKeyPressed("KeyW")) {
+            text += " W "; keysPressed = true;
+        }
+        if (this.gui.isKeyPressed("KeyS")) {
+            text += " S "; keysPressed = true;
+        }
+        if (keysPressed)
+            console.log(text);
     }
 
     display() {
@@ -77,36 +90,36 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
-        this.rotate(-0.5*Math.PI, 1, 0, 0);
+        this.rotate(-0.5 * Math.PI, 1, 0, 0);
         this.scale(60, 60, 1);
         this.plane.display();
-        this.popMatrix(); 
+        this.popMatrix();
 
         this.pushMatrix();
-        this.translate(2 ,2 ,2);
+        this.translate(2, 2, 2);
         this.bird.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(0, 1, 0);
         this.house.display();
-        this.popMatrix(); 
+        this.popMatrix();
 
         this.pushMatrix();
         this.cubeMap.display();
-        this.popMatrix(); 
+        this.popMatrix();
 
         //All Normals
-        if (this.displayNormals){
+        if (this.displayNormals) {
             this.plane.enableNormalViz();
             this.house.enableNormalViz();
             this.bird.enableNormalViz();
-            }
+        }
         else {
             this.plane.disableNormalViz();
             this.house.disableNormalViz();
             this.bird.disableNormalViz();
-            }
+        }
 
 
         // ---- END Primitive drawing section

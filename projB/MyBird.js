@@ -52,11 +52,6 @@ class MyBird extends CGFobject {
         this.scene.scale(1, 0.7, 1);
         this.cube.display();
         this.scene.popMatrix();
-        /**  Left Wing Square **/
-        /* this.scene.pushMatrix();
-         this.scene.translate(2, 2, 2);
-         this.quad.display();
-         this.scene.popMatrix();*/
 
     }
 
