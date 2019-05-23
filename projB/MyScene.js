@@ -115,7 +115,6 @@ class MyScene extends CGFscene {
     // ---- BEGIN Primitive drawing section
 
     this.pushMatrix();
-
     this.terrain.display();
     this.popMatrix();
 
