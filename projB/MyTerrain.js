@@ -28,11 +28,13 @@ class MyTerrain extends CGFobject {
     initTextures() {
         this.heightMap = new CGFtexture(this.scene, 'images/heightmap.jpg');
         this.terrainTex = new CGFtexture(this.scene, 'images/terrain.jpg');
+        this.gradientTex = new CGFtexture(this.scene, 'images/altimetry.png');
     }
 
     initShaders() {
         this.shader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag")
         this.shader.setUniformsValues({ uSampler2: 1 });
+        this.shader.setUniformsValues({ uSampler3: 2 });
     }
 
     display() {
@@ -41,6 +43,7 @@ class MyTerrain extends CGFobject {
         this.scene.setActiveShader(this.shader);
         this.terrainMaterial.setTexture(this.terrainTex);
         this.heightMap.bind(1);
+        this.gradientTex.bind(2);
 
         this.scene.pushMatrix();
         this.scene.rotate(-0.5 * Math.PI, 1, 0, 0);
