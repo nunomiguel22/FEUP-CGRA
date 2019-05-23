@@ -28,7 +28,12 @@ class MyBird extends CGFobject {
     }
 
     display() {
-<<<<<<< HEAD
+        this.scene.pushMatrix();
+        this.scene.translate(this.x, this.y, this.z);
+
+
+        this.scene.rotate(this.angle, 0, 1, 0);
+
         this.displayHead();
         this.displayLeftEye();
         this.displayRightEye();
@@ -36,19 +41,14 @@ class MyBird extends CGFobject {
         this.displayNose();
         this.displayLeftWing();
         this.displayRightWing();
+        this.scene.popMatrix();
     }
 
     displayHead() {
-=======
 
         this.scene.pushMatrix();
-        this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angle, 0, 1, 0);
-
-        /** Head **/
-        this.scene.pushMatrix();
->>>>>>> 99bb1c23bf87b73d5f1c9a723d0420aa5983a78a
         this.sphere.display();
+        this.scene.popMatrix();
     }
 
     displayNose() {
@@ -82,12 +82,7 @@ class MyBird extends CGFobject {
         this.scene.scale(1, 0.7, 1);
         this.cube.display();
         this.scene.popMatrix();
-<<<<<<< HEAD
     }
-=======
-
-        this.scene.popMatrix();
->>>>>>> 99bb1c23bf87b73d5f1c9a723d0420aa5983a78a
 
     displayLeftWing() {
         this.scene.pushMatrix();
