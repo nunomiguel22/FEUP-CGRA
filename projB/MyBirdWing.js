@@ -7,19 +7,22 @@ class MyBirdWing extends CGFobject {
     initComponents() {
         this.body = new MySquare(this.scene);
         this.tip = new MyTriangle(this.scene);
-        this.angle = - Math.PI / 3.0;
+        this.startAngle = - Math.PI / 6;
+        this.amplitude = Math.PI / 6;
+        this.angle = 0;
     }
 
     displayBody() {
         this.scene.pushMatrix();
+        this.scene.translate(0.5, 0.5, 0);
         this.body.display();
         this.scene.popMatrix();
     }
 
     displayTip() {
         this.scene.pushMatrix();
-        this.scene.translate(0.5, 0, 0);
-        this.scene.rotate(this.angle, 0, 1, 0);
+        this.scene.translate(1, 0.5, 0);
+        this.scene.rotate(this.angle + this.startAngle, 0, 1, 0);
         this.scene.translate(0.5, 0, 0);
         this.scene.scale(0.5, 0.5, 0.5);
         this.tip.display();
@@ -46,7 +49,7 @@ class MyBirdWing extends CGFobject {
         this.tip.updateTexCoords(tipCoords);
     }
 
-    setAngle(angle) {
-        this.angle = angle;
+    setAngle(factor) {
+        this.angle = this.amplitude * Math.cos(factor);
     }
 }

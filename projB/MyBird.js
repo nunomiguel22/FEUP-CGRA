@@ -16,6 +16,10 @@ class MyBird extends CGFobject {
         this.y = y;
         this.z = z;
         this.initComponents();
+        this.wingAddedAngle = 0;
+        this.wingAmplitude = Math.PI*7/48;
+        this.wingFlapFactor = 0;
+        this.wingFlapMultiplier = Math.PI/6;
     }
 
     initComponents() {
@@ -86,9 +90,10 @@ class MyBird extends CGFobject {
 
     displayLeftWing() {
         this.scene.pushMatrix();
-        this.scene.translate(0.85, -0.5, -0.7);
+        this.scene.translate(0.4, -0.4, -1.05);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(Math.PI / 2.0, 1, 0, 0);
+        this.scene.rotate(Math.cos(this.wingFlapFactor)*this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
         this.leftWing.display();
         this.scene.popMatrix();
     }
@@ -96,9 +101,10 @@ class MyBird extends CGFobject {
     displayRightWing() {
         this.scene.pushMatrix();
         this.scene.scale(-1, 1, 1);
-        this.scene.translate(0.85, -0.5, -0.7);
+        this.scene.translate(0.4, -0.4, -1.05);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(Math.PI / 2.0, 1, 0, 0);
+        this.scene.rotate(Math.cos(this.wingFlapFactor)*this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
         this.rightWing.display();
         this.scene.popMatrix();
     }
@@ -115,8 +121,15 @@ class MyBird extends CGFobject {
         this.sphere.disableNormalViz();
     }
     update() {
+
         this.x += this.speed * Math.sin(this.angle);
+
         this.z += this.speed * Math.cos(this.angle);
+
+        this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
+        this.wingFlapFactor %= 2 * Math.PI;
+        this.leftWing.setAngle( - this.wingFlapFactor);
+        this.rightWing.setAngle( - this.wingFlapFactor);
     }
     turn(v) {
         this.angle += v;
@@ -131,6 +144,10 @@ class MyBird extends CGFobject {
         this.z = this.originalZ;
         this.speed = 0;
         this.angle = 0;
+        this.wingAddedAngle = 0;
+        this.wingAmplitude = Math.PI*7/48;
+        this.wingFlapFactor = 0;
+        this.wingFlapMultiplier = Math.PI/6;
     }
 
 }
