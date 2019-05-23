@@ -5,8 +5,16 @@
  */
 class MyBird extends CGFobject {
 
-    constructor(scene) {
+    constructor(scene, angle, x, y, z) {
         super(scene);
+        this.speed = 0;
+        this.angle = angle;
+        this.originalX = x;
+        this.originalY = y;
+        this.originalZ = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.initComponents();
     }
 
@@ -20,6 +28,7 @@ class MyBird extends CGFobject {
     }
 
     display() {
+<<<<<<< HEAD
         this.displayHead();
         this.displayLeftEye();
         this.displayRightEye();
@@ -30,6 +39,15 @@ class MyBird extends CGFobject {
     }
 
     displayHead() {
+=======
+
+        this.scene.pushMatrix();
+        this.scene.translate(this.x, this.y, this.z);
+        this.scene.rotate(this.angle, 0, 1, 0);
+
+        /** Head **/
+        this.scene.pushMatrix();
+>>>>>>> 99bb1c23bf87b73d5f1c9a723d0420aa5983a78a
         this.sphere.display();
     }
 
@@ -64,7 +82,12 @@ class MyBird extends CGFobject {
         this.scene.scale(1, 0.7, 1);
         this.cube.display();
         this.scene.popMatrix();
+<<<<<<< HEAD
     }
+=======
+
+        this.scene.popMatrix();
+>>>>>>> 99bb1c23bf87b73d5f1c9a723d0420aa5983a78a
 
     displayLeftWing() {
         this.scene.pushMatrix();
@@ -86,10 +109,33 @@ class MyBird extends CGFobject {
     }
 
     enableNormalViz() {
-
+        this.cube.enableNormalViz();
+        this.cone.enableNormalViz();
+        this.sphere.enableNormalViz();
     }
 
     disableNormalViz() {
+        this.cube.disableNormalViz();
+        this.cone.disableNormalViz();
+        this.sphere.disableNormalViz();
+    }
+    update() {
+        this.x += this.speed * Math.sin(this.angle);
+        this.z += this.speed * Math.cos(this.angle);
+    }
+    turn(v) {
+        this.angle += v;
 
     }
+    accelarate(v) {
+        this.speed += v;
+    }
+    reset() {
+        this.x = this.originalX;
+        this.y = this.originalY;
+        this.z = this.originalZ;
+        this.speed = 0;
+        this.angle = 0;
+    }
+
 }
