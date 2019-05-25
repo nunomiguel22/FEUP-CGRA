@@ -36,7 +36,7 @@ class MyBirdWing extends CGFobject {
 
     enableNormalViz() {
         this.body.enableNormalViz();
-        this.tip.enableNormalviz();
+        this.tip.enableNormalViz();
     }
 
     disableNormalViz() {

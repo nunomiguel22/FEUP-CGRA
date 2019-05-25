@@ -113,12 +113,16 @@ class MyBird extends CGFobject {
         this.cube.enableNormalViz();
         this.cone.enableNormalViz();
         this.sphere.enableNormalViz();
+        this.leftWing.enableNormalViz();
+        this.rightWing.enableNormalViz();
     }
 
     disableNormalViz() {
         this.cube.disableNormalViz();
         this.cone.disableNormalViz();
         this.sphere.disableNormalViz();
+        this.leftWing.disableNormalViz();
+        this.rightWing.disableNormalViz();
     }
     update() {
 
