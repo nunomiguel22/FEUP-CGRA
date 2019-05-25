@@ -132,8 +132,8 @@ class MyBird extends CGFobject {
 
         this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
         this.wingFlapFactor %= 2 * Math.PI;
-        this.leftWing.setAngle( - this.wingFlapFactor);
-        this.rightWing.setAngle( - this.wingFlapFactor);
+        this.leftWing.setAngle( this.wingFlapFactor);
+        this.rightWing.setAngle( this.wingFlapFactor);
     }
     turn(v) {
         this.angle += v;

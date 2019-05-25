@@ -28,19 +28,19 @@ class MyTriangle extends CGFobject {
 		this.normals = [];
 
 		for (var i = 0; i < 3; i++)
-			this.normals.push(0,0,1);
-
-		for (var i = 0; i < 3; i++)
 			this.normals.push(0,0,-1);
+			
+		for (var i = 0; i < 3; i++)
+			this.normals.push(0,0,1);
 
 		//Texture coordinates
 		this.texCoords = [
-			0, 0, //0
-			1, 0, //1
-			0.5, 0.5, //2
-			0, 0, //0
-			1, 0, //1
-			0.5, 0.5 //2
+			0, 1,
+			0, 0,
+			1, 0,
+			0, 1,
+			0, 0,
+			1, 0
 		];
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
@@ -50,4 +50,3 @@ class MyTriangle extends CGFobject {
 		this.updateTexCoordsGLBuffers();
 	}
 }
-
