@@ -32,8 +32,8 @@ class MyScene extends CGFscene {
     //Objects connected to MyInterface
     this.displayAxis = true;
     this.displayNormals = false;
-    this.scaleFactor = 1;
-    this.ambLight = 0.3;
+    this.scaleFactor = 0.5;
+    this.ambLight = 0.7;
   }
   initLights() {
     this.lights[0].setPosition(15, 2, 5, 1);
@@ -124,7 +124,7 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     this.pushMatrix();
-    this.translate(15, 3, -2);
+    this.translate(15, 4.5, -2);
     this.house.display();
     this.popMatrix();
 
