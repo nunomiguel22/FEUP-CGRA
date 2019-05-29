@@ -11,21 +11,14 @@ class MyBranch extends CGFobject {
         this.branchMaterial.setShininess(10.0);
     }
 
-
     display() {
-
-
         this.scene.pushMatrix();
         this.scene.scale(0.3, 2, 0.3);
         this.branchMaterial.apply();
         this.cilinder.display();
         this.scene.popMatrix();
-
-
     }
-
-
-
-
+    enableNormalViz() { this.cilinder.enableNormalViz(); }
+    disableNormalViz() { this.cilinder.disableNormalViz(); }
 
 }

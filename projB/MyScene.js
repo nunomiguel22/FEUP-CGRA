@@ -169,10 +169,16 @@ class MyScene extends CGFscene {
       this.terrain.enableNormalViz();
       this.house.enableNormalViz();
       this.bird.enableNormalViz();
+      for (let i = 0; i < this.treeBranches.length; ++i)
+        this.treeBranches[i].enableNormalViz();
+      this.LSTree.enableNormalViz();
     } else {
       this.terrain.disableNormalViz();
       this.house.disableNormalViz();
       this.bird.disableNormalViz();
+      for (let i = 0; i < this.treeBranches.length; ++i)
+        this.treeBranches[i].disableNormalViz();
+      this.LSTree.disableNormalViz();
     }
 
     // ---- END Primitive drawing section

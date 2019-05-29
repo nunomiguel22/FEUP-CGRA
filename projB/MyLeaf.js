@@ -17,4 +17,6 @@ class MyLeaf extends CGFobject {
         this.triangle.display();
         this.scene.popMatrix();
     }
+    enableNormalViz() { this.triangle.enableNormalViz(); }
+    disableNormalViz() { this.triangle.disableNormalViz(); }
 }

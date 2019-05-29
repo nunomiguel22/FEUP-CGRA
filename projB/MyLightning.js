@@ -1,9 +1,9 @@
 /**
- * MyLSPlant
+ * MyLSLightning
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MyLSPlant extends MyLSystem {
+class MyLightning extends MyLSystem {
     constructor(scene) {
         super(scene);
         this.init();

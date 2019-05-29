@@ -6,7 +6,7 @@ serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'basic_objects/P
     'basic_objects/MyPyramid.js', 'basic_objects/MyQuad.js', 'basic_objects/MyUnitCubeQuad.js', 'basic_objects/MyUnitCube.js', 'MyHouse.js', 'MyCubeMap.js',
     'MyBird.js', 'basic_objects/MySphere.js', 'basic_objects/MyCone.js', 'basic_objects/MySquare.js', 'basic_objects/MyTriangle.js', 'MyBirdWing.js', 'MyTerrain.js',
     'basic_objects/MyCylinder.js', 'MyTreeBranch.js', 'MyNest.js', 'MyLeaf.js', 'MyLSystem.js', 'MyLSPlant.js',
-    'basic_objects/MyRectangle.js', 'MyBranch.js',
+    'basic_objects/MyRectangle.js', 'MyBranch.js', 'MyLightning.js',
 
 
     main = function () {
