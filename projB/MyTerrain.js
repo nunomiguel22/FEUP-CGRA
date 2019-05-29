@@ -13,14 +13,12 @@ class MyTerrain extends CGFobject {
         this.initShaders();
     }
 
-    initComponents() {
-        this.plane = new Plane(this.scene, 32);
-    }
+    initComponents() { this.plane = new Plane(this.scene, 32); }
 
     initMaterials() {
         this.terrainMaterial = new CGFappearance(this.scene);
-        this.terrainMaterial.setAmbient(0.3, 0.3, 0.3, 1);
-        this.terrainMaterial.setDiffuse(0.7, 0.7, 0.7, 1);
+        this.terrainMaterial.setAmbient(0.0, 0.0, 0.0, 1);
+        this.terrainMaterial.setDiffuse(0.0, 0.0, 0.0, 1);
         this.terrainMaterial.setSpecular(0.0, 0.0, 0.0, 1);
         this.terrainMaterial.setShininess(10);
     }
@@ -53,12 +51,8 @@ class MyTerrain extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
     }
 
-    enableNormalViz() {
-        this.plane.enableNormalViz();
-    }
+    enableNormalViz() { this.plane.enableNormalViz(); }
 
-    disableNormalViz() {
-        this.plane.disableNormalViz();
-    }
+    disableNormalViz() { this.plane.disableNormalViz(); }
 }
 

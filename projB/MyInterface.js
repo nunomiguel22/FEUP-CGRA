@@ -22,6 +22,9 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.gui.add(this.scene, 'displayNormals').name("Display normals");
 
+        this.gui.add(this.scene, 'birdSpeedFactor', 0.1, 3.0).name('Bird Speed');
+        this.gui.add(this.scene, 'birdScaleFactor', 0.1, 3.0).name('Bird Scale');
+
         this.initKeys();
 
         return true;

@@ -27,6 +27,8 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this, 0, -2, 2, -10);
 
     //Objects connected to MyInterface
+    this.birdScaleFactor = 1;
+    this.birdSpeedFactor = 1;
     this.displayTex = true;
     this.displayAxis = true;
     this.displayNormals = false;
@@ -119,6 +121,8 @@ class MyScene extends CGFscene {
 
     this.pushMatrix();
     this.translate(2, 6, 2);
+    this.bird.setScaleFactor(this.birdScaleFactor);
+    this.bird.setSpeedFactor(this.birdSpeedFactor);
     this.bird.display();
     this.popMatrix();
 

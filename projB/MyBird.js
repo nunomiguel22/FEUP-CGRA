@@ -10,6 +10,8 @@ class MyBird extends CGFobject {
         this.originalX = x;
         this.originalY = y;
         this.originalZ = z;
+        this.speedFactor = 1;
+        this.scaleFactor = 1;
         this.reset();
         this.angle = angle;
         this.initComponents();
@@ -58,8 +60,10 @@ class MyBird extends CGFobject {
     }
 
     display() {
+
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
+        this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.scene.rotate(this.angle, 0, 1, 0);
         this.displayHead();
         this.displayLeftEye();
@@ -163,12 +167,12 @@ class MyBird extends CGFobject {
         this.leftWing.setAngle(this.wingFlapFactor);
         this.rightWing.setAngle(this.wingFlapFactor);
     }
-    turn(v) {
-        this.angle += v;
-    }
-    accelarate(v) {
-        this.speed += v;
-    }
+    setSpeedFactor(speedFactor) { this.speedFactor = speedFactor; }
+    setScaleFactor(scaleFactor) { this.scaleFactor = scaleFactor; }
+
+    turn(v) { this.angle += v * this.speedFactor; }
+    accelarate(v) { this.speed += v * this.speedFactor; }
+
     reset() {
         this.x = this.originalX;
         this.y = this.originalY;
