@@ -10,15 +10,14 @@ class MyScene extends CGFscene {
     super.init(application);
     this.initCameras();
     this.initLights();
-    this.framerate = 60;
-    this.setUpdatePeriod(1000 / this.framerate);
 
+    this.framerate = 60;
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-    this.setUpdatePeriod(50);
+    this.setUpdatePeriod(1000 / this.framerate);
     //Initialize scene objects
     this.axis = new CGFaxis(this);
     this.terrain = new MyTerrain(this);
