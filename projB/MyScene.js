@@ -10,22 +10,20 @@ class MyScene extends CGFscene {
     super.init(application);
     this.initCameras();
     this.initLights();
-
+    //WEBGL setup
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
     this.setUpdatePeriod(50);
-
     //Initialize scene objects
     this.axis = new CGFaxis(this);
     this.terrain = new MyTerrain(this);
     this.house = new MyHouse(this);
     this.cubeMap = new MyCubeMap(this);
     this.bird = new MyBird(this, 0, -2, 2, -10);
-
+    this.initTreeBranches();
     //Objects connected to MyInterface
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
@@ -35,12 +33,29 @@ class MyScene extends CGFscene {
     this.scaleFactor = 0.5;
     this.ambLight = 0.7;
   }
+
+  initTreeBranches() {
+    this.treeBranches = [];
+    for (let i = 0; i < 5; ++i) {
+      // X between 9 and 18
+      let x = Math.random() * 9 + 9;
+      //Y between -4.5 and 7
+      let y = Math.random() * 11.5 - 4.5;
+      //Angle between 0 and 2 * PI
+      let angle = Math.random() * 2 * Math.PI;
+      //Draw branches
+      this.treeBranches.push(new MyTreeBranch(this, x, y, angle));
+    }
+  }
+
   initLights() {
     this.lights[0].setPosition(15, 2, 5, 1);
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
+    this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
     this.lights[0].enable();
     this.lights[0].update();
   }
+
   initCameras() {
     this.camera = new CGFcamera(
       0.4,
@@ -57,10 +72,12 @@ class MyScene extends CGFscene {
     this.setSpecular(0.2, 0.4, 0.8, 1.0);
     this.setShininess(10.0);
   }
+
   update(t) {
     this.checkKeys();
     this.bird.update();
   }
+
   checkKeys() {
     var text = "Keys pressed: ";
     var keysPressed = false;
@@ -127,8 +144,13 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     this.pushMatrix();
-    this.translate(15, 4.5, -2);
+    this.translate(15, 4.5, -7);
     this.house.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    for (let i = 0; i < this.treeBranches.length; ++i)
+      this.treeBranches[i].display();
     this.popMatrix();
 
     this.pushMatrix();

@@ -3,7 +3,6 @@ precision highp float;
 #endif
 
 varying vec2 vTextureCoord;
-
 uniform sampler2D uSampler;
 uniform sampler2D uSampler2;
 uniform sampler2D uSampler3;
@@ -17,9 +16,9 @@ void main() {
 
 	vec4 finalColor = color;
 
-	finalColor.r = color.r * 0.60 + altimetry.r * 0.40;
-	finalColor.g = color.g * 0.60 + altimetry.g * 0.40;
-	finalColor.b = color.b * 0.60 + altimetry.b * 0.40;
+	finalColor.r = color.r * 0.50 + altimetry.r * 0.50;
+	finalColor.g = color.g * 0.50 + altimetry.g * 0.50;
+	finalColor.b = color.b * 0.50 + altimetry.b * 0.50;
 
 
 	gl_FragColor = finalColor;
