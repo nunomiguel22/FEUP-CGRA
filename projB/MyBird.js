@@ -16,6 +16,8 @@ class MyBird extends CGFobject {
         this.angle = angle;
         this.initComponents();
         this.initMaterials();
+        this.wobbleRate = 2 * Math.PI / scene.framerate;
+        this.wobbleCoeficient = 0;
     }
 
     initComponents() {
@@ -64,6 +66,7 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
         this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        this.scene.translate(1, 0.35 * Math.sin(this.wobbleCoeficient), 1);
         this.scene.rotate(this.angle, 0, 1, 0);
         this.displayHead();
         this.displayLeftEye();
@@ -161,6 +164,9 @@ class MyBird extends CGFobject {
 
         this.x += this.speed * Math.sin(this.angle);
         this.z += this.speed * Math.cos(this.angle);
+
+        this.wobbleCoeficient += this.wobbleRate;
+        this.wobbleCoeficient %= 2*Math.PI;
 
         this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
         this.wingFlapFactor %= 2 * Math.PI;

@@ -10,6 +10,8 @@ class MyScene extends CGFscene {
     super.init(application);
     this.initCameras();
     this.initLights();
+    this.framerate = 60;
+    this.setUpdatePeriod(1000 / this.framerate);
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
