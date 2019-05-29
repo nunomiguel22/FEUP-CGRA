@@ -11,15 +11,12 @@ class MyScene extends CGFscene {
     this.initCameras();
     this.initLights();
 
-    //Background color
-    this.displayTex = true;
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
-    this.enableTextures(this.displayTex);
     this.setUpdatePeriod(50);
 
     //Initialize scene objects
@@ -30,6 +27,7 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this, 0, -2, 2, -10);
 
     //Objects connected to MyInterface
+    this.displayTex = true;
     this.displayAxis = true;
     this.displayNormals = false;
     this.scaleFactor = 0.5;
@@ -50,6 +48,7 @@ class MyScene extends CGFscene {
       vec3.fromValues(0, 0, 0)
     );
   }
+
   setDefaultAppearance() {
     this.setAmbient(0.2, 0.4, 0.8, 1.0);
     this.setDiffuse(0.2, 0.4, 0.8, 1.0);

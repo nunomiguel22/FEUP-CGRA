@@ -7,19 +7,13 @@ class MyBird extends CGFobject {
 
     constructor(scene, angle, x, y, z) {
         super(scene);
-        this.speed = 0;
-        this.angle = angle;
         this.originalX = x;
         this.originalY = y;
         this.originalZ = z;
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.reset();
+        this.angle = angle;
         this.initComponents();
-        this.wingAddedAngle = 0;
-        this.wingAmplitude = Math.PI*7/48;
-        this.wingFlapFactor = 0;
-        this.wingFlapMultiplier = Math.PI/6;
+        this.initMaterials();
     }
 
     initComponents() {
@@ -31,13 +25,42 @@ class MyBird extends CGFobject {
         this.rightWing = new MyBirdWing(this.scene);
     }
 
+    initMaterials() {
+        this.headMaterial = new CGFappearance(this.scene);
+        this.headMaterial.setAmbient(0, 0, 0, 1);
+        this.headMaterial.setDiffuse(0.3, 0.2, 0.2, 1);
+        this.headMaterial.setSpecular(0.1, 0.05, 0.05, 1);
+        this.headMaterial.setShininess(10.0);
+
+        this.noseMaterial = new CGFappearance(this.scene);
+        this.noseMaterial.setAmbient(0, 0, 0, 1);
+        this.noseMaterial.setDiffuse(0.7, 0.7, 0.0, 1);
+        this.noseMaterial.setSpecular(0.2, 0.2, 0.0, 1);
+        this.noseMaterial.setShininess(10.0);
+
+        this.eyeMaterial = new CGFappearance(this.scene);
+        this.eyeMaterial.setAmbient(0, 0, 0, 1);
+        this.eyeMaterial.setDiffuse(0.0, 0.2, 0.7, 1);
+        this.eyeMaterial.setSpecular(0.0, 0.1, 0.3, 1);
+        this.eyeMaterial.setShininess(10.0);
+
+        this.bodyMaterial = new CGFappearance(this.scene);
+        this.bodyMaterial.setAmbient(0, 0, 0, 1);
+        this.bodyMaterial.setDiffuse(0.4, 0.2, 0.2, 1);
+        this.bodyMaterial.setSpecular(0.2, 0.1, 0.1, 1);
+        this.bodyMaterial.setShininess(10.0);
+
+        this.wingMaterial = new CGFappearance(this.scene);
+        this.wingMaterial.setAmbient(0, 0, 0, 1);
+        this.wingMaterial.setDiffuse(0.4, 0.3, 0.3, 1);
+        this.wingMaterial.setSpecular(0.3, 0.1, 0.1, 1);
+        this.wingMaterial.setShininess(10.0);
+    }
+
     display() {
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
-
-
         this.scene.rotate(this.angle, 0, 1, 0);
-
         this.displayHead();
         this.displayLeftEye();
         this.displayRightEye();
@@ -49,13 +72,14 @@ class MyBird extends CGFobject {
     }
 
     displayHead() {
-
+        this.headMaterial.apply();
         this.scene.pushMatrix();
         this.sphere.display();
         this.scene.popMatrix();
     }
 
     displayNose() {
+        this.noseMaterial.apply();
         this.scene.pushMatrix();
         this.scene.translate(0, 0, 0.4);
         this.scene.scale(0.2, 0.2, 0.3);
@@ -65,6 +89,7 @@ class MyBird extends CGFobject {
     }
 
     displayRightEye() {
+        this.cube.setMaterial(this.eyeMaterial);
         this.scene.pushMatrix();
         this.scene.translate(0.2, 0.3, 0.34);
         this.scene.scale(0.1, 0.1, 0.1);
@@ -73,6 +98,7 @@ class MyBird extends CGFobject {
     }
 
     displayLeftEye() {
+        this.cube.setMaterial(this.eyeMaterial);
         this.scene.pushMatrix();
         this.scene.translate(-0.2, 0.3, 0.34);
         this.scene.scale(0.1, 0.1, 0.1);
@@ -81,6 +107,7 @@ class MyBird extends CGFobject {
     }
 
     displayBody() {
+        this.cube.setMaterial(this.bodyMaterial);
         this.scene.pushMatrix();
         this.scene.translate(0, -0.5, -0.7);
         this.scene.scale(1, 0.7, 1);
@@ -89,22 +116,24 @@ class MyBird extends CGFobject {
     }
 
     displayLeftWing() {
+        this.wingMaterial.apply();
         this.scene.pushMatrix();
         this.scene.translate(0.4, -0.4, -1.05);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(Math.PI / 2.0, 1, 0, 0);
-        this.scene.rotate(Math.cos(this.wingFlapFactor)*this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
+        this.scene.rotate(Math.cos(this.wingFlapFactor) * this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
         this.leftWing.display();
         this.scene.popMatrix();
     }
 
     displayRightWing() {
+        this.wingMaterial.apply();
         this.scene.pushMatrix();
         this.scene.scale(-1, 1, 1);
         this.scene.translate(0.4, -0.4, -1.05);
         this.scene.scale(0.75, 0.75, 0.75);
         this.scene.rotate(Math.PI / 2.0, 1, 0, 0);
-        this.scene.rotate(Math.cos(this.wingFlapFactor)*this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
+        this.scene.rotate(Math.cos(this.wingFlapFactor) * this.wingAmplitude + this.wingAddedAngle, 0, 1, 0);
         this.rightWing.display();
         this.scene.popMatrix();
     }
@@ -127,17 +156,15 @@ class MyBird extends CGFobject {
     update() {
 
         this.x += this.speed * Math.sin(this.angle);
-
         this.z += this.speed * Math.cos(this.angle);
 
         this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
         this.wingFlapFactor %= 2 * Math.PI;
-        this.leftWing.setAngle( this.wingFlapFactor);
-        this.rightWing.setAngle( this.wingFlapFactor);
+        this.leftWing.setAngle(this.wingFlapFactor);
+        this.rightWing.setAngle(this.wingFlapFactor);
     }
     turn(v) {
         this.angle += v;
-
     }
     accelarate(v) {
         this.speed += v;
@@ -149,9 +176,8 @@ class MyBird extends CGFobject {
         this.speed = 0;
         this.angle = 0;
         this.wingAddedAngle = 0;
-        this.wingAmplitude = Math.PI*7/48;
+        this.wingAmplitude = Math.PI * 7 / 48;
         this.wingFlapFactor = 0;
-        this.wingFlapMultiplier = Math.PI/6;
+        this.wingFlapMultiplier = Math.PI / 6;
     }
-
 }
