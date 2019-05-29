@@ -161,12 +161,11 @@ class MyBird extends CGFobject {
         this.rightWing.disableNormalViz();
     }
     update() {
-
         this.x += this.speed * Math.sin(this.angle);
         this.z += this.speed * Math.cos(this.angle);
 
         this.wobbleCoeficient += this.wobbleRate;
-        this.wobbleCoeficient %= 2*Math.PI;
+        this.wobbleCoeficient %= 2 * Math.PI;
 
         this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
         this.wingFlapFactor %= 2 * Math.PI;
@@ -177,7 +176,11 @@ class MyBird extends CGFobject {
     setScaleFactor(scaleFactor) { this.scaleFactor = scaleFactor; }
 
     turn(v) { this.angle += v * this.speedFactor; }
-    accelarate(v) { this.speed += v * this.speedFactor; }
+    accelerate(v) {
+        var accel = v * this.speedFactor;
+        this.speed += accel;
+        this.speed = clamp(this.speed, -Math.abs(accel), Math.abs(accel));
+    }
 
     reset() {
         this.x = this.originalX;

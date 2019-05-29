@@ -25,6 +25,7 @@ class MyScene extends CGFscene {
     this.cubeMap = new MyCubeMap(this);
     this.bird = new MyBird(this, 0, -2, 2, -10);
     this.initTreeBranches();
+    this.LSTree = new MyLSPlant(this);
     //Objects connected to MyInterface
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
@@ -41,11 +42,11 @@ class MyScene extends CGFscene {
       // X between 9 and 18
       let x = Math.random() * 9 + 9;
       //Y between -4.5 and 7
-      let y = Math.random() * 11.5 - 4.5;
+      let z = Math.random() * 11.5 - 4.5;
       //Angle between 0 and 2 * PI
       let angle = Math.random() * 2 * Math.PI;
       //Draw branches
-      this.treeBranches.push(new MyTreeBranch(this, x, y, angle));
+      this.treeBranches.push(new MyTreeBranch(this, x, 3.6, z, angle));
     }
   }
 
@@ -86,22 +87,22 @@ class MyScene extends CGFscene {
     if (this.gui.isKeyPressed("KeyW")) {
       text += " W ";
       keysPressed = true;
-      this.bird.accelarate(0.3);
+      this.bird.accelerate(0.2);
     }
     if (this.gui.isKeyPressed("KeyS")) {
       text += " S ";
       keysPressed = true;
-      this.bird.accelarate(-0.3);
+      this.bird.accelerate(-0.2);
     }
     if (this.gui.isKeyPressed("KeyA")) {
       text += " S ";
       keysPressed = true;
-      this.bird.turn(Math.PI / 8);
+      this.bird.turn(Math.PI / 12);
     }
     if (this.gui.isKeyPressed("KeyD")) {
       text += " S ";
       keysPressed = true;
-      this.bird.turn(-Math.PI / 8);
+      this.bird.turn(-Math.PI / 12);
     }
     if (this.gui.isKeyPressed("KeyR")) {
       text += " S ";
@@ -152,6 +153,11 @@ class MyScene extends CGFscene {
     this.pushMatrix();
     for (let i = 0; i < this.treeBranches.length; ++i)
       this.treeBranches[i].display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(-13, 4, 0);
+    this.LSTree.display();
     this.popMatrix();
 
     this.pushMatrix();

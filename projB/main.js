@@ -5,7 +5,8 @@ serialInclude = function (a) { var b = console, c = serialInclude.l; if (a.lengt
 serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'basic_objects/Plane.js', 'basic_objects/MyPrism.js',
     'basic_objects/MyPyramid.js', 'basic_objects/MyQuad.js', 'basic_objects/MyUnitCubeQuad.js', 'basic_objects/MyUnitCube.js', 'MyHouse.js', 'MyCubeMap.js',
     'MyBird.js', 'basic_objects/MySphere.js', 'basic_objects/MyCone.js', 'basic_objects/MySquare.js', 'basic_objects/MyTriangle.js', 'MyBirdWing.js', 'MyTerrain.js',
-    'basic_objects/MyCylinder.js', 'MyTreeBranch.js', 'MyNest.js',
+    'basic_objects/MyCylinder.js', 'MyTreeBranch.js', 'MyNest.js', 'MyLeaf.js', 'MyLSystem.js', 'MyLSPlant.js',
+    'basic_objects/MyRectangle.js', 'MyBranch.js',
 
 
     main = function () {
@@ -24,3 +25,7 @@ serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'basic_objects/P
     }
 
 ]);
+
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
