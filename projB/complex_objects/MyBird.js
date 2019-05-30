@@ -18,6 +18,7 @@ class MyBird extends CGFobject {
         this.initMaterials();
         this.wobbleRate = 2 * Math.PI / scene.framerate;
         this.wobbleCoeficient = 0;
+        this.previousTick = 0;
     }
 
     initComponents() {
@@ -160,17 +161,20 @@ class MyBird extends CGFobject {
         this.leftWing.disableNormalViz();
         this.rightWing.disableNormalViz();
     }
-    update() {
-        this.x += this.speed * Math.sin(this.angle);
-        this.z += this.speed * Math.cos(this.angle);
+    update(t) {
+        if (t - this.previousTick >= 17) { //Around 60 times a second
+            this.x += this.speed * Math.sin(this.angle);
+            this.z += this.speed * Math.cos(this.angle);
 
-        this.wobbleCoeficient += this.wobbleRate;
-        this.wobbleCoeficient %= 2 * Math.PI;
+            this.wobbleCoeficient += this.wobbleRate;
+            this.wobbleCoeficient %= 2 * Math.PI;
 
-        this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
-        this.wingFlapFactor %= 2 * Math.PI;
-        this.leftWing.setAngle(this.wingFlapFactor);
-        this.rightWing.setAngle(this.wingFlapFactor);
+            this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
+            this.wingFlapFactor %= 2 * Math.PI;
+            this.leftWing.setAngle(this.wingFlapFactor);
+            this.rightWing.setAngle(this.wingFlapFactor);
+            this.previousTick = t;
+        }
     }
     setSpeedFactor(speedFactor) { this.speedFactor = speedFactor; }
     setScaleFactor(scaleFactor) { this.scaleFactor = scaleFactor; }

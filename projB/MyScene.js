@@ -19,7 +19,6 @@ class MyScene extends CGFscene {
     this.gl.depthFunc(this.gl.LEQUAL);
     //Frame rate and time
     this.framerate = 60;
-    this.previousTick = 0;
     this.setUpdatePeriod(1000 / this.framerate);
     //Initialize scene objects
     this.axis = new CGFaxis(this);
@@ -80,10 +79,7 @@ class MyScene extends CGFscene {
 
   update(t) {
     this.checkKeys();
-    if (t - this.previousTick >= 17) { //Around 60 times a second
-      this.bird.update();
-      this.previousTick = t;
-    }
+    this.bird.update(t);
   }
 
   checkKeys() {
