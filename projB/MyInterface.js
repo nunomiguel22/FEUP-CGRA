@@ -15,15 +15,16 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
 
         var obj = this;
+        var settingsFolder = this.gui.addFolder("Settings");
+        settingsFolder.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
+        settingsFolder.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
+        settingsFolder.add(this.scene, 'displayTex').name('Display Textures');
+        settingsFolder.add(this.scene, 'displayAxis').name('Display Axis');
+        settingsFolder.add(this.scene, 'displayNormals').name("Display normals");
 
-        this.gui.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
-        this.gui.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
-        this.gui.add(this.scene, 'displayTex').name('Display Textures');
-        this.gui.add(this.scene, 'displayAxis').name('Display Axis');
-        this.gui.add(this.scene, 'displayNormals').name("Display normals");
-
-        this.gui.add(this.scene, 'birdSpeedFactor', 0.1, 3.0).name('Bird Speed');
-        this.gui.add(this.scene, 'birdScaleFactor', 0.1, 3.0).name('Bird Scale');
+        var birdFolder = this.gui.addFolder("Bird");
+        birdFolder.add(this.scene, 'birdSpeedFactor', 0.1, 3.0).name('Bird Speed');
+        birdFolder.add(this.scene, 'birdScaleFactor', 0.1, 3.0).name('Bird Scale');
 
         this.initKeys();
 

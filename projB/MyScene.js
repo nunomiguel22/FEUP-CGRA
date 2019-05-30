@@ -31,7 +31,7 @@ class MyScene extends CGFscene {
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
     this.displayTex = true;
-    this.displayAxis = true;
+    this.displayAxis = false;
     this.displayNormals = false;
     this.scaleFactor = 1.0;
     this.ambLight = 0.7;
@@ -46,8 +46,7 @@ class MyScene extends CGFscene {
       let z = Math.random() * 11.5 - 4.5;
       //Angle between 0 and 2 * PI
       let angle = Math.random() * 2 * Math.PI;
-      //Draw branches
-      this.treeBranches.push(new MyTreeBranch(this, x, 3.6, z, angle));
+      this.treeBranches.push(new MyTreeBranch(this, x, 3.6, z, angle, Math.PI / 2));
     }
   }
 
@@ -152,8 +151,10 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     this.pushMatrix();
-    for (let i = 0; i < this.treeBranches.length; ++i)
+    //this.rotate(Math.PI / 2, 1, 0, 0);
+    for (let i = 0; i < this.treeBranches.length; ++i) {
       this.treeBranches[i].display();
+    }
     this.popMatrix();
 
     this.pushMatrix();

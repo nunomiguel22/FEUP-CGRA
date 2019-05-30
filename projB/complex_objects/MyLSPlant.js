@@ -28,7 +28,7 @@ class MyLSPlant extends MyLSystem {
         );
     }
     initGrammar() {
-        this.branch = new MyBranch(this.scene);
+        this.branch = new MyTreeBranch(this.scene, 0, 0, 0, 0, 0);
         this.leaf = new MyLeaf(this.scene);
 
         this.grammar = {
