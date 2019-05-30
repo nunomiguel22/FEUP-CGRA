@@ -1,5 +1,5 @@
 /**
- * MyHouse
+ * MyBird
  * @constructor
  * @param scene - Reference to MyScene object
  */

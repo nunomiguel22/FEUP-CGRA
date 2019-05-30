@@ -11,29 +11,19 @@ class MyLightning extends MyLSystem {
             "X",
             {
                 "F": ["FF"],
-                "X": ["F[-X][X]F[-X]+X",
-                    "F[-X][x]+X",
-                    "F[+X]-X",
-                    "F[/X][X]F[\\X]+X",
-                    "F[\X][X]/X",
-                    "F[/X]\X",
-                    "F[^X][X]F[&X]^X",
-                    "F[^X]&X",
-                    "F[&X]^X",
-                ],
+                "X": ["F[-X][X]F[-X]+FX"],
             },
-            60.0,
-            2,
-            1
+            25.0,
+            3,
+            0.5
         );
     }
     initGrammar() {
-        this.branch = new MyBranch(this.scene);
-        this.leaf = new MyLeaf(this.scene);
+        this.rect = new MyLightningRay(this.scene, 0.3, 1.5);
 
         this.grammar = {
-            "F": this.branch,
-            "X": this.leaf
+            "F": this.rect,
+            "X": this.rect
         };
     }
     enableNormalViz() {

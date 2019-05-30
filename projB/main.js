@@ -3,10 +3,12 @@ include = function () { function f() { var a = this.readyState; (!a || /ded|te/.
 serialInclude = function (a) { var b = console, c = serialInclude.l; if (a.length > 0) c.splice(0, 0, a); else b.log("Done!"); if (c.length > 0) { if (c[0].length > 1) { var d = c[0].splice(0, 1); b.log("Loading " + d + "..."); include(d, function () { serialInclude([]); }); } else { var e = c[0][0]; c.splice(0, 1); e.call(); }; } else b.log("Finished."); }; serialInclude.l = new Array();
 
 serialInclude(['../lib/CGF.js', 'MyScene.js', 'MyInterface.js', 'basic_objects/Plane.js', 'basic_objects/MyPrism.js',
-    'basic_objects/MyPyramid.js', 'basic_objects/MyQuad.js', 'basic_objects/MyUnitCubeQuad.js', 'basic_objects/MyUnitCube.js', 'MyHouse.js', 'MyCubeMap.js',
-    'MyBird.js', 'basic_objects/MySphere.js', 'basic_objects/MyCone.js', 'basic_objects/MySquare.js', 'basic_objects/MyTriangle.js', 'MyBirdWing.js', 'MyTerrain.js',
-    'basic_objects/MyCylinder.js', 'MyTreeBranch.js', 'MyNest.js', 'MyLeaf.js', 'MyLSystem.js', 'MyLSPlant.js',
-    'basic_objects/MyRectangle.js', 'MyBranch.js', 'MyLightning.js',
+    'basic_objects/MyPyramid.js', 'basic_objects/MyQuad.js', 'basic_objects/MyUnitCubeQuad.js', 'basic_objects/MyUnitCube.js',
+    'complex_objects/MyHouse.js', 'complex_objects/MyCubeMap.js', 'complex_objects/MyBird.js', 'basic_objects/MySphere.js',
+    'basic_objects/MyCone.js', 'basic_objects/MySquare.js', 'basic_objects/MyTriangle.js', 'complex_objects/MyBirdWing.js',
+    'complex_objects/MyTerrain.js', 'basic_objects/MyCylinder.js', 'complex_objects/MyTreeBranch.js', 'complex_objects/MyNest.js',
+    'complex_objects/MyLeaf.js', 'complex_objects/MyLSystem.js', 'complex_objects/MyLSPlant.js', 'complex_objects/MyBranch.js',
+    'complex_objects/MyLightning.js', 'complex_objects/MyLightningRay.js',
 
 
     main = function () {

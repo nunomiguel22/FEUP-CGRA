@@ -26,13 +26,14 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this, 0, -2, 2, -10);
     this.initTreeBranches();
     this.LSTree = new MyLSPlant(this);
+    this.lightning = new MyLightning(this);
     //Objects connected to MyInterface
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
     this.displayTex = true;
     this.displayAxis = true;
     this.displayNormals = false;
-    this.scaleFactor = 0.5;
+    this.scaleFactor = 1.0;
     this.ambLight = 0.7;
   }
 
@@ -63,7 +64,7 @@ class MyScene extends CGFscene {
       0.4,
       0.1,
       500,
-      vec3.fromValues(45, 45, 45),
+      vec3.fromValues(20, 100, 120),
       vec3.fromValues(0, 0, 0)
     );
   }
@@ -158,6 +159,12 @@ class MyScene extends CGFscene {
     this.pushMatrix();
     this.translate(-13, 4, 0);
     this.LSTree.display();
+    this.popMatrix();
+
+    this.pushMatrix();
+    this.translate(16, 20, -20);
+    this.rotate(Math.PI, 0, 0, 1);
+    this.lightning.display();
     this.popMatrix();
 
     this.pushMatrix();
