@@ -16,6 +16,7 @@ class MyInterface extends CGFinterface {
 
         var obj = this;
         var settingsFolder = this.gui.addFolder("Settings");
+        settingsFolder.add(this.scene, 'framerate', 30, 144).name('Framerate');
         settingsFolder.add(this.scene, 'ambLight', 0.1, 1.0).name('Ambient Light');
         settingsFolder.add(this.scene, 'scaleFactor', 0.1, 10.0).name('Scale');
         settingsFolder.add(this.scene, 'displayTex').name('Display Textures');

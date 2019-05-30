@@ -11,12 +11,15 @@ class MyScene extends CGFscene {
     this.initCameras();
     this.initLights();
 
-    this.framerate = 60;
+    //WebGL
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     this.gl.clearDepth(100.0);
     this.gl.enable(this.gl.DEPTH_TEST);
     this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
+    //Frame rate and time
+    this.framerate = 60;
+    this.previousTick = 0;
     this.setUpdatePeriod(1000 / this.framerate);
     //Initialize scene objects
     this.axis = new CGFaxis(this);
@@ -77,7 +80,10 @@ class MyScene extends CGFscene {
 
   update(t) {
     this.checkKeys();
-    this.bird.update();
+    if (t - this.previousTick >= 17) { //Around 60 times a second
+      this.bird.update();
+      this.previousTick = t;
+    }
   }
 
   checkKeys() {
@@ -133,7 +139,6 @@ class MyScene extends CGFscene {
     this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
     // ---- BEGIN Primitive drawing section
-
     this.pushMatrix();
     this.terrain.display();
     this.popMatrix();
@@ -151,7 +156,6 @@ class MyScene extends CGFscene {
     this.popMatrix();
 
     this.pushMatrix();
-    //this.rotate(Math.PI / 2, 1, 0, 0);
     for (let i = 0; i < this.treeBranches.length; ++i) {
       this.treeBranches[i].display();
     }
@@ -172,23 +176,28 @@ class MyScene extends CGFscene {
     this.cubeMap.display();
     this.popMatrix();
 
-    //All Normals
-    if (this.displayNormals) {
-      this.terrain.enableNormalViz();
-      this.house.enableNormalViz();
-      this.bird.enableNormalViz();
-      for (let i = 0; i < this.treeBranches.length; ++i)
-        this.treeBranches[i].enableNormalViz();
-      this.LSTree.enableNormalViz();
-    } else {
-      this.terrain.disableNormalViz();
-      this.house.disableNormalViz();
-      this.bird.disableNormalViz();
-      for (let i = 0; i < this.treeBranches.length; ++i)
-        this.treeBranches[i].disableNormalViz();
-      this.LSTree.disableNormalViz();
-    }
-
+    //Display all normals
+    if (this.displayNormals)
+      this.enableNormalViz();
+    else this.disableNormalViz();
     // ---- END Primitive drawing section
+  }
+  enableNormalViz() {
+    this.terrain.enableNormalViz();
+    this.house.enableNormalViz();
+    this.bird.enableNormalViz();
+    for (let i = 0; i < this.treeBranches.length; ++i)
+      this.treeBranches[i].enableNormalViz();
+    this.LSTree.enableNormalViz();
+    this.lightning.enableNormalViz();
+  }
+  disableNormalViz() {
+    this.terrain.disableNormalViz();
+    this.house.disableNormalViz();
+    this.bird.disableNormalViz();
+    for (let i = 0; i < this.treeBranches.length; ++i)
+      this.treeBranches[i].disableNormalViz();
+    this.LSTree.disableNormalViz();
+    this.lightning.disableNormalViz();
   }
 }

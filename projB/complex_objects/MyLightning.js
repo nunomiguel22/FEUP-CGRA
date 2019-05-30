@@ -26,12 +26,6 @@ class MyLightning extends MyLSystem {
             "X": this.rect
         };
     }
-    enableNormalViz() {
-        this.branch.enableNormalViz();
-        this.leaf.enableNormalViz();
-    }
-    disableNormalViz() {
-        this.branch.disableNormalViz();
-        this.leaf.disableNormalViz();
-    }
+    enableNormalViz() { this.rect.enableNormalViz(); }
+    disableNormalViz() { this.rect.disableNormalViz(); }
 }
