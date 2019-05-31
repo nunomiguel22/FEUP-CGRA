@@ -52,7 +52,7 @@ class MyScene extends CGFscene {
   }
 
   initLights() {
-    this.lights[0].setPosition(15, 2, 5, 1);
+    this.lights[0].setPosition(15, 15, 5, 1);
     this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
     this.lights[0].setSpecular(1.0, 1.0, 1.0, 1.0);
     this.lights[0].enable();
@@ -126,6 +126,7 @@ class MyScene extends CGFscene {
     // Apply transformations corresponding to the camera position relative to the origin
     this.applyViewMatrix();
     this.enableTextures(this.displayTex);
+    this.lights[0].update();
     // Draw axis
     if (this.displayAxis) this.axis.display();
 

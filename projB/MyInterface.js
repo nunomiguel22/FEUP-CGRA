@@ -23,6 +23,11 @@ class MyInterface extends CGFinterface {
         settingsFolder.add(this.scene, 'displayAxis').name('Display Axis');
         settingsFolder.add(this.scene, 'displayNormals').name("Display normals");
 
+        var lightFolder = this.gui.addFolder('Light Position');
+        lightFolder.add(this.scene.lights[0].position, '0', -50.0, 50.0).name("X Position");
+        lightFolder.add(this.scene.lights[0].position, '1', -50.0, 50.0).name("Y Position");
+        lightFolder.add(this.scene.lights[0].position, '2', -50.0, 50.0).name("Z Position");
+
         var birdFolder = this.gui.addFolder("Bird");
         birdFolder.add(this.scene, 'birdSpeedFactor', 0.1, 3.0).name('Bird Speed');
         birdFolder.add(this.scene, 'birdScaleFactor', 0.1, 3.0).name('Bird Scale');

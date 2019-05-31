@@ -8,20 +8,11 @@ class MyTerrain extends CGFobject {
     constructor(scene) {
         super(scene);
         this.initComponents();
-        this.initMaterials();
         this.initTextures();
         this.initShaders();
     }
 
     initComponents() { this.plane = new Plane(this.scene, 32); }
-
-    initMaterials() {
-        this.terrainMaterial = new CGFappearance(this.scene);
-        this.terrainMaterial.setAmbient(0.0, 0.0, 0.0, 1);
-        this.terrainMaterial.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.terrainMaterial.setSpecular(0.0, 0.0, 0.0, 1);
-        this.terrainMaterial.setShininess(10);
-    }
 
     initTextures() {
         this.heightMap = new CGFtexture(this.scene, 'images/heightmap.jpg');
@@ -31,18 +22,23 @@ class MyTerrain extends CGFobject {
 
     initShaders() {
         this.shader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag")
+        //Pass textures to shader
+        this.shader.setUniformsValues({ uSampler: 0 });
         this.shader.setUniformsValues({ uSampler2: 1 });
         this.shader.setUniformsValues({ uSampler3: 2 });
+        //Pass ambient value to shader
+        this.shader.setUniformsValues({ uAmbientMat: [0.9, 0.9, 0.9, 1.0] });
     }
 
     display() {
+        //Pass textures and values to shader
         this.shader.setUniformsValues({ normScale: this.scene.scaleFactor });
-        this.terrainMaterial.apply();
+        this.shader.setUniformsValues({ uAmbient: this.scene.ambLight });
         this.scene.setActiveShader(this.shader);
-        this.terrainMaterial.setTexture(this.terrainTex);
+        this.terrainTex.bind(0);
         this.heightMap.bind(1);
         this.gradientTex.bind(2);
-
+        //Scale to correct size
         this.scene.pushMatrix();
         this.scene.rotate(-0.5 * Math.PI, 1, 0, 0);
         this.scene.scale(60, 60, 1);
@@ -52,7 +48,6 @@ class MyTerrain extends CGFobject {
     }
 
     enableNormalViz() { this.plane.enableNormalViz(); }
-
     disableNormalViz() { this.plane.disableNormalViz(); }
 }
 
