@@ -2,6 +2,8 @@
  * MyLightningRay
  * @constructor
  * @param scene - Reference to MyScene object
+ * @param width - Float defining ray width
+ * @param scene - Float defining ray height
  */
 class MyLightningRay extends CGFobject {
     constructor(scene, width, height) {

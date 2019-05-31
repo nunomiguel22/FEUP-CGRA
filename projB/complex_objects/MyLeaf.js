@@ -1,3 +1,8 @@
+/**
+ * MyLeaf
+ * @constructor
+ * @param scene - Reference to MyScene object
+ */
 class MyLeaf extends CGFobject {
     constructor(scene) {
         super(scene);

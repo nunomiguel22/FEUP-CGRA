@@ -1,3 +1,8 @@
+/**
+ * MyBirdWing
+ * @constructor
+ * @param scene - Reference to MyScene object
+ */
 class MyBirdWing extends CGFobject {
     constructor(scene) {
         super(scene);
@@ -5,7 +10,7 @@ class MyBirdWing extends CGFobject {
     }
 
     initComponents() {
-        this.body = new MySquare(this.scene);
+        this.body = new MyQuad(this.scene);
         this.tip = new MyTriangle(this.scene);
         this.startAngle = - Math.PI / 6;
         this.amplitude = Math.PI / 6;

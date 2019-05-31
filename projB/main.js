@@ -12,8 +12,6 @@ serialInclude([
     'basic_objects/MyUnitCube.js',
     'basic_objects/MySphere.js',
     'basic_objects/MyCone.js',
-    'basic_objects/MyRectangle.js',
-    'basic_objects/MySquare.js',
     'basic_objects/MyTriangle.js',
     'basic_objects/MyCylinder.js',
 

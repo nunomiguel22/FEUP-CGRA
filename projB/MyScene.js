@@ -10,7 +10,6 @@ class MyScene extends CGFscene {
     super.init(application);
     this.initCameras();
     this.initLights();
-
     //WebGL
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
     this.gl.clearDepth(100.0);
@@ -178,6 +177,7 @@ class MyScene extends CGFscene {
     else this.disableNormalViz();
     // ---- END Primitive drawing section
   }
+
   enableNormalViz() {
     this.terrain.enableNormalViz();
     this.house.enableNormalViz();
@@ -187,6 +187,7 @@ class MyScene extends CGFscene {
     this.LSTree.enableNormalViz();
     this.lightning.enableNormalViz();
   }
+
   disableNormalViz() {
     this.terrain.disableNormalViz();
     this.house.disableNormalViz();

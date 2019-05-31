@@ -1,3 +1,13 @@
+/**
+ * MyTreeBranch
+ * @constructor
+ * @param scene - Reference to MyScene object
+ * @param x - float with x coordinate
+ * @param y - float with y coordinate
+ * @param z - float with z coordinate
+ * @param yAngle - y axis rotation in radians
+ * @param zAngle - z axis rotation in radians
+ */
 class MyTreeBranch extends CGFobject {
     constructor(scene, x, y, z, yAngle, zAngle) {
         super(scene);

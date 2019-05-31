@@ -4,7 +4,7 @@
  * @param scene - Reference to MyScene object
  */
 class MyUnitCube extends CGFobject {
-	constructor(scene) {
+      constructor(scene) {
             super(scene);
             this.preparePolygons();
             this.initBuffers();
@@ -16,12 +16,12 @@ class MyUnitCube extends CGFobject {
             this.initNormals();
             this.initTextureCoordinates();
       }
-      
-	initBuffers() {
-		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.initGLBuffers();
+
+      initBuffers() {
+            this.primitiveType = this.scene.gl.TRIANGLES;
+            this.initGLBuffers();
       }
-      
+
       initVertices() {
             this.vertices = [
                   //FRONT
@@ -85,25 +85,25 @@ class MyUnitCube extends CGFobject {
             this.normals = [];
             //FRONT
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(0,0,1);
+                  this.normals.push(0, 0, 1);
             //BACK
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(0,0,-1);
-             //LEFT
+                  this.normals.push(0, 0, -1);
+            //LEFT
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(-1,0,0);
+                  this.normals.push(-1, 0, 0);
             //RIGHT
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(1,0,0);
+                  this.normals.push(1, 0, 0);
             //BOTTOM
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(0,-1,0);
+                  this.normals.push(0, -1, 0);
             //TOP
             for (var i = 0; i < 4; ++i)
-                  this.normals.push(0,1,0);
+                  this.normals.push(0, 1, 0);
       }
 
-      initTextureCoordinates(){
+      initTextureCoordinates() {
             this.texCoords = [
                   //FRONT
                   0.25, 0.334,
@@ -135,11 +135,15 @@ class MyUnitCube extends CGFobject {
                   0.255, 0.333,
                   0.49, 0,
                   0.255, 0,
-		];
+            ];
       }
-
+	/**
+	 * @method updateTexCoords
+	 * Updates the list of texture coordinates of the quad
+	 * @param {Array} coords - Array of texture coordinates
+	 */
       updateTexCoords(coords) {
-		this.texCoords = [...coords];
-		this.updateTexCoordsGLBuffers();
-	}
+            this.texCoords = [...coords];
+            this.updateTexCoordsGLBuffers();
+      }
 }

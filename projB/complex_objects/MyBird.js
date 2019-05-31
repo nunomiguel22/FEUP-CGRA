@@ -2,6 +2,10 @@
  * MyBird
  * @constructor
  * @param scene - Reference to MyScene object
+ * @param angle - y axis rotation in radians
+ * @param x - float with x coordinate
+ * @param y - float with y coordinate
+ * @param z - float with z coordinate
  */
 class MyBird extends CGFobject {
 
