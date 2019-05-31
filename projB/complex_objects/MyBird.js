@@ -17,12 +17,14 @@ class MyBird extends CGFobject {
         this.speedFactor = 1;
         this.scaleFactor = 1;
         this.reset();
-        this.angle = angle;
         this.initComponents();
         this.initMaterials();
+        this.angle = angle;
         this.wobbleRate = 2 * Math.PI / scene.framerate;
         this.wobbleCoeficient = 0;
         this.previousTick = 0;
+
+
     }
 
     initComponents() {

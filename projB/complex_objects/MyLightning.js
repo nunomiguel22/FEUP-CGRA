@@ -115,7 +115,7 @@ class MyLightning extends MyLSystem {
 
                     if (primitive) {
                         this.scene.pushMatrix();
-                        this.scene.scale(0.4, 1.0, 3.0); //Scale Quad to rectangle
+                        this.scene.scale(0.3, 1.0, 3.0); //Scale Quad to rectangle
                         this.rayMaterial.apply();
                         primitive.display();
                         this.scene.popMatrix();

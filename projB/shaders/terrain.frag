@@ -19,9 +19,9 @@ void main() {
 	vec4 altimetry = texture2D(uSampler3, altimetryCoords);
 	//Color mixing with altimetry
 	vec4 finalColor = color;
-	finalColor.r = (color.r * 0.50 + altimetry.r * 0.50);
-	finalColor.g = (color.g * 0.50 + altimetry.g * 0.50);
-	finalColor.b = (color.b * 0.50 + altimetry.b * 0.50);
+	finalColor.r = (color.r * 0.6 + altimetry.r * 0.4);
+	finalColor.g = (color.g * 0.6 + altimetry.g * 0.4);
+	finalColor.b = (color.b * 0.6 + altimetry.b * 0.4);
 	//Apply ambient light to final color
 	finalColor *= uAmbientMat * vec4(vec3(uAmbient, uAmbient, uAmbient), 1.0);
 

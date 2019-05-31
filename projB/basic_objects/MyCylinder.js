@@ -44,9 +44,9 @@ class MyCylinder extends CGFobject {
                 (2 * (i + 1)) % m, 2 * i + 1, (2 * (i + 1)) % m + 1
             );
 
-            this.texCoords.push(0.5, 0);
-            this.texCoords.push(0, 1);
-            this.texCoords.push(1, 1);
+            this.texCoords.push(0.5, 0.0);
+            this.texCoords.push(0.0, 1.0);
+            this.texCoords.push(1.0, 1.0);
 
         }
 

@@ -28,9 +28,9 @@ class MyPyramid extends CGFobject {
             let ca = Math.cos(ang);
             let caa = Math.cos(ang + alphaAng);
 
-            this.vertices.push(0, 1, 0);
-            this.vertices.push(ca, 0, -sa);
-            this.vertices.push(caa, 0, -saa);
+            this.vertices.push(0.0, 1.0, 0.0);
+            this.vertices.push(ca, 0.0, -sa);
+            this.vertices.push(caa, 0.0, -saa);
 
             // triangle normal computed by cross product of two edges
             let normal = [

@@ -26,10 +26,10 @@ class MyPrism extends CGFobject {
             let x2 = Math.cos(angle2);
             let z2 = Math.sin(angle2);
 
-            this.vertices.push(x1, 0, z1);
-            this.vertices.push(x2, 0, z2);
-            this.vertices.push(x1, 1, z1);
-            this.vertices.push(x2, 1, z2);
+            this.vertices.push(x1, 0.0, z1);
+            this.vertices.push(x2, 0.0, z2);
+            this.vertices.push(x1, 1.0, z1);
+            this.vertices.push(x2, 1.0, z2);
 
             let normal = [
                 Math.cos(angle1 + alphaAng / 2),
