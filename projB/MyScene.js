@@ -77,11 +77,12 @@ class MyScene extends CGFscene {
   }
 
   update(t) {
-    this.checkKeys();
+    this.checkKeys(t);
     this.bird.update(t);
+    this.lightning.update(t);
   }
 
-  checkKeys() {
+  checkKeys(t) {
     var text = "Keys pressed: ";
     var keysPressed = false;
     // Check for key codes e.g. in ​https://keycode.info/
@@ -96,19 +97,24 @@ class MyScene extends CGFscene {
       this.bird.accelerate(-0.2);
     }
     if (this.gui.isKeyPressed("KeyA")) {
-      text += " S ";
+      text += " A ";
       keysPressed = true;
       this.bird.turn(Math.PI / 12);
     }
     if (this.gui.isKeyPressed("KeyD")) {
-      text += " S ";
+      text += " D ";
       keysPressed = true;
       this.bird.turn(-Math.PI / 12);
     }
     if (this.gui.isKeyPressed("KeyR")) {
-      text += " S ";
+      text += " R ";
       keysPressed = true;
       this.bird.reset();
+    }
+    if (this.gui.isKeyPressed("KeyL")) {
+      text += " L ";
+      keysPressed = true;
+      this.lightning.startAnimation(t, 1000);
     }
     if (keysPressed) console.log(text);
   }
@@ -126,6 +132,7 @@ class MyScene extends CGFscene {
     // Apply transformations corresponding to the camera position relative to the origin
     this.applyViewMatrix();
     this.enableTextures(this.displayTex);
+    this.setUpdatePeriod(1000 / this.framerate);
     this.lights[0].update();
     // Draw axis
     if (this.displayAxis) this.axis.display();
@@ -135,6 +142,10 @@ class MyScene extends CGFscene {
     this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 
     // ---- BEGIN Primitive drawing section
+    this.pushMatrix();
+    this.cubeMap.display();
+    this.popMatrix();
+
     this.pushMatrix();
     this.terrain.display();
     this.popMatrix();
@@ -162,15 +173,13 @@ class MyScene extends CGFscene {
     this.LSTree.display();
     this.popMatrix();
 
-    this.pushMatrix();
-    this.translate(16, 20, -20);
-    this.rotate(Math.PI, 0, 0, 1);
-    this.lightning.display();
-    this.popMatrix();
-
-    this.pushMatrix();
-    this.cubeMap.display();
-    this.popMatrix();
+    if (this.lightning.isActive()) {
+      this.pushMatrix();
+      this.translate(16, 20, -20);
+      this.rotate(Math.PI, 0, 0, 1);
+      this.lightning.display();
+      this.popMatrix();
+    }
 
     //Display all normals
     if (this.displayNormals)

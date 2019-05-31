@@ -26,7 +26,6 @@ serialInclude([
     'complex_objects/MyLSystem.js',
     'complex_objects/MyLSPlant.js',
     'complex_objects/MyLightning.js',
-    'complex_objects/MyLightningRay.js',
 
     'MyScene.js',
     'MyInterface.js',
