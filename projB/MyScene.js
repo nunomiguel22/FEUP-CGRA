@@ -26,7 +26,7 @@ class MyScene extends CGFscene {
     this.cubeMap = new MyCubeMap(this);
     this.bird = new MyBird(this, 0, -2, 2, -10);
     this.initTreeBranches();
-    this.LSTree = new MyLSPlant(this);
+    this.initLSTrees();
     this.lightning = new MyLightning(this, 16, 20, -20);
     //Objects connected to MyInterface
     this.birdScaleFactor = 1;
@@ -51,6 +51,12 @@ class MyScene extends CGFscene {
     }
   }
 
+  initLSTrees() {
+    this.LSTrees = [];
+    for (let i = 0; i < 6; ++i)
+      this.LSTrees[i] = new MyLSPlant(this);
+
+  }
 
   initLights() {
     this.lights[0].setPosition(15, 15, 5, 1);
@@ -169,10 +175,12 @@ class MyScene extends CGFscene {
     }
     this.popMatrix();
 
-    this.pushMatrix();
-    this.translate(-13, 4, 0);
-    this.LSTree.display();
-    this.popMatrix();
+    for (let i = 0; i < this.LSTrees.length; ++i) {
+      this.pushMatrix();
+      this.translate(-18 + i * 4, 4, 4 - i * 4);
+      this.LSTrees[i].display();
+      this.popMatrix();
+    }
 
     if (this.lightning.isActive())
       this.lightning.display();
@@ -181,6 +189,7 @@ class MyScene extends CGFscene {
     if (this.displayNormals)
       this.enableNormalViz();
     else this.disableNormalViz();
+
     // ---- END Primitive drawing section
   }
 
@@ -190,17 +199,19 @@ class MyScene extends CGFscene {
     this.bird.enableNormalViz();
     for (let i = 0; i < this.treeBranches.length; ++i)
       this.treeBranches[i].enableNormalViz();
-    this.LSTree.enableNormalViz();
+    for (let i = 0; i < this.LSTrees.length; ++i)
+      this.LSTrees[i].enableNormalViz();
     this.lightning.enableNormalViz();
   }
-
   disableNormalViz() {
     this.terrain.disableNormalViz();
     this.house.disableNormalViz();
     this.bird.disableNormalViz();
     for (let i = 0; i < this.treeBranches.length; ++i)
       this.treeBranches[i].disableNormalViz();
-    this.LSTree.disableNormalViz();
+    for (let i = 0; i < this.LSTrees.length; ++i)
+      this.LSTrees[i].disableNormalViz();
     this.lightning.disableNormalViz();
   }
+
 }
