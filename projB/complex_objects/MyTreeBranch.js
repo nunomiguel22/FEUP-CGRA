@@ -16,6 +16,7 @@ class MyTreeBranch extends CGFobject {
         this.z = z;
         this.yAngle = yAngle;
         this.zAngle = zAngle;
+        this.hitRadius = 2;
         this.initComponents();
         this.initMaterials();
     }

@@ -16,6 +16,11 @@ class MyBird extends CGFobject {
         this.originalZ = z;
         this.speedFactor = 1;
         this.scaleFactor = 1;
+        this.BirdStates = {
+            normal: 0,
+            ascending: 1,
+            descending: 2,
+        }
         this.reset();
         this.initComponents();
         this.initMaterials();
@@ -23,12 +28,7 @@ class MyBird extends CGFobject {
         this.wobbleRate = 2 * Math.PI / scene.framerate;
         this.wobbleCoeficient = 0;
         this.previousTick = 0;
-        this.BirdStates = {
-            normal: 0,
-            ascending: 1,
-            descending: 2,
-        }
-        this.state = this.BirdStates.normal;
+        this.hitRadius = 2;
         this.treeBranch = null;
     }
 
@@ -78,7 +78,6 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
         this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-
         this.scene.rotate(this.angle, 0, 1, 0);
         this.displayHead();
         this.displayLeftEye();
@@ -180,10 +179,10 @@ class MyBird extends CGFobject {
     }
     addBranch(branch) {
         this.treeBranch = branch;
-        this.treeBranch.x = this.x + 2;
-        this.treeBranch.y = this.y - 6;
-        this.treeBranch.z = this.z + 8.5;
-        this.treeBranch.yAngle = this.angle;
+        this.treeBranch.x = 0;
+        this.treeBranch.y = -1;
+        this.treeBranch.z = -2;
+        this.treeBranch.yAngle = 0;
     }
     removeBranch() { this.treeBranch = null; }
 
@@ -205,6 +204,7 @@ class MyBird extends CGFobject {
                     if (this.y <= -2) {
                         this.state = this.BirdStates.ascending;
                         this.y += 0.1;
+                        this.scene.checkCollision();
                     }
                     else this.y -= 0.1;
                     break;
@@ -238,7 +238,8 @@ class MyBird extends CGFobject {
         this.x = this.originalX;
         this.y = this.originalY;
         this.z = this.originalZ;
-        this.descending = false;
+        this.treeBranch = null;
+        this.state = this.BirdStates.normal;
         this.speed = 0;
         this.angle = 0;
         this.wingAddedAngle = 0;

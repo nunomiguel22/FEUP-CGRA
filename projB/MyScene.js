@@ -132,6 +132,24 @@ class MyScene extends CGFscene {
     if (keysPressed) console.log(text);
   }
 
+  checkCollision() {
+
+    // Bird to branches on the ground
+    if (this.bird.treeBranch == null) { // Check if bird is already has a branch
+      for (let i = 0; i < this.treeBranches.length; ++i) {
+        let xComp = Math.pow(this.bird.x - this.treeBranches[i].x, 2);
+        let zComp = Math.pow(this.bird.z - this.treeBranches[i].z, 2);
+        let distance = Math.sqrt(xComp + zComp);
+
+        if (distance <= this.bird.hitRadius + this.treeBranches[i].hitRadius) {
+          this.bird.addBranch(this.treeBranches[i]);
+          this.treeBranches.splice(i, 1);
+          break;
+        }
+      }
+    }
+  }
+
   display() {
     // ---- BEGIN Background, camera and axis setup
     // Clear image and depth buffer everytime we update the scene
