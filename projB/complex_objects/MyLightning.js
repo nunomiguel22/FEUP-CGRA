@@ -4,27 +4,33 @@
  * @param scene - Reference to MyScene object
  */
 class MyLightning extends MyLSystem {
-    constructor(scene) {
+    constructor(scene, x, y, z) {
         super(scene);
         this.init();
         this.generate(
             "X",
             {
                 "F": ["FF"],
-                "X": ["F[-X][X]F[-X]+FX"],
+                "X": [
+                    "F[-X][X]F[-X]+FX",
+                    "F[-X][X]-F[-X]+FX",
+                    "FX[-X]F[-X]+FX",
+                ],
             },
             25.0,
             3,
             0.5
         );
         this.initMaterials();
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.startTime = 0;
         this.previousDraw = 0;
     }
 
     initGrammar() {
         this.rect = new MyQuad(this.scene);
-
         this.grammar = {
             "F": this.rect,
             "X": this.rect
@@ -40,10 +46,15 @@ class MyLightning extends MyLSystem {
     }
     startAnimation(t, animationDurationMs) {
         if (this.startTime == 0) {
+            //Initiate animation variables
             this.depth = 0;
             this.startTime = t;
-            this.axiom = "X";
             this.animationTime = animationDurationMs;
+            //Randomize x position
+            let x = Math.random() * 30 - 15;
+            this.x = x;
+            //Generate new iteration
+            this.axiom = "X";
             this.iterate();
         }
     }
@@ -61,6 +72,8 @@ class MyLightning extends MyLSystem {
 
     display() {
         this.scene.pushMatrix();
+        this.scene.translate(this.x, this.y, this.z);
+        this.scene.rotate(Math.PI, 0, 0, 1);
         this.scene.scale(this.scale, this.scale, this.scale);
 
         // percorre a cadeia de caracteres

@@ -27,7 +27,7 @@ class MyScene extends CGFscene {
     this.bird = new MyBird(this, 0, -2, 2, -10);
     this.initTreeBranches();
     this.LSTree = new MyLSPlant(this);
-    this.lightning = new MyLightning(this);
+    this.lightning = new MyLightning(this, 16, 20, -20);
     //Objects connected to MyInterface
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
@@ -50,6 +50,7 @@ class MyScene extends CGFscene {
       this.treeBranches.push(new MyTreeBranch(this, x, 3.6, z, angle, Math.PI / 2));
     }
   }
+
 
   initLights() {
     this.lights[0].setPosition(15, 15, 5, 1);
@@ -173,13 +174,8 @@ class MyScene extends CGFscene {
     this.LSTree.display();
     this.popMatrix();
 
-    if (this.lightning.isActive()) {
-      this.pushMatrix();
-      this.translate(16, 20, -20);
-      this.rotate(Math.PI, 0, 0, 1);
+    if (this.lightning.isActive())
       this.lightning.display();
-      this.popMatrix();
-    }
 
     //Display all normals
     if (this.displayNormals)
