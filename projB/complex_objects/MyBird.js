@@ -29,6 +29,7 @@ class MyBird extends CGFobject {
             descending: 2,
         }
         this.state = this.BirdStates.normal;
+        this.treeBranch = null;
     }
 
     initComponents() {
@@ -86,6 +87,7 @@ class MyBird extends CGFobject {
         this.displayNose();
         this.displayLeftWing();
         this.displayRightWing();
+        this.displayTreeBranch();
         this.scene.popMatrix();
     }
 
@@ -156,6 +158,11 @@ class MyBird extends CGFobject {
         this.scene.popMatrix();
     }
 
+    displayTreeBranch() {
+        if (this.treeBranch != null)
+            this.treeBranch.display()
+    }
+
     enableNormalViz() {
         this.cube.enableNormalViz();
         this.cone.enableNormalViz();
@@ -171,6 +178,14 @@ class MyBird extends CGFobject {
         this.leftWing.disableNormalViz();
         this.rightWing.disableNormalViz();
     }
+    addBranch(branch) {
+        this.treeBranch = branch;
+        this.treeBranch.x = this.x + 2;
+        this.treeBranch.y = this.y - 6;
+        this.treeBranch.z = this.z + 8.5;
+        this.treeBranch.yAngle = this.angle;
+    }
+    removeBranch() { this.treeBranch = null; }
 
     startDescent() { this.state = this.BirdStates.descending; }
 
