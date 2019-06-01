@@ -23,8 +23,12 @@ class MyBird extends CGFobject {
         this.wobbleRate = 2 * Math.PI / scene.framerate;
         this.wobbleCoeficient = 0;
         this.previousTick = 0;
-
-
+        this.BirdStates = {
+            normal: 0,
+            ascending: 1,
+            descending: 2,
+        }
+        this.state = this.BirdStates.normal;
     }
 
     initComponents() {
@@ -73,7 +77,7 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(this.x, this.y, this.z);
         this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
-        this.scene.translate(1, 0.35 * Math.sin(this.wobbleCoeficient), 1);
+
         this.scene.rotate(this.angle, 0, 1, 0);
         this.displayHead();
         this.displayLeftEye();
@@ -167,13 +171,36 @@ class MyBird extends CGFobject {
         this.leftWing.disableNormalViz();
         this.rightWing.disableNormalViz();
     }
+
+    startDescent() { this.state = this.BirdStates.descending; }
+
     update(t) {
         if (t - this.previousTick >= 17) { //Around 60 times a second
             this.x += this.speed * Math.sin(this.angle);
             this.z += this.speed * Math.cos(this.angle);
 
-            this.wobbleCoeficient += this.wobbleRate;
-            this.wobbleCoeficient %= 2 * Math.PI;
+            switch (this.state) {
+                case this.BirdStates.ascending: {
+                    if (this.y >= 5)
+                        this.state = this.BirdStates.normal;
+                    else this.y += 0.1;
+                    break;
+                };
+                case this.BirdStates.descending: {
+                    if (this.y <= -2) {
+                        this.state = this.BirdStates.ascending;
+                        this.y += 0.1;
+                    }
+                    else this.y -= 0.1;
+                    break;
+                }
+                case this.BirdStates.normal: {
+                    this.wobbleCoeficient += this.wobbleRate;
+                    this.wobbleCoeficient %= 2 * Math.PI;
+                    this.y += 0.05 * Math.sin(this.wobbleCoeficient);
+                    break;
+                }
+            }
 
             this.wingFlapFactor += (this.speed + 0.5) * this.wingFlapMultiplier;
             this.wingFlapFactor %= 2 * Math.PI;
@@ -196,6 +223,7 @@ class MyBird extends CGFobject {
         this.x = this.originalX;
         this.y = this.originalY;
         this.z = this.originalZ;
+        this.descending = false;
         this.speed = 0;
         this.angle = 0;
         this.wingAddedAngle = 0;

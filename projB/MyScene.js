@@ -24,7 +24,7 @@ class MyScene extends CGFscene {
     this.terrain = new MyTerrain(this);
     this.house = new MyHouse(this);
     this.cubeMap = new MyCubeMap(this);
-    this.bird = new MyBird(this, 0, -2, 2, -10);
+    this.bird = new MyBird(this, 0, -2, 5, -10);
     this.initTreeBranches();
     this.initLSTrees();
     this.lightning = new MyLightning(this, 16, 20, -20);
@@ -122,6 +122,12 @@ class MyScene extends CGFscene {
       text += " L ";
       keysPressed = true;
       this.lightning.startAnimation(t, 1000);
+    }
+    if (this.gui.isKeyPressed("KeyP")) {
+      text += " P ";
+      keysPressed = true;
+      if (this.bird.state == this.bird.BirdStates.normal)
+        this.bird.startDescent();
     }
     if (keysPressed) console.log(text);
   }
