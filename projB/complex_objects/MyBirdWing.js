@@ -33,6 +33,15 @@ class MyBirdWing extends CGFobject {
         this.tip.display();
         this.scene.popMatrix();
     }
+    invertNormals() {
+        for (let i = 0; i < this.body.normals.length; ++i)
+            this.body.normals[i] *= -1;
+        for (let i = 0; i < this.tip.normals.length; ++i)
+            this.tip.normals[i] *= -1;
+
+        this.body.initGLBuffers();
+        this.tip.initGLBuffers();
+    }
 
     display() {
         this.displayBody();
