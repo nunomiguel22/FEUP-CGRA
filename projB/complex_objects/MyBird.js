@@ -197,16 +197,16 @@ class MyBird extends CGFobject {
                 case this.BirdStates.ascending: {
                     if (this.y >= 5)
                         this.state = this.BirdStates.normal;
-                    else this.y += 0.1;
+                    else this.y += 0.2;
                     break;
                 };
                 case this.BirdStates.descending: {
                     if (this.y <= -2) {
                         this.state = this.BirdStates.ascending;
-                        this.y += 0.1;
+                        this.y += 0.2;
                         this.scene.checkCollision();
                     }
-                    else this.y -= 0.1;
+                    else this.y -= 0.2;
                     break;
                 }
                 case this.BirdStates.normal: {
