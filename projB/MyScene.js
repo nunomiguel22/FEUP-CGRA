@@ -20,15 +20,12 @@ class MyScene extends CGFscene {
     this.framerate = 60;
     this.setUpdatePeriod(1000 / this.framerate);
     //Initialize scene objects
-    this.axis = new CGFaxis(this);
-    this.terrain = new MyTerrain(this);
-    this.house = new MyHouse(this);
-    this.cubeMap = new MyCubeMap(this);
-    this.bird = new MyBird(this, 0, -2, 5, -10);
-    this.initTreeBranches();
-    this.initLSTrees();
-    this.lightning = new MyLightning(this, 16, 20, -20);
+    this.initComponents();
     //Objects connected to MyInterface
+    this.initInterfaceObjects();
+  }
+
+  initInterfaceObjects() {
     this.birdScaleFactor = 1;
     this.birdSpeedFactor = 1;
     this.displayTex = true;
@@ -38,7 +35,19 @@ class MyScene extends CGFscene {
     this.ambLight = 0.7;
   }
 
-  initTreeBranches() {
+  initComponents() {
+    this.axis = new CGFaxis(this);
+    this.terrain = new MyTerrain(this);
+    this.house = new MyHouse(this);
+    this.cubeMap = new MyCubeMap(this);
+    this.bird = new MyBird(this, 0, -2, 5, -10);
+    this.lightning = new MyLightning(this, 16, 20, -20);
+    this.nest = new MyNest(this, 3, -5, 3.3, 3);
+    //Trees
+    this.LSTrees = [];
+    for (let i = 0; i < 6; ++i)
+      this.LSTrees[i] = new MyLSPlant(this);
+    //Tree branches
     this.treeBranches = [];
     for (let i = 0; i < 5; ++i) {
       // X between 9 and 18
@@ -49,13 +58,6 @@ class MyScene extends CGFscene {
       let angle = Math.random() * 2 * Math.PI;
       this.treeBranches.push(new MyTreeBranch(this, x, 3.6, z, angle, Math.PI / 2));
     }
-  }
-
-  initLSTrees() {
-    this.LSTrees = [];
-    for (let i = 0; i < 6; ++i)
-      this.LSTrees[i] = new MyLSPlant(this);
-
   }
 
   initLights() {
@@ -148,6 +150,16 @@ class MyScene extends CGFscene {
         }
       }
     }
+    else {
+      let xComp = Math.pow(this.bird.x - this.nest.x, 2);
+      let zComp = Math.pow(this.bird.z - this.nest.z, 2);
+      let distance = Math.sqrt(xComp + zComp);
+
+      if (distance <= this.bird.hitRadius + this.nest.hitRadius) {
+        this.nest.addBranch(this.bird.treeBranch);
+        this.bird.removeBranch();
+      }
+    }
   }
 
   display() {
@@ -193,10 +205,12 @@ class MyScene extends CGFscene {
     this.house.display();
     this.popMatrix();
 
+    this.nest.display();
+
+
     this.pushMatrix();
-    for (let i = 0; i < this.treeBranches.length; ++i) {
+    for (let i = 0; i < this.treeBranches.length; ++i)
       this.treeBranches[i].display();
-    }
     this.popMatrix();
 
     for (let i = 0; i < this.LSTrees.length; ++i) {
